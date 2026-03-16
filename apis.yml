@@ -1,47 +1,47 @@
+aid: circana
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/circana/refs/heads/main/apis.yml
 name: Circana
-description: Circana is a leading advisor on the complexity of consumer behavior, providing data and insights to help businesses understand and predict consumer purchasing patterns across retail, healthcare, and technology sectors.
-image: https://www.circana.com/wp-content/uploads/2023/01/circana-logo.svg
-url: https://www.circana.com
-created: '2024'
-modified: '2024'
-specificationVersion: '0.18'
-apis:
-- name: Circana Data API
-  description: API providing access to consumer purchasing data, market insights, and retail analytics across various industries
-  image: https://www.circana.com/wp-content/uploads/2023/01/circana-logo.svg
-  humanURL: https://www.circana.com
-  baseURL: https://api.circana.com
-  tags:
+tags:
   - Retail
   - Consumer Data
   - Market Research
   - Analytics
-  - Point of Sale
-  properties:
-  - type: Documentation
-    url: https://www.circana.com/solutions
-  - type: OpenAPI
-    url: https://api.circana.com/openapi.json
-  contact:
-  - FN: Circana Support
-    email: support@circana.com
-    url: https://www.circana.com/contact
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+access: 3rd-Party
+created: '2024-01-01'
+modified: '2026-03-16'
+position: Consumer
+description: >-
+  Circana is a leading advisor on the complexity of consumer behavior,
+  providing data and insights to help businesses understand and predict
+  consumer purchasing patterns across retail, healthcare, and technology
+  sectors.
+apis:
+  - aid: circana:circana-data-api
+    name: Circana Data API
+    tags:
+      - Retail
+      - Consumer Data
+      - Analytics
+    humanURL: https://www.circana.com/solutions
+    properties:
+      - url: https://www.circana.com/solutions
+        type: Documentation
+    description: >-
+      API providing access to consumer purchasing data, market insights, and
+      retail analytics across various industries.
 common:
-- type: Portal
-  url: https://www.circana.com
-- type: About
-  url: https://www.circana.com/about
-- type: Solutions
-  url: https://www.circana.com/solutions
-- type: Blog
-  url: https://www.circana.com/insights
-- type: Contact
-  url: https://www.circana.com/contact
-- type: Privacy Policy
-  url: https://www.circana.com/privacy-policy
-- type: Terms of Service
-  url: https://www.circana.com/terms-of-use
+  - type: Website
+    url: https://www.circana.com
+  - type: Blog
+    url: https://www.circana.com/insights
+  - type: Terms of Service
+    url: https://www.circana.com/terms-of-use
+  - type: Privacy Policy
+    url: https://www.circana.com/privacy-policy
 maintainers:
-- FN: Circana
-  email: info@circana.com
-  url: https://www.circana.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+specificationVersion: '0.19'
