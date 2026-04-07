@@ -3,10 +3,10 @@ url: >-
   https://raw.githubusercontent.com/api-evangelist/circana/refs/heads/main/apis.yml
 name: Circana
 tags:
-  - Retail
+  - Analytics
   - Consumer Data
   - Market Research
-  - Analytics
+  - Retail
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
@@ -22,9 +22,9 @@ apis:
   - aid: circana:circana-data-api
     name: Circana Data API
     tags:
-      - Retail
-      - Consumer Data
       - Analytics
+      - Consumer Data
+      - Retail
     humanURL: https://www.circana.com/solutions
     properties:
       - url: https://www.circana.com/solutions
