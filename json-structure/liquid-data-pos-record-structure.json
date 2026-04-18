@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/circana/refs/heads/main/json-structure/liquid-data-pos-record-structure.json",
+  "name": "POSRecord",
+  "description": "Individual point-of-sale data record",
+  "type": "object",
+  "properties": {
+    "period": {
+      "type": "string",
+      "description": "Time period identifier"
+    },
+    "category": {
+      "type": "string",
+      "description": "Product category name"
+    },
+    "brand": {
+      "type": "string",
+      "description": "Brand name"
+    },
+    "upc": {
+      "type": "string",
+      "description": "Universal Product Code"
+    },
+    "dollar_sales": {
+      "type": "double",
+      "description": "Total dollar sales for the period"
+    },
+    "unit_sales": {
+      "type": "int32",
+      "description": "Total unit sales for the period"
+    },
+    "volume_sales": {
+      "type": "double",
+      "description": "Total volume sales (equivalent units)"
+    },
+    "avg_price": {
+      "type": "double",
+      "description": "Average selling price"
+    },
+    "distribution_pct": {
+      "type": "double",
+      "description": "Percentage of stores carrying the product"
+    }
+  }
+}

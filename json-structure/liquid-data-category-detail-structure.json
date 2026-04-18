@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/circana/refs/heads/main/json-structure/liquid-data-category-detail-structure.json",
+  "name": "CategoryDetail",
+  "description": "Detailed category information",
+  "type": "object",
+  "properties": {
+    "category_id": {
+      "type": "string",
+      "description": "Unique category identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Category name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Category description"
+    },
+    "parent_id": {
+      "type": "string",
+      "description": "Parent category identifier"
+    },
+    "industry": {
+      "type": "string",
+      "description": "Industry vertical"
+    },
+    "level": {
+      "type": "int32",
+      "description": "Depth level in the category hierarchy"
+    },
+    "subcategories": {
+      "type": "array",
+      "description": "Direct subcategories",
+      "items": {
+        "type": "object"
+      }
+    },
+    "data_coverage": {
+      "type": "object",
+      "description": "Data availability and coverage information",
+      "properties": {
+        "pos_available": {
+          "type": "boolean"
+        },
+        "panel_available": {
+          "type": "boolean"
+        },
+        "earliest_date": {
+          "type": "date"
+        },
+        "latest_date": {
+          "type": "date"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/circana/refs/heads/main/json-schema/liquid-data-category-detail-schema.json",
+  "title": "CategoryDetail",
+  "description": "Detailed category information",
+  "type": "object",
+  "properties": {
+    "category_id": {
+      "type": "string",
+      "description": "Unique category identifier",
+      "example": "cpg-beverages"
+    },
+    "name": {
+      "type": "string",
+      "description": "Category name",
+      "example": "Beverages"
+    },
+    "description": {
+      "type": "string",
+      "description": "Category description",
+      "example": "All beverage categories including carbonated, juice, water, and energy drinks"
+    },
+    "parent_id": {
+      "type": "string",
+      "description": "Parent category identifier",
+      "example": "cpg"
+    },
+    "industry": {
+      "type": "string",
+      "description": "Industry vertical",
+      "example": "cpg"
+    },
+    "level": {
+      "type": "integer",
+      "description": "Depth level in the category hierarchy",
+      "example": 2
+    },
+    "subcategories": {
+      "type": "array",
+      "description": "Direct subcategories",
+      "items": {
+        "type": "object",
+        "properties": {
+          "category_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "parent_id": {
+            "type": "string"
+          },
+          "industry": {
+            "type": "string"
+          },
+          "level": {
+            "type": "integer"
+          },
+          "subcategory_count": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "data_coverage": {
+      "type": "object",
+      "description": "Data availability and coverage information",
+      "properties": {
+        "pos_available": {
+          "type": "boolean",
+          "description": "Whether POS data is available"
+        },
+        "panel_available": {
+          "type": "boolean",
+          "description": "Whether consumer panel data is available"
+        },
+        "earliest_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Earliest available data date"
+        },
+        "latest_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Latest available data date"
+        }
+      }
+    }
+  }
+}

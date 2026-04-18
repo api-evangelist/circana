@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/circana/refs/heads/main/json-schema/liquid-data-retailer-summary-schema.json",
+  "title": "RetailerSummary",
+  "description": "Retailer summary record",
+  "type": "object",
+  "properties": {
+    "retailer_id": {
+      "type": "string",
+      "description": "Unique retailer identifier",
+      "example": "ret-500123"
+    },
+    "name": {
+      "type": "string",
+      "description": "Retailer name",
+      "example": "Example Market"
+    },
+    "channel": {
+      "type": "string",
+      "description": "Primary retail channel",
+      "example": "grocery"
+    },
+    "store_count": {
+      "type": "integer",
+      "description": "Number of store locations",
+      "example": 450
+    },
+    "geographic_coverage": {
+      "type": "string",
+      "description": "Geographic coverage level",
+      "example": "national"
+    }
+  }
+}

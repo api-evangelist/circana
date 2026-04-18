@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/circana/refs/heads/main/json-structure/liquid-data-export-detail-structure.json",
+  "name": "ExportDetail",
+  "description": "Export job details",
+  "type": "object",
+  "properties": {
+    "export_id": {
+      "type": "string",
+      "description": "Unique export identifier"
+    },
+    "status": {
+      "type": "string",
+      "description": "Export processing status",
+      "enum": ["processing", "completed", "failed"]
+    },
+    "format": {
+      "type": "string",
+      "description": "Export file format"
+    },
+    "created_at": {
+      "type": "datetime",
+      "description": "Export creation timestamp"
+    },
+    "completed_at": {
+      "type": "datetime",
+      "description": "Export completion timestamp"
+    },
+    "download_url": {
+      "type": "uri",
+      "description": "URL to download the exported file"
+    },
+    "file_size_bytes": {
+      "type": "int32",
+      "description": "Size of the exported file in bytes"
+    }
+  }
+}

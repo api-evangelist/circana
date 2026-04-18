@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/circana/refs/heads/main/json-schema/liquid-data-pos-record-schema.json",
+  "title": "POSRecord",
+  "description": "Individual point-of-sale data record",
+  "type": "object",
+  "properties": {
+    "period": {
+      "type": "string",
+      "description": "Time period identifier",
+      "example": "2026-W01"
+    },
+    "category": {
+      "type": "string",
+      "description": "Product category name",
+      "example": "Beverages"
+    },
+    "brand": {
+      "type": "string",
+      "description": "Brand name",
+      "example": "Example Brand"
+    },
+    "upc": {
+      "type": "string",
+      "description": "Universal Product Code",
+      "example": "012345678901"
+    },
+    "dollar_sales": {
+      "type": "number",
+      "format": "double",
+      "description": "Total dollar sales for the period",
+      "example": 125340.50
+    },
+    "unit_sales": {
+      "type": "integer",
+      "description": "Total unit sales for the period",
+      "example": 45230
+    },
+    "volume_sales": {
+      "type": "number",
+      "format": "double",
+      "description": "Total volume sales (equivalent units)",
+      "example": 67845.0
+    },
+    "avg_price": {
+      "type": "number",
+      "format": "double",
+      "description": "Average selling price",
+      "example": 2.77
+    },
+    "distribution_pct": {
+      "type": "number",
+      "format": "double",
+      "description": "Percentage of stores carrying the product",
+      "example": 85.3
+    }
+  }
+}

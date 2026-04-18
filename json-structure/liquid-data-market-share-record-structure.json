@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/circana/refs/heads/main/json-structure/liquid-data-market-share-record-structure.json",
+  "name": "MarketShareRecord",
+  "description": "Individual market share data record",
+  "type": "object",
+  "properties": {
+    "brand": {
+      "type": "string",
+      "description": "Brand name"
+    },
+    "dollar_share": {
+      "type": "double",
+      "description": "Dollar market share percentage"
+    },
+    "unit_share": {
+      "type": "double",
+      "description": "Unit market share percentage"
+    },
+    "share_change": {
+      "type": "double",
+      "description": "Share change vs prior period in percentage points"
+    },
+    "period": {
+      "type": "string",
+      "description": "Time period identifier"
+    }
+  }
+}

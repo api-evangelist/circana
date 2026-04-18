@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/circana/refs/heads/main/json-structure/liquid-data-retailer-summary-structure.json",
+  "name": "RetailerSummary",
+  "description": "Retailer summary record",
+  "type": "object",
+  "properties": {
+    "retailer_id": {
+      "type": "string",
+      "description": "Unique retailer identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Retailer name"
+    },
+    "channel": {
+      "type": "string",
+      "description": "Primary retail channel"
+    },
+    "store_count": {
+      "type": "int32",
+      "description": "Number of store locations"
+    },
+    "geographic_coverage": {
+      "type": "string",
+      "description": "Geographic coverage level"
+    }
+  }
+}

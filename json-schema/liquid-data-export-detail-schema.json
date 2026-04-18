@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/circana/refs/heads/main/json-schema/liquid-data-export-detail-schema.json",
+  "title": "ExportDetail",
+  "description": "Export job details",
+  "type": "object",
+  "properties": {
+    "export_id": {
+      "type": "string",
+      "description": "Unique export identifier",
+      "example": "exp-500123"
+    },
+    "status": {
+      "type": "string",
+      "description": "Export processing status",
+      "enum": ["processing", "completed", "failed"],
+      "example": "completed"
+    },
+    "format": {
+      "type": "string",
+      "description": "Export file format",
+      "example": "csv"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Export creation timestamp",
+      "example": "2026-04-18T12:00:00Z"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Export completion timestamp",
+      "example": "2026-04-18T12:02:00Z"
+    },
+    "download_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to download the exported file",
+      "example": "https://exports.circana.com/exp-500123/data.csv"
+    },
+    "file_size_bytes": {
+      "type": "integer",
+      "description": "Size of the exported file in bytes",
+      "example": 2456789
+    }
+  }
+}

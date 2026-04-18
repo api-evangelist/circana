@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/circana/refs/heads/main/json-schema/liquid-data-consumer-segment-schema.json",
+  "title": "ConsumerSegment",
+  "description": "Consumer segment definition",
+  "type": "object",
+  "properties": {
+    "segment_id": {
+      "type": "string",
+      "description": "Unique segment identifier",
+      "example": "seg-001"
+    },
+    "name": {
+      "type": "string",
+      "description": "Segment name",
+      "example": "Health-Conscious Shoppers"
+    },
+    "size_pct": {
+      "type": "number",
+      "format": "double",
+      "description": "Percentage of total market population",
+      "example": 18.5
+    },
+    "avg_basket_size": {
+      "type": "number",
+      "format": "double",
+      "description": "Average basket size in dollars",
+      "example": 42.30
+    },
+    "preferred_channels": {
+      "type": "array",
+      "description": "Preferred shopping channels",
+      "items": {
+        "type": "string"
+      }
+    },
+    "key_categories": {
+      "type": "array",
+      "description": "Top categories for this segment",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

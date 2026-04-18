@@ -1,0 +1,307 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Circana Market Intelligence"
+  description: "Unified market intelligence workflow combining POS data, market share analytics, consumer panel insights, brand performance, and reporting capabilities for brand managers, category managers, and market researchers."
+  tags:
+    - Circana
+    - Market Intelligence
+    - Analytics
+    - Consumer Insights
+    - Retail
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      CIRCANA_API_TOKEN: CIRCANA_API_TOKEN
+
+capability:
+  consumes:
+    - import: liquid-data
+      location: ./shared/liquid-data.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: market-intelligence-api
+      description: "Unified REST API for Circana market intelligence workflows."
+      resources:
+        - path: /v1/pos-data
+          name: pos-data
+          description: "Point-of-sale data access"
+          operations:
+            - method: GET
+              name: get-pos-data
+              description: "Retrieve POS data by category and time period"
+              call: "liquid-data.get-pos-data"
+              with:
+                category_id: "rest.category_id"
+                start_date: "rest.start_date"
+                end_date: "rest.end_date"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/market-share
+          name: market-share
+          description: "Market share analytics"
+          operations:
+            - method: GET
+              name: get-market-share
+              description: "Retrieve market share data"
+              call: "liquid-data.get-market-share"
+              with:
+                category_id: "rest.category_id"
+                start_date: "rest.start_date"
+                end_date: "rest.end_date"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/consumer-purchases
+          name: consumer-purchases
+          description: "Consumer purchase behavior data"
+          operations:
+            - method: GET
+              name: get-consumer-purchases
+              description: "Retrieve consumer purchase data"
+              call: "liquid-data.get-consumer-purchases"
+              with:
+                category_id: "rest.category_id"
+                start_date: "rest.start_date"
+                end_date: "rest.end_date"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/consumer-segments
+          name: consumer-segments
+          description: "Consumer segmentation data"
+          operations:
+            - method: GET
+              name: get-consumer-segments
+              description: "Retrieve consumer segments"
+              call: "liquid-data.get-consumer-segments"
+              with:
+                category_id: "rest.category_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/categories
+          name: categories
+          description: "Product category taxonomy"
+          operations:
+            - method: GET
+              name: list-categories
+              description: "List product categories"
+              call: "liquid-data.list-categories"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/brands
+          name: brands
+          description: "Brand analytics"
+          operations:
+            - method: GET
+              name: list-brands
+              description: "List brands in a category"
+              call: "liquid-data.list-brands"
+              with:
+                category_id: "rest.category_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/retailers
+          name: retailers
+          description: "Retailer coverage data"
+          operations:
+            - method: GET
+              name: list-retailers
+              description: "List retailers"
+              call: "liquid-data.list-retailers"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/reports
+          name: reports
+          description: "Report management"
+          operations:
+            - method: GET
+              name: list-reports
+              description: "List reports"
+              call: "liquid-data.list-reports"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-report
+              description: "Create a new report"
+              call: "liquid-data.create-report"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/exports
+          name: exports
+          description: "Data export"
+          operations:
+            - method: POST
+              name: create-export
+              description: "Create a data export"
+              call: "liquid-data.create-export"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: market-intelligence-mcp
+      transport: http
+      description: "MCP server for AI-assisted market intelligence and consumer analytics."
+      tools:
+        - name: get-pos-data
+          description: "Retrieve point-of-sale data for a product category and time period"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "liquid-data.get-pos-data"
+          with:
+            category_id: "tools.category_id"
+            start_date: "tools.start_date"
+            end_date: "tools.end_date"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-market-share
+          description: "Retrieve market share data for brands in a product category"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "liquid-data.get-market-share"
+          with:
+            category_id: "tools.category_id"
+            start_date: "tools.start_date"
+            end_date: "tools.end_date"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-consumer-purchases
+          description: "Retrieve aggregated consumer purchase data from panel surveys"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "liquid-data.get-consumer-purchases"
+          with:
+            category_id: "tools.category_id"
+            start_date: "tools.start_date"
+            end_date: "tools.end_date"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-consumer-segments
+          description: "Retrieve consumer segmentation data based on purchase behavior"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "liquid-data.get-consumer-segments"
+          with:
+            category_id: "tools.category_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-categories
+          description: "List all available product categories in Circana taxonomy"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "liquid-data.list-categories"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-category
+          description: "Get detailed information about a specific product category"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "liquid-data.get-category"
+          with:
+            category_id: "tools.category_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-brands
+          description: "List brands within a specific product category"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "liquid-data.list-brands"
+          with:
+            category_id: "tools.category_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-brand
+          description: "Get detailed brand information including market presence"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "liquid-data.get-brand"
+          with:
+            brand_id: "tools.brand_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-retailers
+          description: "List retailers covered in Circana measurement universe"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "liquid-data.list-retailers"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-reports
+          description: "List available analytics reports"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "liquid-data.list-reports"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-report
+          description: "Create a new analytics report for a category and time period"
+          hints:
+            readOnly: false
+          call: "liquid-data.create-report"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-report
+          description: "Get report status and details"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "liquid-data.get-report"
+          with:
+            report_id: "tools.report_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-export
+          description: "Create a data export job in CSV, Excel, JSON, or Parquet format"
+          hints:
+            readOnly: false
+          call: "liquid-data.create-export"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-export
+          description: "Check data export status and get download URL"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "liquid-data.get-export"
+          with:
+            export_id: "tools.export_id"
+          outputParameters:
+            - type: object
+              mapping: "$."

@@ -1,0 +1,425 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "Circana"
+  description: "Unified taxonomy mapping operational and capability dimensions of the Circana Liquid Data API, covering market measurement, consumer panel data, brand analytics, and retail intelligence."
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+operational:
+  apis:
+    - name: Circana Liquid Data API
+      namespace: liquid-data
+      version: 1.0.0
+      baseUrl: https://api.circana.com/liquid-data/v1
+      status: active
+
+  resources:
+    - name: POS Data
+      api: liquid-data
+      description: "Point-of-sale data including dollar sales, unit sales, and distribution metrics"
+      actions:
+        - get
+    - name: Market Share
+      api: liquid-data
+      description: "Brand and category market share data with period-over-period comparisons"
+      actions:
+        - get
+    - name: Consumer Purchases
+      api: liquid-data
+      description: "Consumer panel purchase data including penetration, buy rate, and spend metrics"
+      actions:
+        - get
+    - name: Consumer Segments
+      api: liquid-data
+      description: "Consumer segmentation based on behavioral, demographic, and psychographic dimensions"
+      actions:
+        - get
+    - name: Categories
+      api: liquid-data
+      description: "Product category hierarchy covering CPG, beauty, food, technology, and healthcare"
+      actions:
+        - list
+        - get
+    - name: Brands
+      api: liquid-data
+      description: "Brand data including manufacturer, UPC catalog, and market presence"
+      actions:
+        - list
+        - get
+    - name: Retailers
+      api: liquid-data
+      description: "Retailer coverage data with channel classification and store counts"
+      actions:
+        - list
+    - name: Reports
+      api: liquid-data
+      description: "Analytics reports for market review, brand performance, and category analysis"
+      actions:
+        - list
+        - create
+        - get
+    - name: Exports
+      api: liquid-data
+      description: "Data export jobs in CSV, Excel, JSON, and Parquet formats"
+      actions:
+        - create
+        - get
+
+  actions:
+    - name: get
+      methods:
+        - GET
+      pattern: read
+      description: "Retrieve a specific resource by identifier or query parameters"
+    - name: list
+      methods:
+        - GET
+      pattern: read
+      description: "List resources with pagination and filtering"
+    - name: create
+      methods:
+        - POST
+      pattern: write
+      description: "Create a new resource"
+
+  schemas:
+    core:
+      - name: POSRecord
+        description: "Point-of-sale data record with sales and distribution metrics"
+        keyProperties:
+          - period
+          - category
+          - brand
+          - upc
+          - dollar_sales
+          - unit_sales
+      - name: MarketShareRecord
+        description: "Market share data for a brand and time period"
+        keyProperties:
+          - brand
+          - dollar_share
+          - unit_share
+          - share_change
+      - name: ConsumerPurchaseRecord
+        description: "Consumer purchase behavior metrics by segment and category"
+        keyProperties:
+          - segment
+          - category
+          - penetration_pct
+          - buy_rate
+          - avg_spend
+      - name: ConsumerSegment
+        description: "Consumer segment definition with behavioral characteristics"
+        keyProperties:
+          - segment_id
+          - name
+          - size_pct
+          - preferred_channels
+    reference:
+      - name: CategoryDetail
+        description: "Product category with hierarchy and data coverage information"
+        keyProperties:
+          - category_id
+          - name
+          - industry
+          - level
+      - name: BrandDetail
+        description: "Brand with manufacturer, category, and market presence data"
+        keyProperties:
+          - brand_id
+          - name
+          - manufacturer
+          - upc_count
+      - name: RetailerSummary
+        description: "Retailer with channel, store count, and geographic coverage"
+        keyProperties:
+          - retailer_id
+          - name
+          - channel
+          - store_count
+    reporting:
+      - name: ReportDetail
+        description: "Analytics report with status, type, and results"
+        keyProperties:
+          - report_id
+          - name
+          - status
+          - report_type
+      - name: ExportDetail
+        description: "Data export job with format, status, and download URL"
+        keyProperties:
+          - export_id
+          - status
+          - format
+          - download_url
+
+  parameters:
+    pagination:
+      - name: offset
+        type: integer
+        description: "Pagination offset position"
+      - name: limit
+        type: integer
+        description: "Maximum records per page"
+    identifiers:
+      - name: category_id
+        type: string
+        description: "Product category identifier"
+      - name: brand_id
+        type: string
+        description: "Brand identifier"
+      - name: retailer_id
+        type: string
+        description: "Retailer identifier"
+      - name: report_id
+        type: string
+        description: "Report identifier"
+      - name: export_id
+        type: string
+        description: "Export identifier"
+    filters:
+      - name: start_date
+        type: string
+        description: "Start date for data range"
+      - name: end_date
+        type: string
+        description: "End date for data range"
+      - name: geography
+        type: string
+        description: "Geographic market filter"
+      - name: channel
+        type: string
+        description: "Retail channel filter"
+      - name: demographic
+        type: string
+        description: "Demographic segment filter"
+      - name: granularity
+        type: string
+        description: "Time granularity"
+      - name: industry
+        type: string
+        description: "Industry vertical filter"
+      - name: search
+        type: string
+        description: "Search term filter"
+
+  enums:
+    channels:
+      - grocery
+      - mass
+      - club
+      - dollar
+      - convenience
+      - drug
+      - online
+      - specialty
+    industries:
+      - cpg
+      - beauty
+      - food_beverage
+      - technology
+      - healthcare
+      - general_merchandise
+      - apparel
+      - home
+    geographies:
+      - national
+      - regional
+      - dma
+      - store
+    granularities:
+      - weekly
+      - monthly
+      - quarterly
+      - annual
+    reportTypes:
+      - market_review
+      - brand_performance
+      - category_analysis
+      - competitive_landscape
+      - pricing_analysis
+    exportFormats:
+      - csv
+      - xlsx
+      - json
+      - parquet
+    statuses:
+      - draft
+      - processing
+      - completed
+      - failed
+    shareMetrics:
+      - dollar_share
+      - unit_share
+      - volume_share
+    segmentationTypes:
+      - behavioral
+      - demographic
+      - psychographic
+      - channel
+    demographics:
+      - age
+      - income
+      - household_size
+      - ethnicity
+      - region
+
+  authentication:
+    schemes:
+      - type: bearer
+        format: JWT
+        description: "JWT token obtained through Circana authentication"
+    apis:
+      - liquid-data
+
+capability:
+  workflows:
+    - name: Market Intelligence
+      file: capabilities/market-intelligence.yaml
+      description: "Unified market intelligence combining POS, share, consumer, and reporting data"
+      apis:
+        - liquid-data
+      toolCount: 14
+      personas:
+        - Brand Manager
+        - Category Manager
+      domains:
+        - Market Measurement
+        - Consumer Insights
+        - Reporting
+
+  personas:
+    - id: brand-manager
+      name: Brand Manager
+      description: "Manages brand performance, market share, and competitive positioning"
+      workflows:
+        - Market Intelligence
+    - id: category-manager
+      name: Category Manager
+      description: "Manages product category performance, assortment, and shopper insights"
+      workflows:
+        - Market Intelligence
+    - id: market-researcher
+      name: Market Researcher
+      description: "Analyzes consumer behavior, market trends, and competitive dynamics"
+      workflows:
+        - Market Intelligence
+    - id: retail-analyst
+      name: Retail Analyst
+      description: "Monitors retailer performance, distribution, and channel dynamics"
+      workflows:
+        - Market Intelligence
+
+  domains:
+    - name: Market Measurement
+      description: "POS data, market share, and sales performance analytics"
+      resources:
+        - POS Data
+        - Market Share
+    - name: Consumer Insights
+      description: "Consumer panel data, purchase behavior, and segmentation"
+      resources:
+        - Consumer Purchases
+        - Consumer Segments
+    - name: Reference Data
+      description: "Categories, brands, and retailers"
+      resources:
+        - Categories
+        - Brands
+        - Retailers
+    - name: Reporting
+      description: "Report generation, management, and data export"
+      resources:
+        - Reports
+        - Exports
+
+  namespaces:
+    consumed:
+      - liquid-data
+    rest:
+      - market-intelligence-api (port 8080)
+    mcp:
+      - market-intelligence-mcp (port 9090)
+
+  binds:
+    - CIRCANA_API_TOKEN
+
+crossReference:
+  - resource: POS Data
+    operations:
+      - getPointOfSaleData
+    workflows:
+      - Market Intelligence
+    personas:
+      - Brand Manager
+      - Category Manager
+  - resource: Market Share
+    operations:
+      - getMarketShare
+    workflows:
+      - Market Intelligence
+    personas:
+      - Brand Manager
+      - Category Manager
+  - resource: Consumer Purchases
+    operations:
+      - getConsumerPurchases
+    workflows:
+      - Market Intelligence
+    personas:
+      - Market Researcher
+      - Category Manager
+  - resource: Consumer Segments
+    operations:
+      - getConsumerSegments
+    workflows:
+      - Market Intelligence
+    personas:
+      - Market Researcher
+  - resource: Categories
+    operations:
+      - listCategories
+      - getCategory
+    workflows:
+      - Market Intelligence
+    personas:
+      - Category Manager
+      - Brand Manager
+  - resource: Brands
+    operations:
+      - listBrands
+      - getBrand
+    workflows:
+      - Market Intelligence
+    personas:
+      - Brand Manager
+  - resource: Retailers
+    operations:
+      - listRetailers
+    workflows:
+      - Market Intelligence
+    personas:
+      - Retail Analyst
+  - resource: Reports
+    operations:
+      - listReports
+      - createReport
+      - getReport
+    workflows:
+      - Market Intelligence
+    personas:
+      - Brand Manager
+      - Category Manager
+      - Market Researcher
+  - resource: Exports
+    operations:
+      - createExport
+      - getExport
+    workflows:
+      - Market Intelligence
+    personas:
+      - Brand Manager
+      - Category Manager
+      - Market Researcher
+      - Retail Analyst

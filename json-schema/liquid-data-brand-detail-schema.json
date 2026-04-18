@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/circana/refs/heads/main/json-schema/liquid-data-brand-detail-schema.json",
+  "title": "BrandDetail",
+  "description": "Detailed brand information",
+  "type": "object",
+  "properties": {
+    "brand_id": {
+      "type": "string",
+      "description": "Unique brand identifier",
+      "example": "brand-500123"
+    },
+    "name": {
+      "type": "string",
+      "description": "Brand name",
+      "example": "Example Cola"
+    },
+    "manufacturer": {
+      "type": "string",
+      "description": "Manufacturer or parent company name",
+      "example": "Example Corp"
+    },
+    "categories": {
+      "type": "array",
+      "description": "Categories the brand is present in",
+      "items": {
+        "type": "string"
+      }
+    },
+    "upc_count": {
+      "type": "integer",
+      "description": "Number of UPCs under this brand",
+      "example": 45
+    },
+    "market_presence": {
+      "type": "object",
+      "description": "Brand market presence information",
+      "properties": {
+        "channels": {
+          "type": "integer",
+          "description": "Number of retail channels with distribution"
+        },
+        "retailers": {
+          "type": "integer",
+          "description": "Number of retailers carrying the brand"
+        },
+        "geographic_coverage": {
+          "type": "string",
+          "description": "Geographic coverage level"
+        }
+      }
+    }
+  }
+}

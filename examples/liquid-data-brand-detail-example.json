@@ -1,0 +1,16 @@
+{
+  "brand_id": "brand-782901",
+  "name": "Sunrise Natural Foods",
+  "manufacturer": "Sunrise Holdings Inc",
+  "categories": [
+    "Natural Snacks",
+    "Organic Beverages",
+    "Health Foods"
+  ],
+  "upc_count": 78,
+  "market_presence": {
+    "channels": 5,
+    "retailers": 85,
+    "geographic_coverage": "national"
+  }
+}

@@ -1,0 +1,235 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "circana": "https://www.circana.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "POSRecord": "circana:POSRecord",
+    "MarketShareRecord": "circana:MarketShareRecord",
+    "ConsumerPurchaseRecord": "circana:ConsumerPurchaseRecord",
+    "ConsumerSegment": "circana:ConsumerSegment",
+    "CategoryDetail": "circana:CategoryDetail",
+    "CategorySummary": "circana:CategorySummary",
+    "BrandDetail": "circana:BrandDetail",
+    "BrandSummary": "circana:BrandSummary",
+    "RetailerSummary": "circana:RetailerSummary",
+    "ReportDetail": "circana:ReportDetail",
+    "ExportDetail": "circana:ExportDetail",
+    "DataCoverage": "circana:DataCoverage",
+    "MarketPresence": "circana:MarketPresence",
+
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": "schema:url",
+
+    "period": {
+      "@id": "circana:period",
+      "@type": "xsd:string"
+    },
+    "category": {
+      "@id": "circana:category",
+      "@type": "xsd:string"
+    },
+    "brand": {
+      "@id": "circana:brand",
+      "@type": "xsd:string"
+    },
+    "upc": {
+      "@id": "circana:upc",
+      "@type": "xsd:string"
+    },
+    "dollarSales": {
+      "@id": "circana:dollar_sales",
+      "@type": "xsd:double"
+    },
+    "unitSales": {
+      "@id": "circana:unit_sales",
+      "@type": "xsd:integer"
+    },
+    "volumeSales": {
+      "@id": "circana:volume_sales",
+      "@type": "xsd:double"
+    },
+    "avgPrice": {
+      "@id": "circana:avg_price",
+      "@type": "xsd:double"
+    },
+    "distributionPct": {
+      "@id": "circana:distribution_pct",
+      "@type": "xsd:double"
+    },
+    "dollarShare": {
+      "@id": "circana:dollar_share",
+      "@type": "xsd:double"
+    },
+    "unitShare": {
+      "@id": "circana:unit_share",
+      "@type": "xsd:double"
+    },
+    "shareChange": {
+      "@id": "circana:share_change",
+      "@type": "xsd:double"
+    },
+    "segment": {
+      "@id": "circana:segment",
+      "@type": "xsd:string"
+    },
+    "penetrationPct": {
+      "@id": "circana:penetration_pct",
+      "@type": "xsd:double"
+    },
+    "buyRate": {
+      "@id": "circana:buy_rate",
+      "@type": "xsd:double"
+    },
+    "avgSpend": {
+      "@id": "circana:avg_spend",
+      "@type": "xsd:double"
+    },
+    "tripsPerBuyer": {
+      "@id": "circana:trips_per_buyer",
+      "@type": "xsd:double"
+    },
+    "channel": {
+      "@id": "circana:channel",
+      "@type": "xsd:string"
+    },
+    "segmentId": {
+      "@id": "circana:segment_id",
+      "@type": "xsd:string"
+    },
+    "sizePct": {
+      "@id": "circana:size_pct",
+      "@type": "xsd:double"
+    },
+    "avgBasketSize": {
+      "@id": "circana:avg_basket_size",
+      "@type": "xsd:double"
+    },
+    "preferredChannels": {
+      "@id": "circana:preferred_channels",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "keyCategories": {
+      "@id": "circana:key_categories",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "categoryId": {
+      "@id": "circana:category_id",
+      "@type": "xsd:string"
+    },
+    "parentId": {
+      "@id": "circana:parent_id",
+      "@type": "xsd:string"
+    },
+    "industry": {
+      "@id": "circana:industry",
+      "@type": "xsd:string"
+    },
+    "level": {
+      "@id": "circana:level",
+      "@type": "xsd:integer"
+    },
+    "subcategoryCount": {
+      "@id": "circana:subcategory_count",
+      "@type": "xsd:integer"
+    },
+    "brandId": {
+      "@id": "circana:brand_id",
+      "@type": "xsd:string"
+    },
+    "manufacturer": {
+      "@id": "circana:manufacturer",
+      "@type": "xsd:string"
+    },
+    "upcCount": {
+      "@id": "circana:upc_count",
+      "@type": "xsd:integer"
+    },
+    "categories": {
+      "@id": "circana:categories",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "retailerId": {
+      "@id": "circana:retailer_id",
+      "@type": "xsd:string"
+    },
+    "storeCount": {
+      "@id": "circana:store_count",
+      "@type": "xsd:integer"
+    },
+    "geographicCoverage": {
+      "@id": "circana:geographic_coverage",
+      "@type": "xsd:string"
+    },
+    "reportId": {
+      "@id": "circana:report_id",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "circana:status",
+      "@type": "xsd:string"
+    },
+    "createdAt": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "completedAt": {
+      "@id": "circana:completed_at",
+      "@type": "xsd:dateTime"
+    },
+    "reportType": {
+      "@id": "circana:report_type",
+      "@type": "xsd:string"
+    },
+    "rowCount": {
+      "@id": "circana:row_count",
+      "@type": "xsd:integer"
+    },
+    "exportId": {
+      "@id": "circana:export_id",
+      "@type": "xsd:string"
+    },
+    "format": {
+      "@id": "circana:format",
+      "@type": "xsd:string"
+    },
+    "downloadUrl": {
+      "@id": "circana:download_url",
+      "@type": "@id"
+    },
+    "fileSizeBytes": {
+      "@id": "circana:file_size_bytes",
+      "@type": "xsd:integer"
+    },
+    "posAvailable": {
+      "@id": "circana:pos_available",
+      "@type": "xsd:boolean"
+    },
+    "panelAvailable": {
+      "@id": "circana:panel_available",
+      "@type": "xsd:boolean"
+    },
+    "earliestDate": {
+      "@id": "circana:earliest_date",
+      "@type": "xsd:date"
+    },
+    "latestDate": {
+      "@id": "circana:latest_date",
+      "@type": "xsd:date"
+    },
+    "channels": {
+      "@id": "circana:channels",
+      "@type": "xsd:integer"
+    },
+    "retailers": {
+      "@id": "circana:retailers",
+      "@type": "xsd:integer"
+    }
+  }
+}

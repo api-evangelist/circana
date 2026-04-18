@@ -1,0 +1,511 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Circana Liquid Data"
+  description: "Circana's Liquid Data platform providing cross-industry market measurement, consumer panel, and retail analytics data."
+  tags:
+    - Analytics
+    - Market Research
+    - Consumer Data
+    - Retail
+    - CPG
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      CIRCANA_API_TOKEN: CIRCANA_API_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: liquid-data
+      baseUri: https://api.circana.com/liquid-data/v1
+      description: "Circana Liquid Data API for market measurement, consumer panel, and retail analytics."
+      authentication:
+        type: bearer
+        token: "{{CIRCANA_API_TOKEN}}"
+      resources:
+        - name: market-data
+          path: /market-data
+          description: "Point-of-sale and market share data"
+          operations:
+            - name: get-pos-data
+              method: GET
+              path: /pos
+              description: "Retrieve point-of-sale data with filters for time period, geography, category, and retailer."
+              inputParameters:
+                - name: category_id
+                  in: query
+                  type: string
+                  required: true
+                  description: "Product category identifier"
+                - name: start_date
+                  in: query
+                  type: string
+                  required: true
+                  description: "Start date for data range"
+                - name: end_date
+                  in: query
+                  type: string
+                  required: true
+                  description: "End date for data range"
+                - name: geography
+                  in: query
+                  type: string
+                  required: false
+                  description: "Geographic market filter"
+                - name: retailer_id
+                  in: query
+                  type: string
+                  required: false
+                  description: "Retailer filter"
+                - name: granularity
+                  in: query
+                  type: string
+                  required: false
+                  description: "Time granularity"
+                - name: offset
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Pagination offset"
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Max records to return"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-market-share
+              method: GET
+              path: /share
+              description: "Retrieve market share data showing brand and category share metrics."
+              inputParameters:
+                - name: category_id
+                  in: query
+                  type: string
+                  required: true
+                  description: "Product category identifier"
+                - name: start_date
+                  in: query
+                  type: string
+                  required: true
+                  description: "Start date for data range"
+                - name: end_date
+                  in: query
+                  type: string
+                  required: true
+                  description: "End date for data range"
+                - name: metric
+                  in: query
+                  type: string
+                  required: false
+                  description: "Share metric type"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: consumer-panel
+          path: /consumer-panel
+          description: "Consumer purchase and segmentation data"
+          operations:
+            - name: get-consumer-purchases
+              method: GET
+              path: /purchases
+              description: "Retrieve aggregated consumer purchase data from panel surveys and receipt scanning."
+              inputParameters:
+                - name: category_id
+                  in: query
+                  type: string
+                  required: true
+                  description: "Product category identifier"
+                - name: start_date
+                  in: query
+                  type: string
+                  required: true
+                  description: "Start date"
+                - name: end_date
+                  in: query
+                  type: string
+                  required: true
+                  description: "End date"
+                - name: demographic
+                  in: query
+                  type: string
+                  required: false
+                  description: "Demographic segment filter"
+                - name: channel
+                  in: query
+                  type: string
+                  required: false
+                  description: "Purchase channel filter"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-consumer-segments
+              method: GET
+              path: /segments
+              description: "Retrieve consumer segmentation data based on purchase behavior."
+              inputParameters:
+                - name: category_id
+                  in: query
+                  type: string
+                  required: true
+                  description: "Product category identifier"
+                - name: segmentation_type
+                  in: query
+                  type: string
+                  required: false
+                  description: "Type of segmentation analysis"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: categories
+          path: /categories
+          description: "Product category hierarchy"
+          operations:
+            - name: list-categories
+              method: GET
+              description: "List available product categories."
+              inputParameters:
+                - name: parent_id
+                  in: query
+                  type: string
+                  required: false
+                  description: "Parent category ID"
+                - name: industry
+                  in: query
+                  type: string
+                  required: false
+                  description: "Industry vertical filter"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-category
+              method: GET
+              path: /{category_id}
+              description: "Get detailed information about a specific product category."
+              inputParameters:
+                - name: category_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Category identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: brands
+          path: /brands
+          description: "Brand data and analytics"
+          operations:
+            - name: list-brands
+              method: GET
+              description: "List brands within a specific category."
+              inputParameters:
+                - name: category_id
+                  in: query
+                  type: string
+                  required: true
+                  description: "Product category"
+                - name: search
+                  in: query
+                  type: string
+                  required: false
+                  description: "Search term"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-brand
+              method: GET
+              path: /{brand_id}
+              description: "Get detailed brand information."
+              inputParameters:
+                - name: brand_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Brand identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: retailers
+          path: /retailers
+          description: "Retailer data and coverage"
+          operations:
+            - name: list-retailers
+              method: GET
+              description: "List retailers covered in Circana measurement universe."
+              inputParameters:
+                - name: channel
+                  in: query
+                  type: string
+                  required: false
+                  description: "Retail channel filter"
+                - name: search
+                  in: query
+                  type: string
+                  required: false
+                  description: "Search term"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: reports
+          path: /reports
+          description: "Report generation and management"
+          operations:
+            - name: list-reports
+              method: GET
+              description: "List available reports."
+              inputParameters:
+                - name: status
+                  in: query
+                  type: string
+                  required: false
+                  description: "Report status filter"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-report
+              method: POST
+              description: "Create a new report."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  report_type: "{{tools.report_type}}"
+                  category_id: "{{tools.category_id}}"
+                  start_date: "{{tools.start_date}}"
+                  end_date: "{{tools.end_date}}"
+            - name: get-report
+              method: GET
+              path: /{report_id}
+              description: "Get report details."
+              inputParameters:
+                - name: report_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Report identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: exports
+          path: /exports
+          description: "Data export operations"
+          operations:
+            - name: create-export
+              method: POST
+              description: "Create a data export job."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  source_type: "{{tools.source_type}}"
+                  source_id: "{{tools.source_id}}"
+                  format: "{{tools.format}}"
+            - name: get-export
+              method: GET
+              path: /{export_id}
+              description: "Check export status and get download URL."
+              inputParameters:
+                - name: export_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Export identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: liquid-data-rest
+      resources:
+        - path: /v1/market-data/pos
+          name: pos-data
+          description: "Point-of-sale data"
+          operations:
+            - method: GET
+              name: get-pos-data
+              description: "Get POS data"
+              call: "liquid-data.get-pos-data"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/market-data/share
+          name: market-share
+          description: "Market share data"
+          operations:
+            - method: GET
+              name: get-market-share
+              description: "Get market share"
+              call: "liquid-data.get-market-share"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: liquid-data-mcp
+      transport: http
+      tools:
+        - name: get-pos-data
+          description: "Retrieve point-of-sale data for a category and time period"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "liquid-data.get-pos-data"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-market-share
+          description: "Retrieve market share data for brands in a category"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "liquid-data.get-market-share"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-consumer-purchases
+          description: "Retrieve consumer purchase data from panel surveys"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "liquid-data.get-consumer-purchases"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-consumer-segments
+          description: "Retrieve consumer segmentation data"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "liquid-data.get-consumer-segments"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-categories
+          description: "List product categories in Circana taxonomy"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "liquid-data.list-categories"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-category
+          description: "Get details about a product category"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "liquid-data.get-category"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-brands
+          description: "List brands within a product category"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "liquid-data.list-brands"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-brand
+          description: "Get detailed brand information"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "liquid-data.get-brand"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-retailers
+          description: "List retailers in Circana measurement universe"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "liquid-data.list-retailers"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-reports
+          description: "List available reports"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "liquid-data.list-reports"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-report
+          description: "Create a new analytics report"
+          hints:
+            readOnly: false
+          call: "liquid-data.create-report"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-report
+          description: "Get report status and details"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "liquid-data.get-report"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-export
+          description: "Create a data export job"
+          hints:
+            readOnly: false
+          call: "liquid-data.create-export"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-export
+          description: "Check export status and get download URL"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "liquid-data.get-export"
+          outputParameters:
+            - type: object
+              mapping: "$."

@@ -1,0 +1,11 @@
+{
+  "report_id": "rpt-891234",
+  "name": "Q1 2026 Beauty Category Performance Review",
+  "status": "completed",
+  "created_at": "2026-04-15T09:30:00Z",
+  "completed_at": "2026-04-15T09:34:00Z",
+  "category": "Beauty",
+  "report_type": "category_analysis",
+  "row_count": 8912,
+  "estimated_completion": null
+}

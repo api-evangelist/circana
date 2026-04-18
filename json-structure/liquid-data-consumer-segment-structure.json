@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/circana/refs/heads/main/json-structure/liquid-data-consumer-segment-structure.json",
+  "name": "ConsumerSegment",
+  "description": "Consumer segment definition",
+  "type": "object",
+  "properties": {
+    "segment_id": {
+      "type": "string",
+      "description": "Unique segment identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Segment name"
+    },
+    "size_pct": {
+      "type": "double",
+      "description": "Percentage of total market population"
+    },
+    "avg_basket_size": {
+      "type": "double",
+      "description": "Average basket size in dollars"
+    },
+    "preferred_channels": {
+      "type": "array",
+      "description": "Preferred shopping channels",
+      "items": {
+        "type": "string"
+      }
+    },
+    "key_categories": {
+      "type": "array",
+      "description": "Top categories for this segment",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

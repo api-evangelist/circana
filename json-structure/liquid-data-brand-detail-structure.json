@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/circana/refs/heads/main/json-structure/liquid-data-brand-detail-structure.json",
+  "name": "BrandDetail",
+  "description": "Detailed brand information",
+  "type": "object",
+  "properties": {
+    "brand_id": {
+      "type": "string",
+      "description": "Unique brand identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Brand name"
+    },
+    "manufacturer": {
+      "type": "string",
+      "description": "Manufacturer or parent company name"
+    },
+    "categories": {
+      "type": "array",
+      "description": "Categories the brand is present in",
+      "items": {
+        "type": "string"
+      }
+    },
+    "upc_count": {
+      "type": "int32",
+      "description": "Number of UPCs under this brand"
+    },
+    "market_presence": {
+      "type": "object",
+      "description": "Brand market presence information",
+      "properties": {
+        "channels": {
+          "type": "int32"
+        },
+        "retailers": {
+          "type": "int32"
+        },
+        "geographic_coverage": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

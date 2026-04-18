@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/circana/refs/heads/main/json-structure/liquid-data-report-detail-structure.json",
+  "name": "ReportDetail",
+  "description": "Detailed report information",
+  "type": "object",
+  "properties": {
+    "report_id": {
+      "type": "string",
+      "description": "Unique report identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Report name"
+    },
+    "status": {
+      "type": "string",
+      "description": "Report processing status",
+      "enum": ["draft", "processing", "completed", "failed"]
+    },
+    "created_at": {
+      "type": "datetime",
+      "description": "Report creation timestamp"
+    },
+    "completed_at": {
+      "type": "datetime",
+      "description": "Report completion timestamp"
+    },
+    "category": {
+      "type": "string",
+      "description": "Primary category for the report"
+    },
+    "report_type": {
+      "type": "string",
+      "description": "Type of report"
+    },
+    "row_count": {
+      "type": "int32",
+      "description": "Number of data rows in completed report"
+    },
+    "estimated_completion": {
+      "type": "datetime",
+      "description": "Estimated completion time for processing reports"
+    }
+  }
+}

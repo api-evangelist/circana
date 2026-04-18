@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/circana/refs/heads/main/json-schema/liquid-data-report-detail-schema.json",
+  "title": "ReportDetail",
+  "description": "Detailed report information",
+  "type": "object",
+  "properties": {
+    "report_id": {
+      "type": "string",
+      "description": "Unique report identifier",
+      "example": "rpt-500123"
+    },
+    "name": {
+      "type": "string",
+      "description": "Report name",
+      "example": "Q1 2026 Beverage Market Review"
+    },
+    "status": {
+      "type": "string",
+      "description": "Report processing status",
+      "enum": ["draft", "processing", "completed", "failed"],
+      "example": "completed"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Report creation timestamp",
+      "example": "2026-04-01T10:00:00Z"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Report completion timestamp",
+      "example": "2026-04-01T10:03:00Z"
+    },
+    "category": {
+      "type": "string",
+      "description": "Primary category for the report",
+      "example": "Beverages"
+    },
+    "report_type": {
+      "type": "string",
+      "description": "Type of report",
+      "example": "market_review"
+    },
+    "row_count": {
+      "type": "integer",
+      "description": "Number of data rows in completed report",
+      "example": 4523
+    },
+    "estimated_completion": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Estimated completion time for processing reports"
+    }
+  }
+}

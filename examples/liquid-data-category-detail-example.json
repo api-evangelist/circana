@@ -1,0 +1,24 @@
+{
+  "category_id": "cpg-beverages-energy",
+  "name": "Energy Drinks",
+  "description": "Energy and performance beverages including traditional energy drinks, energy shots, and performance hydration",
+  "parent_id": "cpg-beverages",
+  "industry": "cpg",
+  "level": 3,
+  "subcategories": [
+    {
+      "category_id": "cpg-beverages-energy-traditional",
+      "name": "Traditional Energy Drinks",
+      "parent_id": "cpg-beverages-energy",
+      "industry": "cpg",
+      "level": 4,
+      "subcategory_count": 0
+    }
+  ],
+  "data_coverage": {
+    "pos_available": true,
+    "panel_available": true,
+    "earliest_date": "2019-01-01",
+    "latest_date": "2026-03-31"
+  }
+}
