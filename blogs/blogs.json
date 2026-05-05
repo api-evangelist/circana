@@ -1,0 +1,13 @@
+{
+  "repo": "circana",
+  "feeds": [
+    {
+      "source": "https://www.circana.com/intelligence/press-releases",
+      "feed_url": "https://www.circana.com/blog-feed.xml",
+      "saved": 10,
+      "title": "Circana"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:26:18Z"
+}
