@@ -4,174 +4,83 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Circana
 providerId: circana
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Analytics
+  - Business Intelligence
   - Consumer Data
+  - CPG
   - Market Research
   - Retail
-  - CPG
-  - Point Of Sale
-  - Consumer Insights
-  - Business Intelligence
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+description: Circana (formerly IRI and The NPD Group) does not publish list pricing for its market
+  intelligence products or for Liquid Data, Liquid Data Go, Unify+, Intelligence Suite, or any of
+  the Complete category APIs. Pricing is custom per client and is shaped by data scope (categories,
+  geographies, panels), refresh cadence (POS frequency), seat count, and integration channel
+  (Snowflake, BigQuery, Databricks, BYO cloud). All commercial engagements are managed through
+  Circana sales / account teams.
+notes: No public pricing page is available. Commercial terms are negotiated per client.
+sources:
+  - https://www.circana.com/
+  - https://www.circana.com/solutions
+  - https://www.circana.com/contact
 plans:
-  - id: circana-free
-    name: Free
-    type: freemium
-    description: Free entry tier for the Circana API surface. Intended for evaluation, prototyping, and
-      low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: Circana Unify+ API
-      - name: Circana Liquid Data API
-      - name: Circana Liquid Data Go API
-      - name: Circana Intelligence Suite API
-      - name: Circana Complete Market API
-      - name: Circana Complete Consumer API
-      - name: Circana Complete Beauty API
-      - name: Circana Complete Food and Beverage API
-  - id: circana-pro
-    name: Professional
-    type: paid
-    description: Production tier for Circana. Provides higher quotas, priority support, and access to
-      the broader API portfolio. Pricing placeholder; align with the provider's pricing page.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
-        geo: global
-        domains: []
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
-        type: metered
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: global
-        domains: []
-        unit: 1000
-        price: TBD
-        userMultiplied: false
-    elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Circana Unify+ API
-      - name: Circana Liquid Data API
-      - name: Circana Liquid Data Go API
-      - name: Circana Intelligence Suite API
-      - name: Circana Complete Market API
-      - name: Circana Complete Consumer API
-      - name: Circana Complete Beauty API
-      - name: Circana Complete Food and Beverage API
-      - name: Circana Liquid Data Collaborate API
-      - name: Circana Liquid Data Engage API
-      - name: Circana Liquid Activation API
-      - name: Circana Price and Promotion API
-      - name: Circana Retail Media API
-      - name: Circana Complete Why Analytics API
-  - id: circana-enterprise
-    name: Enterprise
+  - id: circana-enterprise-subscription
+    name: Circana Enterprise Subscription
     type: enterprise
-    description: Custom-negotiated tier for Circana. Includes dedicated capacity, contractual SLAs, security
-      review, data residency options, and named technical account management.
+    description: Custom-priced subscription to one or more Circana solution families. APIs and data
+      access are bundled into the subscription; no per-call price is published.
     entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
+      - label: Subscription
+        name: subscription
+        type: subscription
+        metric: varies
         limit: -1
-        timeFrame: month
-        geo: configurable
-        domains: []
+        timeFrame: year
+        geo: global
         unit: 1
-        price: custom
+        price: contact Circana sales
         userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
+      - label: Data scope
+        name: data_scope
+        type: flat
+        metric: varies
+        limit: -1
+        timeFrame: year
         geo: configurable
-        domains: []
         unit: 1
-        price: custom
+        price: scoped per category / market / panel selection
+        userMultiplied: false
+      - label: Seats
+        name: seats
+        type: subscription
+        metric: seat
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: per agreed seat schedule
+        userMultiplied: true
+      - label: Cloud / data-share integration
+        name: integration
+        type: flat
+        metric: varies
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: included with subscription (Snowflake, BigQuery, Databricks, etc.)
         userMultiplied: false
     elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Circana Unify+ API
-      - name: Circana Liquid Data API
-      - name: Circana Liquid Data Go API
-      - name: Circana Intelligence Suite API
-      - name: Circana Complete Market API
-      - name: Circana Complete Consumer API
-      - name: Circana Complete Beauty API
-      - name: Circana Complete Food and Beverage API
-      - name: Circana Liquid Data Collaborate API
-      - name: Circana Liquid Data Engage API
-      - name: Circana Liquid Activation API
-      - name: Circana Price and Promotion API
-      - name: Circana Retail Media API
-      - name: Circana Complete Why Analytics API
+      - name: Liquid Data platform
+      - name: Unify+
+      - name: Intelligence Suite
+      - name: Liquid Data Go
+      - name: Complete Market / Consumer / Beauty / Food & Beverage
+      - name: Liquid Activation
+      - name: Price and Promotion
+      - name: Retail Media
+      - name: Account management and analyst services
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

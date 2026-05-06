@@ -1,247 +1,100 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Circana
+providerId: circana
+created: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
+tags:
+  - Analytics
+  - Business Intelligence
+  - Consumer Data
+  - CPG
+  - Market Research
+  - Retail
+  - FinOps
+  - FOCUS
+description: 'FOCUS-aligned FinOps for Circana: enterprise subscription with custom contract
+  economics — fee is shaped by data scope (categories, geographies, panels), seat count, refresh
+  cadence, and integration channel (point API vs Snowflake / BigQuery / Databricks data share).
+  There is no per-API-call price.'
+notes: Circana does not expose a metered usage billing surface. The FinOps shape below describes
+  the enterprise subscription cost surface.
+sources:
+  - https://www.circana.com/
+  - https://www.circana.com/solutions
+  - https://www.circana.com/company/technology
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
   dataSpec: FOCUS
   dataSpecVersion: '1.3'
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
-provider: Circana
-providerId: circana
-publisherName: Circana
-serviceCategory: API
-created: '2026-05-04'
-modified: '2026-05-04'
-tags:
-  - Analytics
-  - Consumer Data
-  - Market Research
-  - Retail
-  - CPG
-  - Point Of Sale
-  - Consumer Insights
-  - Business Intelligence
-  - FinOps
-  - Cost Management
-  - FOCUS
-description: FinOps framework definition for the Circana API surface. Provides a FOCUS-aligned mapping
-  for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+publisherName: Circana, LLC
+serviceCategory: Market Intelligence / Consumer Data
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
+  pricingCategory: Enterprise Subscription
+  billingFrequency: Annual
   billingCurrency: USD
   chargeCategories:
-    - Usage
     - Purchase
-    - Tax
-    - Credit
     - Adjustment
-  chargeFrequency: Recurring
+    - Tax
 focusColumns:
-  ServiceName: Circana
-  ServiceCategory: Developer Tools / API
+  ServiceName: Circana Liquid Data / Unify+
+  ServiceCategory: Market Intelligence / Consumer Data
   ProviderName: Circana
-  PublisherName: Circana
-  InvoiceIssuerName: Circana
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  PublisherName: Circana, LLC
+  InvoiceIssuerName: Circana, LLC
   BillingCurrency: USD
-  ChargeCategory: Usage
+  ChargeCategory: Purchase
+  PricingCategory: Subscription
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: subscription
+    description: Annual platform subscription line(s) by solution family
+    unit: year
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
+      - solution
       - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
+  - name: data_scope
+    description: Contracted categories, geographies, and panels
+    unit: scope
+    aggregation: count
+    dimensions:
+      - category
+      - geography
+      - panel
+  - name: seats
+    description: User seats provisioned for Unify+ and partner platforms
+    unit: seat
+    aggregation: max
+    dimensions:
+      - solution
+      - team
+  - name: warehouse_compute
+    description: Customer-side warehouse compute used to query Circana data shares (when applicable)
+    unit: compute-credit
     aggregation: sum
     dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Circana Unify+ API
-    baseURL: ''
-    tags:
-      - Business Intelligence
-      - Data Visualization
-      - Analytics
-      - Reporting
-    serviceName: Circana Unify+ API
-    serviceCategory: API
-  - name: Circana Liquid Data API
-    baseURL: ''
-    tags:
-      - Data Platform
-      - Analytics
-      - Cloud
-      - Data Integration
-    serviceName: Circana Liquid Data API
-    serviceCategory: API
-  - name: Circana Liquid Data Go API
-    baseURL: ''
-    tags:
-      - Market Intelligence
-      - CPG
-      - Analytics
-      - Emerging Brands
-    serviceName: Circana Liquid Data Go API
-    serviceCategory: API
-  - name: Circana Intelligence Suite API
-    baseURL: ''
-    tags:
-      - Data Integration
-      - Automation
-      - Data Harmonization
-      - Cloud
-    serviceName: Circana Intelligence Suite API
-    serviceCategory: API
-  - name: Circana Complete Market API
-    baseURL: ''
-    tags:
-      - Point Of Sale
-      - Market Measurement
-      - Retail Analytics
-    serviceName: Circana Complete Market API
-    serviceCategory: API
-  - name: Circana Complete Consumer API
-    baseURL: ''
-    tags:
-      - Consumer Panel
-      - Shopper Insights
-      - Purchase Data
-    serviceName: Circana Complete Consumer API
-    serviceCategory: API
-  - name: Circana Complete Beauty API
-    baseURL: ''
-    tags:
-      - Beauty
-      - Market Data
-      - Prestige
-      - Mass Market
-    serviceName: Circana Complete Beauty API
-    serviceCategory: API
-  - name: Circana Complete Food and Beverage API
-    baseURL: ''
-    tags:
-      - Food
-      - Beverage
-      - Foodservice
-      - CPG
-    serviceName: Circana Complete Food and Beverage API
-    serviceCategory: API
-  - name: Circana Liquid Data Collaborate API
-    baseURL: ''
-    tags:
-      - Data Collaboration
-      - Retail Analytics
-      - AI
-    serviceName: Circana Liquid Data Collaborate API
-    serviceCategory: API
-  - name: Circana Liquid Data Engage API
-    baseURL: ''
-    tags:
-      - Retail Strategy
-      - Customer Analytics
-      - Data Precision
-    serviceName: Circana Liquid Data Engage API
-    serviceCategory: API
-  - name: Circana Liquid Activation API
-    baseURL: ''
-    tags:
-      - Audience Activation
-      - Marketing
-      - Advertising
-    serviceName: Circana Liquid Activation API
-    serviceCategory: API
-  - name: Circana Price and Promotion API
-    baseURL: ''
-    tags:
-      - Pricing
-      - Promotion
-      - Trade Optimization
-      - Forecasting
-    serviceName: Circana Price and Promotion API
-    serviceCategory: API
-  - name: Circana Retail Media API
-    baseURL: ''
-    tags:
-      - Retail Media
-      - Advertising
-      - ROAS
-      - Media Analytics
-    serviceName: Circana Retail Media API
-    serviceCategory: API
-  - name: Circana Complete Why Analytics API
-    baseURL: ''
-    tags:
-      - AI Analytics
-      - Sales Performance
-      - Diagnostics
-    serviceName: Circana Complete Why Analytics API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+      - warehouse
+      - share
+principles:
+  - name: Visibility
+    description: Track Circana spend through annual contract line items, seat utilization in Unify+,
+      and warehouse-side query volume for any cloud-share deployments.
+  - name: Allocation
+    description: Allocate Circana subscription cost to the brand, category, or commercial team that
+      drives the analytical demand so insights teams can be P&L'd against decision impact.
+  - name: Optimization
+    description: Right-size data scope at renewal (drop unused categories / geographies), prefer
+      cloud-share consumption over point APIs to control warehouse compute, and consolidate seats on
+      shared workspaces where multiple teams co-consume.
+  - name: Accountability
+    description: Insights / analytics owns the demand signal and renewal scope; data engineering
+      owns warehouse cost; finance reconciles annual subscription invoices against utilization
+      evidence at renewal.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
