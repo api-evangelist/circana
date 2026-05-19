@@ -1,0 +1,168 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Circana Liquid Data API — Reports
+  description: 'Circana Liquid Data API — Reports. 3 operations. Lead operation: Circana List Reports. Self-contained Naftiko
+    capability covering one Circana business surface.'
+  tags:
+  - Circana
+  - Reports
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CIRCANA_API_KEY: CIRCANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: liquid-data-reports
+    baseUri: https://api.circana.com/liquid-data/v1
+    description: Circana Liquid Data API — Reports business capability. Self-contained, no shared references.
+    resources:
+    - name: reports
+      path: /reports
+      operations:
+      - name: listreports
+        method: GET
+        description: Circana List Reports
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          description: Report status filter
+        - name: offset
+          in: query
+          type: integer
+          description: Pagination offset
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of records to return
+      - name: createreport
+        method: POST
+        description: Circana Create Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: reports-report_id
+      path: /reports/{report_id}
+      operations:
+      - name: getreport
+        method: GET
+        description: Circana Get Report Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: report_id
+          in: path
+          type: string
+          description: Unique report identifier
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.CIRCANA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: liquid-data-reports-rest
+    port: 8080
+    description: REST adapter for Circana Liquid Data API — Reports. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/reports
+      name: reports
+      description: REST surface for reports.
+      operations:
+      - method: GET
+        name: listreports
+        description: Circana List Reports
+        call: liquid-data-reports.listreports
+        with:
+          status: rest.status
+          offset: rest.offset
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createreport
+        description: Circana Create Report
+        call: liquid-data-reports.createreport
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/reports/{report-id}
+      name: reports-report-id
+      description: REST surface for reports-report_id.
+      operations:
+      - method: GET
+        name: getreport
+        description: Circana Get Report Details
+        call: liquid-data-reports.getreport
+        with:
+          report_id: rest.report_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: liquid-data-reports-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Circana Liquid Data API — Reports. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: circana-list-reports
+      description: Circana List Reports
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: liquid-data-reports.listreports
+      with:
+        status: tools.status
+        offset: tools.offset
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: circana-create-report
+      description: Circana Create Report
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: liquid-data-reports.createreport
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: circana-get-report-details
+      description: Circana Get Report Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: liquid-data-reports.getreport
+      with:
+        report_id: tools.report_id
+      outputParameters:
+      - type: object
+        mapping: $.

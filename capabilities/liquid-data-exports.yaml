@@ -1,0 +1,122 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Circana Liquid Data API — Exports
+  description: 'Circana Liquid Data API — Exports. 2 operations. Lead operation: Circana Create Data Export. Self-contained
+    Naftiko capability covering one Circana business surface.'
+  tags:
+  - Circana
+  - Exports
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CIRCANA_API_KEY: CIRCANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: liquid-data-exports
+    baseUri: https://api.circana.com/liquid-data/v1
+    description: Circana Liquid Data API — Exports business capability. Self-contained, no shared references.
+    resources:
+    - name: exports
+      path: /exports
+      operations:
+      - name: createexport
+        method: POST
+        description: Circana Create Data Export
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: exports-export_id
+      path: /exports/{export_id}
+      operations:
+      - name: getexport
+        method: GET
+        description: Circana Get Export Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: export_id
+          in: path
+          type: string
+          description: Unique export identifier
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.CIRCANA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: liquid-data-exports-rest
+    port: 8080
+    description: REST adapter for Circana Liquid Data API — Exports. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/exports
+      name: exports
+      description: REST surface for exports.
+      operations:
+      - method: POST
+        name: createexport
+        description: Circana Create Data Export
+        call: liquid-data-exports.createexport
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/exports/{export-id}
+      name: exports-export-id
+      description: REST surface for exports-export_id.
+      operations:
+      - method: GET
+        name: getexport
+        description: Circana Get Export Status
+        call: liquid-data-exports.getexport
+        with:
+          export_id: rest.export_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: liquid-data-exports-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Circana Liquid Data API — Exports. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: circana-create-data-export
+      description: Circana Create Data Export
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: liquid-data-exports.createexport
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: circana-get-export-status
+      description: Circana Get Export Status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: liquid-data-exports.getexport
+      with:
+        export_id: tools.export_id
+      outputParameters:
+      - type: object
+        mapping: $.

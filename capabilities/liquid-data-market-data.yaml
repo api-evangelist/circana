@@ -1,0 +1,186 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Circana Liquid Data API — Market Data
+  description: 'Circana Liquid Data API — Market Data. 2 operations. Lead operation: Circana Get Point of Sale Data. Self-contained
+    Naftiko capability covering one Circana business surface.'
+  tags:
+  - Circana
+  - Market Data
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CIRCANA_API_KEY: CIRCANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: liquid-data-market-data
+    baseUri: https://api.circana.com/liquid-data/v1
+    description: Circana Liquid Data API — Market Data business capability. Self-contained, no shared references.
+    resources:
+    - name: market-data-pos
+      path: /market-data/pos
+      operations:
+      - name: getpointofsaledata
+        method: GET
+        description: Circana Get Point of Sale Data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: category_id
+          in: query
+          type: string
+          description: Product category identifier
+          required: true
+        - name: start_date
+          in: query
+          type: string
+          description: Start date for the data range in ISO 8601 format
+          required: true
+        - name: end_date
+          in: query
+          type: string
+          description: End date for the data range in ISO 8601 format
+          required: true
+        - name: geography
+          in: query
+          type: string
+          description: Geographic market filter
+        - name: retailer_id
+          in: query
+          type: string
+          description: Specific retailer identifier for filtering
+        - name: granularity
+          in: query
+          type: string
+          description: Time granularity of the data
+        - name: offset
+          in: query
+          type: integer
+          description: Pagination offset
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of records to return
+    - name: market-data-share
+      path: /market-data/share
+      operations:
+      - name: getmarketshare
+        method: GET
+        description: Circana Get Market Share Data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: category_id
+          in: query
+          type: string
+          description: Product category identifier
+          required: true
+        - name: start_date
+          in: query
+          type: string
+          description: Start date for the data range
+          required: true
+        - name: end_date
+          in: query
+          type: string
+          description: End date for the data range
+          required: true
+        - name: metric
+          in: query
+          type: string
+          description: Share metric type
+    authentication:
+      type: bearer
+      token: '{{env.CIRCANA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: liquid-data-market-data-rest
+    port: 8080
+    description: REST adapter for Circana Liquid Data API — Market Data. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/market-data/pos
+      name: market-data-pos
+      description: REST surface for market-data-pos.
+      operations:
+      - method: GET
+        name: getpointofsaledata
+        description: Circana Get Point of Sale Data
+        call: liquid-data-market-data.getpointofsaledata
+        with:
+          category_id: rest.category_id
+          start_date: rest.start_date
+          end_date: rest.end_date
+          geography: rest.geography
+          retailer_id: rest.retailer_id
+          granularity: rest.granularity
+          offset: rest.offset
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/market-data/share
+      name: market-data-share
+      description: REST surface for market-data-share.
+      operations:
+      - method: GET
+        name: getmarketshare
+        description: Circana Get Market Share Data
+        call: liquid-data-market-data.getmarketshare
+        with:
+          category_id: rest.category_id
+          start_date: rest.start_date
+          end_date: rest.end_date
+          metric: rest.metric
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: liquid-data-market-data-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Circana Liquid Data API — Market Data. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: circana-get-point-sale-data
+      description: Circana Get Point of Sale Data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: liquid-data-market-data.getpointofsaledata
+      with:
+        category_id: tools.category_id
+        start_date: tools.start_date
+        end_date: tools.end_date
+        geography: tools.geography
+        retailer_id: tools.retailer_id
+        granularity: tools.granularity
+        offset: tools.offset
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: circana-get-market-share-data
+      description: Circana Get Market Share Data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: liquid-data-market-data.getmarketshare
+      with:
+        category_id: tools.category_id
+        start_date: tools.start_date
+        end_date: tools.end_date
+        metric: tools.metric
+      outputParameters:
+      - type: object
+        mapping: $.

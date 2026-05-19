@@ -1,0 +1,140 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Circana Liquid Data API — Brands
+  description: 'Circana Liquid Data API — Brands. 2 operations. Lead operation: Circana List Brands. Self-contained Naftiko
+    capability covering one Circana business surface.'
+  tags:
+  - Circana
+  - Brands
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CIRCANA_API_KEY: CIRCANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: liquid-data-brands
+    baseUri: https://api.circana.com/liquid-data/v1
+    description: Circana Liquid Data API — Brands business capability. Self-contained, no shared references.
+    resources:
+    - name: brands
+      path: /brands
+      operations:
+      - name: listbrands
+        method: GET
+        description: Circana List Brands
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: category_id
+          in: query
+          type: string
+          description: Product category to search brands within
+          required: true
+        - name: search
+          in: query
+          type: string
+          description: Search term to filter brand names
+        - name: offset
+          in: query
+          type: integer
+          description: Pagination offset
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of records to return
+    - name: brands-brand_id
+      path: /brands/{brand_id}
+      operations:
+      - name: getbrand
+        method: GET
+        description: Circana Get Brand Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: brand_id
+          in: path
+          type: string
+          description: Unique brand identifier
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.CIRCANA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: liquid-data-brands-rest
+    port: 8080
+    description: REST adapter for Circana Liquid Data API — Brands. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/brands
+      name: brands
+      description: REST surface for brands.
+      operations:
+      - method: GET
+        name: listbrands
+        description: Circana List Brands
+        call: liquid-data-brands.listbrands
+        with:
+          category_id: rest.category_id
+          search: rest.search
+          offset: rest.offset
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/brands/{brand-id}
+      name: brands-brand-id
+      description: REST surface for brands-brand_id.
+      operations:
+      - method: GET
+        name: getbrand
+        description: Circana Get Brand Details
+        call: liquid-data-brands.getbrand
+        with:
+          brand_id: rest.brand_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: liquid-data-brands-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Circana Liquid Data API — Brands. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: circana-list-brands
+      description: Circana List Brands
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: liquid-data-brands.listbrands
+      with:
+        category_id: tools.category_id
+        search: tools.search
+        offset: tools.offset
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: circana-get-brand-details
+      description: Circana Get Brand Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: liquid-data-brands.getbrand
+      with:
+        brand_id: tools.brand_id
+      outputParameters:
+      - type: object
+        mapping: $.
