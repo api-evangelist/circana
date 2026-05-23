@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateReportRequest",
+  "title": "CreateReportRequest",
+  "type": "object",
+  "description": "Request to create a new report",
+  "required": [
+    "name",
+    "report_type",
+    "category_id",
+    "start_date",
+    "end_date"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Report name",
+      "example": "Q1 2026 Snacks Performance"
+    },
+    "report_type": {
+      "type": "string",
+      "description": "Type of report to generate",
+      "enum": [
+        "market_review",
+        "brand_performance",
+        "category_analysis",
+        "competitive_landscape",
+        "pricing_analysis"
+      ],
+      "example": "market_review"
+    },
+    "category_id": {
+      "type": "string",
+      "description": "Product category for the report",
+      "example": "cpg-snacks"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Report start date",
+      "example": "2026-01-01"
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Report end date",
+      "example": "2026-03-31"
+    },
+    "geography": {
+      "type": "string",
+      "description": "Geographic scope",
+      "example": "national"
+    },
+    "metrics": {
+      "type": "array",
+      "description": "Metrics to include in the report",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "dollar_sales",
+        "unit_sales",
+        "market_share"
+      ]
+    }
+  }
+}

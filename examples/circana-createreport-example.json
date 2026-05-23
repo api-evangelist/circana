@@ -1,0 +1,39 @@
+{
+  "operationId": "createReport",
+  "method": "POST",
+  "path": "/reports",
+  "summary": "Circana Create Report",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "CreateReportRequestExample",
+      "example": {
+        "name": "Q1 2026 Snacks Performance",
+        "report_type": "market_review",
+        "category_id": "cpg-snacks",
+        "start_date": "2026-01-01",
+        "end_date": "2026-03-31",
+        "geography": "national",
+        "metrics": [
+          "dollar_sales",
+          "unit_sales",
+          "market_share"
+        ]
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "201",
+      "contentType": "application/json",
+      "name": "CreateReport201Example",
+      "example": {
+        "report_id": "rpt-500124",
+        "name": "Q1 2026 Snacks Performance",
+        "status": "processing",
+        "created_at": "2026-04-18T12:00:00Z",
+        "estimated_completion": "2026-04-18T12:05:00Z"
+      }
+    }
+  ]
+}

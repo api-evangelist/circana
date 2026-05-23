@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReportListResponse",
+  "title": "ReportListResponse",
+  "type": "object",
+  "description": "Report list response",
+  "properties": {
+    "data": {
+      "type": "array",
+      "description": "Array of report records",
+      "items": {
+        "$ref": "#/components/schemas/ReportSummary"
+      }
+    },
+    "pagination": {
+      "$ref": "#/components/schemas/Pagination"
+    }
+  }
+}

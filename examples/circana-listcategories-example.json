@@ -1,0 +1,31 @@
+{
+  "operationId": "listCategories",
+  "method": "GET",
+  "path": "/categories",
+  "summary": "Circana List Categories",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "ListCategories200Example",
+      "example": {
+        "data": [
+          {
+            "category_id": "cpg-beverages",
+            "name": "Beverages",
+            "parent_id": "cpg",
+            "industry": "cpg",
+            "level": 2,
+            "subcategory_count": 15
+          }
+        ],
+        "pagination": {
+          "offset": 0,
+          "limit": 100,
+          "total": 250
+        }
+      }
+    }
+  ]
+}

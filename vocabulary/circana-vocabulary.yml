@@ -1,0 +1,19 @@
+name: Circana Domain Vocabulary
+provider: Circana
+providerId: circana
+description: Tag-derived vocabulary for the Circana API surface; sourced from openapi/ tags.
+terms:
+- term: Market Data
+  description: Access point-of-sale and market measurement data
+- term: Consumer Panel
+  description: Consumer panel data and shopper insights
+- term: Categories
+  description: Product category hierarchy and management
+- term: Brands
+  description: Brand performance and analytics
+- term: Retailers
+  description: Retailer data and channel analytics
+- term: Reports
+  description: Report generation and management
+- term: Exports
+  description: Data export and download operations

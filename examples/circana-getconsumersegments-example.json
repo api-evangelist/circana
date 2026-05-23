@@ -1,0 +1,37 @@
+{
+  "operationId": "getConsumerSegments",
+  "method": "GET",
+  "path": "/consumer-panel/segments",
+  "summary": "Circana Get Consumer Segments",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "GetConsumerSegments200Example",
+      "example": {
+        "data": [
+          {
+            "segment_id": "seg-001",
+            "name": "Health-Conscious Shoppers",
+            "size_pct": 18.5,
+            "avg_basket_size": 42.3,
+            "preferred_channels": [
+              "grocery",
+              "online"
+            ],
+            "key_categories": [
+              "Organic Foods",
+              "Natural Beverages"
+            ]
+          }
+        ],
+        "pagination": {
+          "offset": 0,
+          "limit": 100,
+          "total": 12
+        }
+      }
+    }
+  ]
+}

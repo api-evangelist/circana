@@ -1,0 +1,30 @@
+{
+  "operationId": "listBrands",
+  "method": "GET",
+  "path": "/brands",
+  "summary": "Circana List Brands",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "ListBrands200Example",
+      "example": {
+        "data": [
+          {
+            "brand_id": "brand-500123",
+            "name": "Example Cola",
+            "manufacturer": "Example Corp",
+            "category": "Carbonated Beverages",
+            "upc_count": 45
+          }
+        ],
+        "pagination": {
+          "offset": 0,
+          "limit": 100,
+          "total": 320
+        }
+      }
+    }
+  ]
+}

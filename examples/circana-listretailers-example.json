@@ -1,0 +1,30 @@
+{
+  "operationId": "listRetailers",
+  "method": "GET",
+  "path": "/retailers",
+  "summary": "Circana List Retailers",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "ListRetailers200Example",
+      "example": {
+        "data": [
+          {
+            "retailer_id": "ret-500123",
+            "name": "Example Market",
+            "channel": "grocery",
+            "store_count": 450,
+            "geographic_coverage": "national"
+          }
+        ],
+        "pagination": {
+          "offset": 0,
+          "limit": 100,
+          "total": 1100
+        }
+      }
+    }
+  ]
+}

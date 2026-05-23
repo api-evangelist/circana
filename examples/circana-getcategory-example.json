@@ -1,0 +1,34 @@
+{
+  "operationId": "getCategory",
+  "method": "GET",
+  "path": "/categories/{category_id}",
+  "summary": "Circana Get Category Details",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "GetCategory200Example",
+      "example": {
+        "category_id": "cpg-beverages",
+        "name": "Beverages",
+        "description": "All beverage categories including carbonated, juice, water, and energy drinks",
+        "parent_id": "cpg",
+        "industry": "cpg",
+        "level": 2,
+        "subcategories": [
+          {
+            "category_id": "cpg-beverages-carbonated",
+            "name": "Carbonated Beverages"
+          }
+        ],
+        "data_coverage": {
+          "pos_available": true,
+          "panel_available": true,
+          "earliest_date": "2018-01-01",
+          "latest_date": "2026-03-31"
+        }
+      }
+    }
+  ]
+}

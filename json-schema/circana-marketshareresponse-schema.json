@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MarketShareResponse",
+  "title": "MarketShareResponse",
+  "type": "object",
+  "description": "Market share data response",
+  "properties": {
+    "data": {
+      "type": "array",
+      "description": "Array of market share records",
+      "items": {
+        "$ref": "#/components/schemas/MarketShareRecord"
+      }
+    },
+    "pagination": {
+      "$ref": "#/components/schemas/Pagination"
+    }
+  }
+}

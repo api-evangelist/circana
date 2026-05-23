@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CategoryListResponse",
+  "title": "CategoryListResponse",
+  "type": "object",
+  "description": "Category list response",
+  "properties": {
+    "data": {
+      "type": "array",
+      "description": "Array of category records",
+      "items": {
+        "$ref": "#/components/schemas/CategorySummary"
+      }
+    },
+    "pagination": {
+      "$ref": "#/components/schemas/Pagination"
+    }
+  }
+}

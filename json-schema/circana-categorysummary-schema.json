@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CategorySummary",
+  "title": "CategorySummary",
+  "type": "object",
+  "description": "Category summary record",
+  "properties": {
+    "category_id": {
+      "type": "string",
+      "description": "Unique category identifier",
+      "example": "cpg-beverages"
+    },
+    "name": {
+      "type": "string",
+      "description": "Category name",
+      "example": "Beverages"
+    },
+    "parent_id": {
+      "type": "string",
+      "description": "Parent category identifier",
+      "example": "cpg"
+    },
+    "industry": {
+      "type": "string",
+      "description": "Industry vertical",
+      "example": "cpg"
+    },
+    "level": {
+      "type": "integer",
+      "description": "Depth level in the category hierarchy",
+      "example": 2
+    },
+    "subcategory_count": {
+      "type": "integer",
+      "description": "Number of subcategories",
+      "example": 15
+    }
+  }
+}

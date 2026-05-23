@@ -1,0 +1,34 @@
+{
+  "operationId": "getPointOfSaleData",
+  "method": "GET",
+  "path": "/market-data/pos",
+  "summary": "Circana Get Point of Sale Data",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "GetPointOfSaleData200Example",
+      "example": {
+        "data": [
+          {
+            "period": "2026-W01",
+            "category": "Beverages",
+            "brand": "Example Brand",
+            "upc": "012345678901",
+            "dollar_sales": 125340.5,
+            "unit_sales": 45230,
+            "volume_sales": 67845.0,
+            "avg_price": 2.77,
+            "distribution_pct": 85.3
+          }
+        ],
+        "pagination": {
+          "offset": 0,
+          "limit": 100,
+          "total": 4523
+        }
+      }
+    }
+  ]
+}

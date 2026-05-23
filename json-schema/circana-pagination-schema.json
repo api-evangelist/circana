@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Pagination",
+  "title": "Pagination",
+  "type": "object",
+  "description": "Pagination metadata",
+  "properties": {
+    "offset": {
+      "type": "integer",
+      "description": "Current offset position",
+      "example": 0
+    },
+    "limit": {
+      "type": "integer",
+      "description": "Maximum records per page",
+      "example": 100
+    },
+    "total": {
+      "type": "integer",
+      "description": "Total number of records available",
+      "example": 4523
+    }
+  }
+}

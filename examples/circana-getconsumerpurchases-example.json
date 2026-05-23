@@ -1,0 +1,32 @@
+{
+  "operationId": "getConsumerPurchases",
+  "method": "GET",
+  "path": "/consumer-panel/purchases",
+  "summary": "Circana Get Consumer Purchase Data",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "GetConsumerPurchases200Example",
+      "example": {
+        "data": [
+          {
+            "segment": "18-34",
+            "category": "Beverages",
+            "penetration_pct": 72.5,
+            "buy_rate": 3.2,
+            "avg_spend": 15.8,
+            "trips_per_buyer": 4.1,
+            "channel": "grocery"
+          }
+        ],
+        "pagination": {
+          "offset": 0,
+          "limit": 100,
+          "total": 156
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "operationId": "createExport",
+  "method": "POST",
+  "path": "/exports",
+  "summary": "Circana Create Data Export",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "CreateExportRequestExample",
+      "example": {
+        "source_type": "report",
+        "source_id": "rpt-500123",
+        "format": "csv",
+        "include_headers": true
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "201",
+      "contentType": "application/json",
+      "name": "CreateExport201Example",
+      "example": {
+        "export_id": "exp-500123",
+        "status": "processing",
+        "format": "csv",
+        "created_at": "2026-04-18T12:00:00Z"
+      }
+    }
+  ]
+}

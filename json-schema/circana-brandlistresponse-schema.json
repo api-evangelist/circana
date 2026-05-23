@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BrandListResponse",
+  "title": "BrandListResponse",
+  "type": "object",
+  "description": "Brand list response",
+  "properties": {
+    "data": {
+      "type": "array",
+      "description": "Array of brand records",
+      "items": {
+        "$ref": "#/components/schemas/BrandSummary"
+      }
+    },
+    "pagination": {
+      "$ref": "#/components/schemas/Pagination"
+    }
+  }
+}

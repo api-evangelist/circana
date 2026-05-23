@@ -1,0 +1,304 @@
+{
+  "provider": "Circana",
+  "providerId": "circana",
+  "kind": "json-structure",
+  "description": "Structural overview of the Circana API surface; extracted from openapi/.",
+  "schemaCount": 26,
+  "operationCount": 14,
+  "schemas": [
+    {
+      "name": "POSDataResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "POSRecord",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "MarketShareResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "MarketShareRecord",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "ConsumerPurchaseResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ConsumerPurchaseRecord",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "ConsumerSegmentResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ConsumerSegment",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "CategoryListResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "CategorySummary",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "CategoryDetail",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "DataCoverage",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "BrandListResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "BrandSummary",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "BrandDetail",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "MarketPresence",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "RetailerListResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "RetailerSummary",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "ReportListResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ReportSummary",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "ReportDetail",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "CreateReportRequest",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "name",
+        "report_type",
+        "category_id",
+        "start_date",
+        "end_date"
+      ]
+    },
+    {
+      "name": "CreateExportRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "source_type",
+        "source_id",
+        "format"
+      ]
+    },
+    {
+      "name": "ExportDetail",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "Pagination",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ErrorResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/market-data/pos",
+      "operationId": "getPointOfSaleData",
+      "summary": "Circana Get Point of Sale Data",
+      "tags": [
+        "Market Data"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/market-data/share",
+      "operationId": "getMarketShare",
+      "summary": "Circana Get Market Share Data",
+      "tags": [
+        "Market Data"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/consumer-panel/purchases",
+      "operationId": "getConsumerPurchases",
+      "summary": "Circana Get Consumer Purchase Data",
+      "tags": [
+        "Consumer Panel"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/consumer-panel/segments",
+      "operationId": "getConsumerSegments",
+      "summary": "Circana Get Consumer Segments",
+      "tags": [
+        "Consumer Panel"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/categories",
+      "operationId": "listCategories",
+      "summary": "Circana List Categories",
+      "tags": [
+        "Categories"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/categories/{category_id}",
+      "operationId": "getCategory",
+      "summary": "Circana Get Category Details",
+      "tags": [
+        "Categories"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/brands",
+      "operationId": "listBrands",
+      "summary": "Circana List Brands",
+      "tags": [
+        "Brands"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/brands/{brand_id}",
+      "operationId": "getBrand",
+      "summary": "Circana Get Brand Details",
+      "tags": [
+        "Brands"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/retailers",
+      "operationId": "listRetailers",
+      "summary": "Circana List Retailers",
+      "tags": [
+        "Retailers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reports",
+      "operationId": "listReports",
+      "summary": "Circana List Reports",
+      "tags": [
+        "Reports"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/reports",
+      "operationId": "createReport",
+      "summary": "Circana Create Report",
+      "tags": [
+        "Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reports/{report_id}",
+      "operationId": "getReport",
+      "summary": "Circana Get Report Details",
+      "tags": [
+        "Reports"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/exports",
+      "operationId": "createExport",
+      "summary": "Circana Create Data Export",
+      "tags": [
+        "Exports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/exports/{export_id}",
+      "operationId": "getExport",
+      "summary": "Circana Get Export Status",
+      "tags": [
+        "Exports"
+      ]
+    }
+  ]
+}

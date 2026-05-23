@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RetailerListResponse",
+  "title": "RetailerListResponse",
+  "type": "object",
+  "description": "Retailer list response",
+  "properties": {
+    "data": {
+      "type": "array",
+      "description": "Array of retailer records",
+      "items": {
+        "$ref": "#/components/schemas/RetailerSummary"
+      }
+    },
+    "pagination": {
+      "$ref": "#/components/schemas/Pagination"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "operationId": "listReports",
+  "method": "GET",
+  "path": "/reports",
+  "summary": "Circana List Reports",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "ListReports200Example",
+      "example": {
+        "data": [
+          {
+            "report_id": "rpt-500123",
+            "name": "Q1 2026 Beverage Market Review",
+            "status": "completed",
+            "created_at": "2026-04-01T10:00:00Z",
+            "category": "Beverages",
+            "report_type": "market_review"
+          }
+        ],
+        "pagination": {
+          "offset": 0,
+          "limit": 100,
+          "total": 25
+        }
+      }
+    }
+  ]
+}

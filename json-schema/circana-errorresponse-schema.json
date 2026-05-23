@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ErrorResponse",
+  "title": "ErrorResponse",
+  "type": "object",
+  "description": "Standard error response",
+  "properties": {
+    "error": {
+      "type": "string",
+      "description": "Error type identifier",
+      "example": "invalid_request"
+    },
+    "message": {
+      "type": "string",
+      "description": "Human-readable error message",
+      "example": "The category_id parameter is required"
+    },
+    "status": {
+      "type": "integer",
+      "description": "HTTP status code",
+      "example": 400
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Unique request identifier for troubleshooting",
+      "example": "req-a1b2c3d4"
+    }
+  }
+}

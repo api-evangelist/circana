@@ -1,0 +1,28 @@
+{
+  "operationId": "getBrand",
+  "method": "GET",
+  "path": "/brands/{brand_id}",
+  "summary": "Circana Get Brand Details",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "GetBrand200Example",
+      "example": {
+        "brand_id": "brand-500123",
+        "name": "Example Cola",
+        "manufacturer": "Example Corp",
+        "categories": [
+          "Carbonated Beverages"
+        ],
+        "upc_count": 45,
+        "market_presence": {
+          "channels": 6,
+          "retailers": 120,
+          "geographic_coverage": "national"
+        }
+      }
+    }
+  ]
+}

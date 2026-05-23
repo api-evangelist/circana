@@ -1,0 +1,23 @@
+{
+  "operationId": "getExport",
+  "method": "GET",
+  "path": "/exports/{export_id}",
+  "summary": "Circana Get Export Status",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "GetExport200Example",
+      "example": {
+        "export_id": "exp-500123",
+        "status": "completed",
+        "format": "csv",
+        "created_at": "2026-04-18T12:00:00Z",
+        "completed_at": "2026-04-18T12:02:00Z",
+        "download_url": "https://exports.circana.com/exp-500123/data.csv",
+        "file_size_bytes": 2456789
+      }
+    }
+  ]
+}

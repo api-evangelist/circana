@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConsumerPurchaseRecord",
+  "title": "ConsumerPurchaseRecord",
+  "type": "object",
+  "description": "Individual consumer purchase data record",
+  "properties": {
+    "segment": {
+      "type": "string",
+      "description": "Consumer demographic segment",
+      "example": "18-34"
+    },
+    "category": {
+      "type": "string",
+      "description": "Product category name",
+      "example": "Beverages"
+    },
+    "penetration_pct": {
+      "type": "number",
+      "format": "double",
+      "description": "Category penetration percentage",
+      "example": 72.5
+    },
+    "buy_rate": {
+      "type": "number",
+      "format": "double",
+      "description": "Average purchase frequency",
+      "example": 3.2
+    },
+    "avg_spend": {
+      "type": "number",
+      "format": "double",
+      "description": "Average spend per buyer",
+      "example": 15.8
+    },
+    "trips_per_buyer": {
+      "type": "number",
+      "format": "double",
+      "description": "Average shopping trips per buyer",
+      "example": 4.1
+    },
+    "channel": {
+      "type": "string",
+      "description": "Retail channel",
+      "example": "grocery"
+    }
+  }
+}

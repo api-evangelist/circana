@@ -1,0 +1,30 @@
+{
+  "operationId": "getMarketShare",
+  "method": "GET",
+  "path": "/market-data/share",
+  "summary": "Circana Get Market Share Data",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "GetMarketShare200Example",
+      "example": {
+        "data": [
+          {
+            "brand": "Example Brand A",
+            "dollar_share": 24.5,
+            "unit_share": 22.1,
+            "share_change": 1.2,
+            "period": "2026-Q1"
+          }
+        ],
+        "pagination": {
+          "offset": 0,
+          "limit": 100,
+          "total": 45
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/POSDataResponse",
+  "title": "POSDataResponse",
+  "type": "object",
+  "description": "Point-of-sale data response containing sales metrics",
+  "properties": {
+    "data": {
+      "type": "array",
+      "description": "Array of POS data records",
+      "items": {
+        "$ref": "#/components/schemas/POSRecord"
+      }
+    },
+    "pagination": {
+      "$ref": "#/components/schemas/Pagination"
+    }
+  }
+}

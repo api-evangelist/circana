@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BrandDetail",
+  "title": "BrandDetail",
+  "type": "object",
+  "description": "Detailed brand information",
+  "properties": {
+    "brand_id": {
+      "type": "string",
+      "description": "Unique brand identifier",
+      "example": "brand-500123"
+    },
+    "name": {
+      "type": "string",
+      "description": "Brand name",
+      "example": "Example Cola"
+    },
+    "manufacturer": {
+      "type": "string",
+      "description": "Manufacturer or parent company name",
+      "example": "Example Corp"
+    },
+    "categories": {
+      "type": "array",
+      "description": "Categories the brand is present in",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "Carbonated Beverages"
+      ]
+    },
+    "upc_count": {
+      "type": "integer",
+      "description": "Number of UPCs under this brand",
+      "example": 45
+    },
+    "market_presence": {
+      "$ref": "#/components/schemas/MarketPresence"
+    }
+  }
+}
