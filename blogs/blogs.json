@@ -2,11 +2,8 @@
   "repo": "circana",
   "feeds": [
     {
-      "source": "https://www.circana.com/feed/",
-      "feed_url": "https://www.circana.com/feed/",
-      "title": "",
-      "saved": 0,
-      "method": "feed"
+      "source": "https://www.circana.com/intelligence/press-releases",
+      "error": "HTTPError"
     },
     {
       "source": "https://www.circana.com/solutions",
@@ -17,5 +14,5 @@
     }
   ],
   "post_count": 40,
-  "fetched": "2026-06-01T23:35:02Z"
+  "fetched": "2026-06-14T20:42:17Z"
 }
