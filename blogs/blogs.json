@@ -3,16 +3,10 @@
   "feeds": [
     {
       "source": "https://www.circana.com/intelligence/press-releases",
-      "error": "HTTPError"
-    },
-    {
-      "source": "https://www.circana.com/solutions",
-      "feed_url": "https://www.circana.com/solutions",
-      "title": "",
       "saved": 0,
-      "method": "none"
+      "error": "HTTP 404 Not Found"
     }
   ],
   "post_count": 40,
-  "fetched": "2026-06-14T20:42:17Z"
+  "fetched": "2026-06-27T12:32:02Z"
 }

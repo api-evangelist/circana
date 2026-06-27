@@ -78,19 +78,19 @@ apis:
     title: Export Detail Schema
   - type: JSONLD
     url: json-ld/circana-liquid-data-context.jsonld
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/liquid-data-brands.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/liquid-data-categories.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/liquid-data-consumer-panel.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/liquid-data-exports.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/liquid-data-market-data.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/liquid-data-reports.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/liquid-data-retailers.yaml
 - aid: circana:liquid-data-go-api
   name: Circana Liquid Data Go API
@@ -341,7 +341,7 @@ common:
     description: Deploy Liquid Data platform on Oracle Cloud for enterprise-grade data processing and analytics.
   - name: Google Cloud Platform
     description: Deploy Liquid Data platform on GCP for cloud-based analytics and data integration.
-- type: LLMsTxt
+- type: LlmsText
   url: https://circana.com/llms.txt
 maintainers:
 - FN: Kin Lane
