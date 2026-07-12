@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/circana-liquid-data.yaml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: JWT token obtained through Circana authentication
+  sources:
+  - openapi/circana-liquid-data.yaml

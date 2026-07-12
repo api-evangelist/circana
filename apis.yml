@@ -243,6 +243,10 @@ apis:
   - type: Documentation
     url: https://www.circana.com/solutions/complete-why
 common:
+- type: DomainSecurity
+  url: security/circana-domain-security.yml
+- type: Authentication
+  url: authentication/circana-authentication.yml
 - type: Portal
   url: https://www.circana.com
 - type: Documentation
