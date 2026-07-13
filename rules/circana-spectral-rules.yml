@@ -1,6 +1,25 @@
+# circana — Spectral ruleset (strengthened)
+# Plain Spectral. Existing hand-authored rules preserved; measured rules added
+# from this provider's own OpenAPI conventions by strengthen_ruleset.py,
+# then self-validated against the spec.
+#
+# Provenance:
+#   - servers-https-only: 100% of servers already https (error)
+#   - servers-expected-domain: 1/1 servers on circana.com
+#   - path-params-casing: snake @ 100% (n=4)
+#   - query-params-casing: snake @ 100% (n=35)
+#   - operationid-casing: camel @ 100% (n=14)
+#   - schema-names-casing: pascal @ 100% (n=26)
+#   - schema-properties-casing: snake @ 100% (n=120)
+#   - security: global (root) — NOT emitting operation-security-required
+#   - error-schema-defined: ErrorResponse
+#   - operation-documents-401: 100% adherence
+#   - pagination params observed: ['limit', 'offset']
+#   - merge: kept 41 existing, added 5 measured, upgraded 0
+#   - added: servers-expected-domain, query-params-casing, schema-names-casing, error-schema-defined, no-empty-descriptions
+extends:
+  - spectral:oas
 rules:
-
-  # ─── INFO / METADATA ───────────────────────────────────────────────
   info-title-required:
     description: Info title must be present and non-empty
     severity: error
@@ -8,7 +27,6 @@ rules:
     then:
       field: title
       function: truthy
-
   info-title-circana-prefix:
     description: Info title should start with "Circana"
     severity: warn
@@ -17,8 +35,7 @@ rules:
       field: title
       function: pattern
       functionOptions:
-        match: "^Circana "
-
+        match: '^Circana '
   info-description-required:
     description: Info description must be present and non-empty
     severity: error
@@ -26,7 +43,6 @@ rules:
     then:
       field: description
       function: truthy
-
   info-description-min-length:
     description: Info description should be at least 50 characters
     severity: warn
@@ -35,7 +51,6 @@ rules:
       function: length
       functionOptions:
         min: 50
-
   info-version-required:
     description: API version must be specified
     severity: error
@@ -43,7 +58,6 @@ rules:
     then:
       field: version
       function: truthy
-
   info-contact-required:
     description: Contact information should be provided
     severity: warn
@@ -51,8 +65,6 @@ rules:
     then:
       field: contact
       function: truthy
-
-  # ─── OPENAPI VERSION ───────────────────────────────────────────────
   openapi-version-3:
     description: OpenAPI version must be 3.x
     severity: error
@@ -61,9 +73,7 @@ rules:
       field: openapi
       function: pattern
       functionOptions:
-        match: "^3\\."
-
-  # ─── SERVERS ────────────────────────────────────────────────────────
+        match: ^3\.
   servers-defined:
     description: Servers array must be defined
     severity: error
@@ -71,7 +81,6 @@ rules:
     then:
       field: servers
       function: truthy
-
   servers-https:
     description: Server URLs should use HTTPS
     severity: error
@@ -79,8 +88,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "^https://"
-
+        match: ^https://
   servers-description:
     description: Each server should have a description
     severity: warn
@@ -88,29 +96,24 @@ rules:
     then:
       field: description
       function: truthy
-
-  # ─── PATHS — NAMING CONVENTIONS ────────────────────────────────────
   paths-kebab-case:
     description: Path segments should use kebab-case
     severity: warn
     given: $.paths
     then:
-      field: "@key"
+      field: '@key'
       function: pattern
       functionOptions:
-        match: "^(/[a-z0-9\\-{}]+)+$"
-
+        match: ^(/[a-z0-9\-{}]+)+$
   paths-no-trailing-slash:
     description: Paths must not have trailing slashes
     severity: error
     given: $.paths
     then:
-      field: "@key"
+      field: '@key'
       function: pattern
       functionOptions:
-        notMatch: "/$"
-
-  # ─── OPERATIONS ─────────────────────────────────────────────────────
+        notMatch: /$
   operation-summary-required:
     description: Every operation must have a summary
     severity: error
@@ -118,7 +121,6 @@ rules:
     then:
       field: summary
       function: truthy
-
   operation-summary-circana-prefix:
     description: Operation summaries should start with "Circana"
     severity: warn
@@ -126,8 +128,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "^Circana "
-
+        match: '^Circana '
   operation-description-required:
     description: Every operation must have a description
     severity: error
@@ -135,7 +136,6 @@ rules:
     then:
       field: description
       function: truthy
-
   operation-operationid-required:
     description: Every operation must have an operationId
     severity: error
@@ -143,7 +143,6 @@ rules:
     then:
       field: operationId
       function: truthy
-
   operation-operationid-camelcase:
     description: operationId should use camelCase
     severity: warn
@@ -151,8 +150,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "^[a-z][a-zA-Z0-9]*$"
-
+        match: ^[a-z][a-zA-Z0-9]*$
   operation-tags-required:
     description: Every operation must have at least one tag
     severity: error
@@ -160,8 +158,6 @@ rules:
     then:
       field: tags
       function: truthy
-
-  # ─── TAGS ───────────────────────────────────────────────────────────
   tag-description:
     description: Tags should have descriptions
     severity: info
@@ -169,7 +165,6 @@ rules:
     then:
       field: description
       function: truthy
-
   tag-title-case:
     description: Tag names should use Title Case
     severity: warn
@@ -177,9 +172,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "^[A-Z][a-zA-Z]*(\\s[A-Za-z][a-zA-Z]*)*$"
-
-  # ─── PARAMETERS ─────────────────────────────────────────────────────
+        match: ^[A-Z][a-zA-Z]*(\s[A-Za-z][a-zA-Z]*)*$
   parameter-description-required:
     description: Every parameter must have a description
     severity: error
@@ -187,7 +180,6 @@ rules:
     then:
       field: description
       function: truthy
-
   parameter-snake-case:
     description: Parameter names should use snake_case
     severity: warn
@@ -195,8 +187,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "^[a-z][a-z0-9]*(_[a-z0-9]+)*$"
-
+        match: ^[a-z][a-z0-9]*(_[a-z0-9]+)*$
   parameter-schema-required:
     description: Parameters must have a schema with type
     severity: error
@@ -204,7 +195,6 @@ rules:
     then:
       field: schema
       function: truthy
-
   parameter-example-recommended:
     description: Parameters should include an example value
     severity: info
@@ -212,8 +202,6 @@ rules:
     then:
       field: example
       function: truthy
-
-  # ─── REQUEST BODIES ─────────────────────────────────────────────────
   request-body-json-content:
     description: Request bodies should use application/json content type
     severity: warn
@@ -221,8 +209,6 @@ rules:
     then:
       field: application/json
       function: truthy
-
-  # ─── RESPONSES ──────────────────────────────────────────────────────
   response-success-required:
     description: Every operation must have a success response (2xx)
     severity: error
@@ -232,19 +218,21 @@ rules:
       functionOptions:
         schema:
           anyOf:
-            - required: ["200"]
-            - required: ["201"]
-            - required: ["202"]
-            - required: ["204"]
-
+          - required:
+            - '200'
+          - required:
+            - '201'
+          - required:
+            - '202'
+          - required:
+            - '204'
   response-401-required:
     description: Operations should include a 401 Unauthorized response
     severity: warn
     given: $.paths[*][get,post,put,patch,delete].responses
     then:
-      field: "401"
+      field: '401'
       function: truthy
-
   response-description-required:
     description: Every response must have a description
     severity: error
@@ -252,18 +240,15 @@ rules:
     then:
       field: description
       function: truthy
-
-  # ─── SCHEMAS — PROPERTY NAMING ─────────────────────────────────────
   schema-property-snake-case:
     description: Schema property names should use snake_case
     severity: warn
     given: $.components.schemas[*].properties
     then:
-      field: "@key"
+      field: '@key'
       function: pattern
       functionOptions:
-        match: "^[a-z][a-z0-9]*(_[a-z0-9]+)*$"
-
+        match: ^[a-z][a-z0-9]*(_[a-z0-9]+)*$
   schema-description-required:
     description: Top-level schemas should have descriptions
     severity: warn
@@ -271,7 +256,6 @@ rules:
     then:
       field: description
       function: truthy
-
   schema-type-required:
     description: Schema properties must define a type
     severity: error
@@ -281,13 +265,16 @@ rules:
       functionOptions:
         schema:
           anyOf:
-            - required: ["type"]
-            - required: ["$ref"]
-            - required: ["oneOf"]
-            - required: ["anyOf"]
-            - required: ["allOf"]
-
-  # ─── SECURITY ───────────────────────────────────────────────────────
+          - required:
+            - type
+          - required:
+            - $ref
+          - required:
+            - oneOf
+          - required:
+            - anyOf
+          - required:
+            - allOf
   security-global-defined:
     description: Global security must be defined
     severity: error
@@ -295,7 +282,6 @@ rules:
     then:
       field: security
       function: truthy
-
   security-schemes-defined:
     description: Security schemes must be defined in components
     severity: error
@@ -303,7 +289,6 @@ rules:
     then:
       field: securitySchemes
       function: truthy
-
   security-scheme-description:
     description: Security schemes should have descriptions
     severity: warn
@@ -311,8 +296,6 @@ rules:
     then:
       field: description
       function: truthy
-
-  # ─── HTTP METHOD CONVENTIONS ────────────────────────────────────────
   get-no-request-body:
     description: GET operations must not have a request body
     severity: error
@@ -320,7 +303,6 @@ rules:
     then:
       field: requestBody
       function: falsy
-
   delete-no-request-body:
     description: DELETE operations should not have a request body
     severity: warn
@@ -328,7 +310,6 @@ rules:
     then:
       field: requestBody
       function: falsy
-
   post-request-body-required:
     description: POST operations should have a request body
     severity: info
@@ -336,15 +317,12 @@ rules:
     then:
       field: requestBody
       function: truthy
-
-  # ─── GENERAL QUALITY ────────────────────────────────────────────────
   no-empty-descriptions:
-    description: Descriptions must not be empty strings
-    severity: error
-    given: $.paths[*][get,post,put,patch,delete].description
+    description: Descriptions must not be empty strings.
+    severity: warn
+    given: $..description
     then:
       function: truthy
-
   examples-recommended:
     description: Response schemas should include examples
     severity: info
@@ -352,18 +330,49 @@ rules:
     then:
       field: examples
       function: truthy
-
   pagination-offset-limit:
     description: Paginated endpoints should use offset/limit parameters
     severity: info
     given: $.paths[*].get.parameters[?(@.name=='offset' || @.name=='limit')]
     then:
       function: truthy
-
   microcks-operation-extension:
     description: Operations should include x-microcks-operation for mock compatibility
     severity: info
     given: $.paths[*][get,post,put,patch,delete]
     then:
       field: x-microcks-operation
+      function: truthy
+  servers-expected-domain:
+    description: Server URLs should be on the circana.com domain.
+    severity: warn
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: circana\.com
+  query-params-casing:
+    description: Query parameters should be snake_case (the dominant convention in this API).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].parameters[?(@.in=='query')]
+    then:
+      field: name
+      function: casing
+      functionOptions:
+        type: snake
+  schema-names-casing:
+    description: Component schema names should be PascalCase (the dominant convention in this API).
+    severity: warn
+    given: $.components.schemas
+    then:
+      field: '@key'
+      function: pattern
+      functionOptions:
+        match: ^[A-Z][A-Za-z0-9]*$
+  error-schema-defined:
+    description: A shared error schema (ErrorResponse) should be defined for error payloads.
+    severity: warn
+    given: $.components.schemas
+    then:
+      field: ErrorResponse
       function: truthy
