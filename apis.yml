@@ -243,6 +243,8 @@ apis:
   - type: Documentation
     url: https://www.circana.com/solutions/complete-why
 common:
+- type: AgenticAccess
+  url: agentic-access/circana-agentic-access.yml
 - type: DomainSecurity
   url: security/circana-domain-security.yml
 - type: Authentication
