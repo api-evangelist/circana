@@ -1,0 +1,388 @@
+openapi: 3.0.3
+info:
+  title: Circana Liquid Data Brands Reports API
+  description: Circana's Liquid Data platform provides cross-industry data and advanced analytics in a single, open platform. This API enables programmatic access to market measurement, consumer panel, and retail analytics data deployable across Azure, AWS, Google Cloud, and Oracle Cloud environments.
+  version: 1.0.0
+  contact:
+    name: Circana
+    url: https://www.circana.com
+    email: support@circana.com
+  license:
+    name: Proprietary
+    url: https://www.circana.com/terms-and-conditions
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+servers:
+- url: https://api.circana.com/liquid-data/v1
+  description: Circana Liquid Data Production API
+security:
+- bearerAuth: []
+tags:
+- name: Reports
+  description: Report generation and management
+paths:
+  /reports:
+    get:
+      operationId: listReports
+      summary: Circana List Reports
+      description: List available reports and saved analyses for the authenticated user.
+      tags:
+      - Reports
+      parameters:
+      - name: status
+        in: query
+        required: false
+        description: Report status filter
+        schema:
+          type: string
+          enum:
+          - draft
+          - processing
+          - completed
+          - failed
+        example: completed
+      - name: offset
+        in: query
+        required: false
+        description: Pagination offset
+        schema:
+          type: integer
+          default: 0
+        example: 0
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of records to return
+        schema:
+          type: integer
+          default: 100
+        example: 100
+      responses:
+        '200':
+          description: Reports listed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportListResponse'
+              examples:
+                ListReports200Example:
+                  summary: Default listReports 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                    - report_id: rpt-500123
+                      name: Q1 2026 Beverage Market Review
+                      status: completed
+                      created_at: '2026-04-01T10:00:00Z'
+                      category: Beverages
+                      report_type: market_review
+                    pagination:
+                      offset: 0
+                      limit: 100
+                      total: 25
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createReport
+      summary: Circana Create Report
+      description: Create a new report with specified data parameters, categories, and analysis configuration.
+      tags:
+      - Reports
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateReportRequest'
+            examples:
+              CreateReportRequestExample:
+                summary: Default createReport request
+                x-microcks-default: true
+                value:
+                  name: Q1 2026 Snacks Performance
+                  report_type: market_review
+                  category_id: cpg-snacks
+                  start_date: '2026-01-01'
+                  end_date: '2026-03-31'
+                  geography: national
+                  metrics:
+                  - dollar_sales
+                  - unit_sales
+                  - market_share
+      responses:
+        '201':
+          description: Report created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportDetail'
+              examples:
+                CreateReport201Example:
+                  summary: Default createReport 201 response
+                  x-microcks-default: true
+                  value:
+                    report_id: rpt-500124
+                    name: Q1 2026 Snacks Performance
+                    status: processing
+                    created_at: '2026-04-18T12:00:00Z'
+                    estimated_completion: '2026-04-18T12:05:00Z'
+        '400':
+          description: Invalid report configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /reports/{report_id}:
+    get:
+      operationId: getReport
+      summary: Circana Get Report Details
+      description: Get detailed information about a specific report including status, configuration, and results.
+      tags:
+      - Reports
+      parameters:
+      - name: report_id
+        in: path
+        required: true
+        description: Unique report identifier
+        schema:
+          type: string
+        example: rpt-500123
+      responses:
+        '200':
+          description: Report details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportDetail'
+              examples:
+                GetReport200Example:
+                  summary: Default getReport 200 response
+                  x-microcks-default: true
+                  value:
+                    report_id: rpt-500123
+                    name: Q1 2026 Beverage Market Review
+                    status: completed
+                    created_at: '2026-04-01T10:00:00Z'
+                    completed_at: '2026-04-01T10:03:00Z'
+                    category: Beverages
+                    report_type: market_review
+                    row_count: 4523
+        '404':
+          description: Report not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ReportSummary:
+      type: object
+      description: Report summary record
+      properties:
+        report_id:
+          type: string
+          description: Unique report identifier
+          example: rpt-500123
+        name:
+          type: string
+          description: Report name
+          example: Q1 2026 Beverage Market Review
+        status:
+          type: string
+          description: Report processing status
+          enum:
+          - draft
+          - processing
+          - completed
+          - failed
+          example: completed
+        created_at:
+          type: string
+          format: date-time
+          description: Report creation timestamp
+          example: '2026-04-01T10:00:00Z'
+        category:
+          type: string
+          description: Primary category for the report
+          example: Beverages
+        report_type:
+          type: string
+          description: Type of report
+          example: market_review
+    ReportListResponse:
+      type: object
+      description: Report list response
+      properties:
+        data:
+          type: array
+          description: Array of report records
+          items:
+            $ref: '#/components/schemas/ReportSummary'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    ReportDetail:
+      type: object
+      description: Detailed report information
+      properties:
+        report_id:
+          type: string
+          description: Unique report identifier
+          example: rpt-500123
+        name:
+          type: string
+          description: Report name
+          example: Q1 2026 Beverage Market Review
+        status:
+          type: string
+          description: Report processing status
+          enum:
+          - draft
+          - processing
+          - completed
+          - failed
+          example: completed
+        created_at:
+          type: string
+          format: date-time
+          description: Report creation timestamp
+          example: '2026-04-01T10:00:00Z'
+        completed_at:
+          type: string
+          format: date-time
+          description: Report completion timestamp
+          example: '2026-04-01T10:03:00Z'
+        category:
+          type: string
+          description: Primary category for the report
+          example: Beverages
+        report_type:
+          type: string
+          description: Type of report
+          example: market_review
+        row_count:
+          type: integer
+          description: Number of data rows in completed report
+          example: 4523
+        estimated_completion:
+          type: string
+          format: date-time
+          description: Estimated completion time for processing reports
+          example: '2026-04-18T12:05:00Z'
+    ErrorResponse:
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error type identifier
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error message
+          example: The category_id parameter is required
+        status:
+          type: integer
+          description: HTTP status code
+          example: 400
+        request_id:
+          type: string
+          description: Unique request identifier for troubleshooting
+          example: req-a1b2c3d4
+    Pagination:
+      type: object
+      description: Pagination metadata
+      properties:
+        offset:
+          type: integer
+          description: Current offset position
+          example: 0
+        limit:
+          type: integer
+          description: Maximum records per page
+          example: 100
+        total:
+          type: integer
+          description: Total number of records available
+          example: 4523
+    CreateReportRequest:
+      type: object
+      description: Request to create a new report
+      required:
+      - name
+      - report_type
+      - category_id
+      - start_date
+      - end_date
+      properties:
+        name:
+          type: string
+          description: Report name
+          example: Q1 2026 Snacks Performance
+        report_type:
+          type: string
+          description: Type of report to generate
+          enum:
+          - market_review
+          - brand_performance
+          - category_analysis
+          - competitive_landscape
+          - pricing_analysis
+          example: market_review
+        category_id:
+          type: string
+          description: Product category for the report
+          example: cpg-snacks
+        start_date:
+          type: string
+          format: date
+          description: Report start date
+          example: '2026-01-01'
+        end_date:
+          type: string
+          format: date
+          description: Report end date
+          example: '2026-03-31'
+        geography:
+          type: string
+          description: Geographic scope
+          example: national
+        metrics:
+          type: array
+          description: Metrics to include in the report
+          items:
+            type: string
+          example:
+          - dollar_sales
+          - unit_sales
+          - market_share
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained through Circana authentication

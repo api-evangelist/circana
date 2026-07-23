@@ -1,0 +1,289 @@
+openapi: 3.0.3
+info:
+  title: Circana Liquid Data Brands Categories API
+  description: Circana's Liquid Data platform provides cross-industry data and advanced analytics in a single, open platform. This API enables programmatic access to market measurement, consumer panel, and retail analytics data deployable across Azure, AWS, Google Cloud, and Oracle Cloud environments.
+  version: 1.0.0
+  contact:
+    name: Circana
+    url: https://www.circana.com
+    email: support@circana.com
+  license:
+    name: Proprietary
+    url: https://www.circana.com/terms-and-conditions
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+servers:
+- url: https://api.circana.com/liquid-data/v1
+  description: Circana Liquid Data Production API
+security:
+- bearerAuth: []
+tags:
+- name: Categories
+  description: Product category hierarchy and management
+paths:
+  /categories:
+    get:
+      operationId: listCategories
+      summary: Circana List Categories
+      description: List available product categories in the Circana taxonomy hierarchy covering CPG, general merchandise, beauty, food, and technology.
+      tags:
+      - Categories
+      parameters:
+      - name: parent_id
+        in: query
+        required: false
+        description: Parent category ID to list subcategories
+        schema:
+          type: string
+        example: cpg
+      - name: industry
+        in: query
+        required: false
+        description: Industry vertical filter
+        schema:
+          type: string
+          enum:
+          - cpg
+          - beauty
+          - food_beverage
+          - technology
+          - healthcare
+          - general_merchandise
+          - apparel
+          - home
+        example: cpg
+      - name: search
+        in: query
+        required: false
+        description: Search term to filter categories
+        schema:
+          type: string
+        example: beverages
+      responses:
+        '200':
+          description: Categories listed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryListResponse'
+              examples:
+                ListCategories200Example:
+                  summary: Default listCategories 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                    - category_id: cpg-beverages
+                      name: Beverages
+                      parent_id: cpg
+                      industry: cpg
+                      level: 2
+                      subcategory_count: 15
+                    pagination:
+                      offset: 0
+                      limit: 100
+                      total: 250
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /categories/{category_id}:
+    get:
+      operationId: getCategory
+      summary: Circana Get Category Details
+      description: Get detailed information about a specific product category including hierarchy, metadata, and available data coverage.
+      tags:
+      - Categories
+      parameters:
+      - name: category_id
+        in: path
+        required: true
+        description: Unique category identifier
+        schema:
+          type: string
+        example: cpg-beverages
+      responses:
+        '200':
+          description: Category details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryDetail'
+              examples:
+                GetCategory200Example:
+                  summary: Default getCategory 200 response
+                  x-microcks-default: true
+                  value:
+                    category_id: cpg-beverages
+                    name: Beverages
+                    description: All beverage categories including carbonated, juice, water, and energy drinks
+                    parent_id: cpg
+                    industry: cpg
+                    level: 2
+                    subcategories:
+                    - category_id: cpg-beverages-carbonated
+                      name: Carbonated Beverages
+                    data_coverage:
+                      pos_available: true
+                      panel_available: true
+                      earliest_date: '2018-01-01'
+                      latest_date: '2026-03-31'
+        '404':
+          description: Category not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    DataCoverage:
+      type: object
+      description: Data availability and coverage information
+      properties:
+        pos_available:
+          type: boolean
+          description: Whether POS data is available
+          example: true
+        panel_available:
+          type: boolean
+          description: Whether consumer panel data is available
+          example: true
+        earliest_date:
+          type: string
+          format: date
+          description: Earliest available data date
+          example: '2018-01-01'
+        latest_date:
+          type: string
+          format: date
+          description: Latest available data date
+          example: '2026-03-31'
+    CategorySummary:
+      type: object
+      description: Category summary record
+      properties:
+        category_id:
+          type: string
+          description: Unique category identifier
+          example: cpg-beverages
+        name:
+          type: string
+          description: Category name
+          example: Beverages
+        parent_id:
+          type: string
+          description: Parent category identifier
+          example: cpg
+        industry:
+          type: string
+          description: Industry vertical
+          example: cpg
+        level:
+          type: integer
+          description: Depth level in the category hierarchy
+          example: 2
+        subcategory_count:
+          type: integer
+          description: Number of subcategories
+          example: 15
+    CategoryListResponse:
+      type: object
+      description: Category list response
+      properties:
+        data:
+          type: array
+          description: Array of category records
+          items:
+            $ref: '#/components/schemas/CategorySummary'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    CategoryDetail:
+      type: object
+      description: Detailed category information
+      properties:
+        category_id:
+          type: string
+          description: Unique category identifier
+          example: cpg-beverages
+        name:
+          type: string
+          description: Category name
+          example: Beverages
+        description:
+          type: string
+          description: Category description
+          example: All beverage categories including carbonated, juice, water, and energy drinks
+        parent_id:
+          type: string
+          description: Parent category identifier
+          example: cpg
+        industry:
+          type: string
+          description: Industry vertical
+          example: cpg
+        level:
+          type: integer
+          description: Depth level in the category hierarchy
+          example: 2
+        subcategories:
+          type: array
+          description: Direct subcategories
+          items:
+            $ref: '#/components/schemas/CategorySummary'
+        data_coverage:
+          $ref: '#/components/schemas/DataCoverage'
+    ErrorResponse:
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error type identifier
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error message
+          example: The category_id parameter is required
+        status:
+          type: integer
+          description: HTTP status code
+          example: 400
+        request_id:
+          type: string
+          description: Unique request identifier for troubleshooting
+          example: req-a1b2c3d4
+    Pagination:
+      type: object
+      description: Pagination metadata
+      properties:
+        offset:
+          type: integer
+          description: Current offset position
+          example: 0
+        limit:
+          type: integer
+          description: Maximum records per page
+          example: 100
+        total:
+          type: integer
+          description: Total number of records available
+          example: 4523
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained through Circana authentication

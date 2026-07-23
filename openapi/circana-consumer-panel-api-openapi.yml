@@ -1,0 +1,346 @@
+openapi: 3.0.3
+info:
+  title: Circana Liquid Data Brands Consumer Panel API
+  description: Circana's Liquid Data platform provides cross-industry data and advanced analytics in a single, open platform. This API enables programmatic access to market measurement, consumer panel, and retail analytics data deployable across Azure, AWS, Google Cloud, and Oracle Cloud environments.
+  version: 1.0.0
+  contact:
+    name: Circana
+    url: https://www.circana.com
+    email: support@circana.com
+  license:
+    name: Proprietary
+    url: https://www.circana.com/terms-and-conditions
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+servers:
+- url: https://api.circana.com/liquid-data/v1
+  description: Circana Liquid Data Production API
+security:
+- bearerAuth: []
+tags:
+- name: Consumer Panel
+  description: Consumer panel data and shopper insights
+paths:
+  /consumer-panel/purchases:
+    get:
+      operationId: getConsumerPurchases
+      summary: Circana Get Consumer Purchase Data
+      description: Retrieve aggregated consumer purchase data from panel surveys, receipt scanning, and loyalty data covering 200K+ static panelists.
+      tags:
+      - Consumer Panel
+      parameters:
+      - name: category_id
+        in: query
+        required: true
+        description: Product category identifier
+        schema:
+          type: string
+        example: cpg-beverages
+      - name: start_date
+        in: query
+        required: true
+        description: Start date for the data range
+        schema:
+          type: string
+          format: date
+        example: '2026-01-01'
+      - name: end_date
+        in: query
+        required: true
+        description: End date for the data range
+        schema:
+          type: string
+          format: date
+        example: '2026-03-31'
+      - name: demographic
+        in: query
+        required: false
+        description: Demographic segment filter
+        schema:
+          type: string
+          enum:
+          - age
+          - income
+          - household_size
+          - ethnicity
+          - region
+        example: age
+      - name: channel
+        in: query
+        required: false
+        description: Purchase channel filter
+        schema:
+          type: string
+          enum:
+          - grocery
+          - mass
+          - club
+          - dollar
+          - convenience
+          - online
+          - drug
+        example: grocery
+      - name: offset
+        in: query
+        required: false
+        description: Pagination offset
+        schema:
+          type: integer
+          default: 0
+        example: 0
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of records to return
+        schema:
+          type: integer
+          default: 100
+        example: 100
+      responses:
+        '200':
+          description: Consumer purchase data retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsumerPurchaseResponse'
+              examples:
+                GetConsumerPurchases200Example:
+                  summary: Default getConsumerPurchases 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                    - segment: 18-34
+                      category: Beverages
+                      penetration_pct: 72.5
+                      buy_rate: 3.2
+                      avg_spend: 15.8
+                      trips_per_buyer: 4.1
+                      channel: grocery
+                    pagination:
+                      offset: 0
+                      limit: 100
+                      total: 156
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /consumer-panel/segments:
+    get:
+      operationId: getConsumerSegments
+      summary: Circana Get Consumer Segments
+      description: Retrieve consumer segmentation data based on purchase behavior, demographics, and shopping patterns.
+      tags:
+      - Consumer Panel
+      parameters:
+      - name: category_id
+        in: query
+        required: true
+        description: Product category identifier
+        schema:
+          type: string
+        example: cpg-snacks
+      - name: segmentation_type
+        in: query
+        required: false
+        description: Type of segmentation analysis
+        schema:
+          type: string
+          enum:
+          - behavioral
+          - demographic
+          - psychographic
+          - channel
+        example: behavioral
+      responses:
+        '200':
+          description: Consumer segments retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsumerSegmentResponse'
+              examples:
+                GetConsumerSegments200Example:
+                  summary: Default getConsumerSegments 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                    - segment_id: seg-001
+                      name: Health-Conscious Shoppers
+                      size_pct: 18.5
+                      avg_basket_size: 42.3
+                      preferred_channels:
+                      - grocery
+                      - online
+                      key_categories:
+                      - Organic Foods
+                      - Natural Beverages
+                    pagination:
+                      offset: 0
+                      limit: 100
+                      total: 12
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ConsumerSegment:
+      type: object
+      description: Consumer segment definition
+      properties:
+        segment_id:
+          type: string
+          description: Unique segment identifier
+          example: seg-001
+        name:
+          type: string
+          description: Segment name
+          example: Health-Conscious Shoppers
+        size_pct:
+          type: number
+          format: double
+          description: Percentage of total market population
+          example: 18.5
+        avg_basket_size:
+          type: number
+          format: double
+          description: Average basket size in dollars
+          example: 42.3
+        preferred_channels:
+          type: array
+          description: Preferred shopping channels
+          items:
+            type: string
+          example:
+          - grocery
+          - online
+        key_categories:
+          type: array
+          description: Top categories for this segment
+          items:
+            type: string
+          example:
+          - Organic Foods
+          - Natural Beverages
+    ConsumerPurchaseResponse:
+      type: object
+      description: Consumer purchase data response
+      properties:
+        data:
+          type: array
+          description: Array of consumer purchase records
+          items:
+            $ref: '#/components/schemas/ConsumerPurchaseRecord'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    ConsumerPurchaseRecord:
+      type: object
+      description: Individual consumer purchase data record
+      properties:
+        segment:
+          type: string
+          description: Consumer demographic segment
+          example: 18-34
+        category:
+          type: string
+          description: Product category name
+          example: Beverages
+        penetration_pct:
+          type: number
+          format: double
+          description: Category penetration percentage
+          example: 72.5
+        buy_rate:
+          type: number
+          format: double
+          description: Average purchase frequency
+          example: 3.2
+        avg_spend:
+          type: number
+          format: double
+          description: Average spend per buyer
+          example: 15.8
+        trips_per_buyer:
+          type: number
+          format: double
+          description: Average shopping trips per buyer
+          example: 4.1
+        channel:
+          type: string
+          description: Retail channel
+          example: grocery
+    ErrorResponse:
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error type identifier
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error message
+          example: The category_id parameter is required
+        status:
+          type: integer
+          description: HTTP status code
+          example: 400
+        request_id:
+          type: string
+          description: Unique request identifier for troubleshooting
+          example: req-a1b2c3d4
+    Pagination:
+      type: object
+      description: Pagination metadata
+      properties:
+        offset:
+          type: integer
+          description: Current offset position
+          example: 0
+        limit:
+          type: integer
+          description: Maximum records per page
+          example: 100
+        total:
+          type: integer
+          description: Total number of records available
+          example: 4523
+    ConsumerSegmentResponse:
+      type: object
+      description: Consumer segmentation response
+      properties:
+        data:
+          type: array
+          description: Array of consumer segment records
+          items:
+            $ref: '#/components/schemas/ConsumerSegment'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained through Circana authentication

@@ -1,0 +1,365 @@
+openapi: 3.0.3
+info:
+  title: Circana Liquid Data Brands Market Data API
+  description: Circana's Liquid Data platform provides cross-industry data and advanced analytics in a single, open platform. This API enables programmatic access to market measurement, consumer panel, and retail analytics data deployable across Azure, AWS, Google Cloud, and Oracle Cloud environments.
+  version: 1.0.0
+  contact:
+    name: Circana
+    url: https://www.circana.com
+    email: support@circana.com
+  license:
+    name: Proprietary
+    url: https://www.circana.com/terms-and-conditions
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+servers:
+- url: https://api.circana.com/liquid-data/v1
+  description: Circana Liquid Data Production API
+security:
+- bearerAuth: []
+tags:
+- name: Market Data
+  description: Access point-of-sale and market measurement data
+paths:
+  /market-data/pos:
+    get:
+      operationId: getPointOfSaleData
+      summary: Circana Get Point of Sale Data
+      description: Retrieve point-of-sale data with filters for time period, geography, category, and retailer. Returns sales volume, revenue, and unit data.
+      tags:
+      - Market Data
+      parameters:
+      - name: category_id
+        in: query
+        required: true
+        description: Product category identifier
+        schema:
+          type: string
+        example: cpg-beverages
+      - name: start_date
+        in: query
+        required: true
+        description: Start date for the data range in ISO 8601 format
+        schema:
+          type: string
+          format: date
+        example: '2026-01-01'
+      - name: end_date
+        in: query
+        required: true
+        description: End date for the data range in ISO 8601 format
+        schema:
+          type: string
+          format: date
+        example: '2026-03-31'
+      - name: geography
+        in: query
+        required: false
+        description: Geographic market filter
+        schema:
+          type: string
+          enum:
+          - national
+          - regional
+          - dma
+          - store
+        example: national
+      - name: retailer_id
+        in: query
+        required: false
+        description: Specific retailer identifier for filtering
+        schema:
+          type: string
+        example: ret-500123
+      - name: granularity
+        in: query
+        required: false
+        description: Time granularity of the data
+        schema:
+          type: string
+          enum:
+          - weekly
+          - monthly
+          - quarterly
+          - annual
+        example: weekly
+      - name: offset
+        in: query
+        required: false
+        description: Pagination offset
+        schema:
+          type: integer
+          default: 0
+        example: 0
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of records to return
+        schema:
+          type: integer
+          default: 100
+          maximum: 1000
+        example: 100
+      responses:
+        '200':
+          description: Point-of-sale data retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/POSDataResponse'
+              examples:
+                GetPointOfSaleData200Example:
+                  summary: Default getPointOfSaleData 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                    - period: 2026-W01
+                      category: Beverages
+                      brand: Example Brand
+                      upc: 012345678901
+                      dollar_sales: 125340.5
+                      unit_sales: 45230
+                      volume_sales: 67845.0
+                      avg_price: 2.77
+                      distribution_pct: 85.3
+                    pagination:
+                      offset: 0
+                      limit: 100
+                      total: 4523
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Insufficient permissions for requested data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /market-data/share:
+    get:
+      operationId: getMarketShare
+      summary: Circana Get Market Share Data
+      description: Retrieve market share data showing brand and category share metrics across retailers and geographies.
+      tags:
+      - Market Data
+      parameters:
+      - name: category_id
+        in: query
+        required: true
+        description: Product category identifier
+        schema:
+          type: string
+        example: cpg-snacks
+      - name: start_date
+        in: query
+        required: true
+        description: Start date for the data range
+        schema:
+          type: string
+          format: date
+        example: '2026-01-01'
+      - name: end_date
+        in: query
+        required: true
+        description: End date for the data range
+        schema:
+          type: string
+          format: date
+        example: '2026-03-31'
+      - name: metric
+        in: query
+        required: false
+        description: Share metric type
+        schema:
+          type: string
+          enum:
+          - dollar_share
+          - unit_share
+          - volume_share
+        example: dollar_share
+      responses:
+        '200':
+          description: Market share data retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarketShareResponse'
+              examples:
+                GetMarketShare200Example:
+                  summary: Default getMarketShare 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                    - brand: Example Brand A
+                      dollar_share: 24.5
+                      unit_share: 22.1
+                      share_change: 1.2
+                      period: 2026-Q1
+                    pagination:
+                      offset: 0
+                      limit: 100
+                      total: 45
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    POSRecord:
+      type: object
+      description: Individual point-of-sale data record
+      properties:
+        period:
+          type: string
+          description: Time period identifier
+          example: 2026-W01
+        category:
+          type: string
+          description: Product category name
+          example: Beverages
+        brand:
+          type: string
+          description: Brand name
+          example: Example Brand
+        upc:
+          type: string
+          description: Universal Product Code
+          example: 012345678901
+        dollar_sales:
+          type: number
+          format: double
+          description: Total dollar sales for the period
+          example: 125340.5
+        unit_sales:
+          type: integer
+          description: Total unit sales for the period
+          example: 45230
+        volume_sales:
+          type: number
+          format: double
+          description: Total volume sales (equivalent units)
+          example: 67845.0
+        avg_price:
+          type: number
+          format: double
+          description: Average selling price
+          example: 2.77
+        distribution_pct:
+          type: number
+          format: double
+          description: Percentage of stores carrying the product
+          example: 85.3
+    ErrorResponse:
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error type identifier
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error message
+          example: The category_id parameter is required
+        status:
+          type: integer
+          description: HTTP status code
+          example: 400
+        request_id:
+          type: string
+          description: Unique request identifier for troubleshooting
+          example: req-a1b2c3d4
+    Pagination:
+      type: object
+      description: Pagination metadata
+      properties:
+        offset:
+          type: integer
+          description: Current offset position
+          example: 0
+        limit:
+          type: integer
+          description: Maximum records per page
+          example: 100
+        total:
+          type: integer
+          description: Total number of records available
+          example: 4523
+    MarketShareRecord:
+      type: object
+      description: Individual market share data record
+      properties:
+        brand:
+          type: string
+          description: Brand name
+          example: Example Brand A
+        dollar_share:
+          type: number
+          format: double
+          description: Dollar market share percentage
+          example: 24.5
+        unit_share:
+          type: number
+          format: double
+          description: Unit market share percentage
+          example: 22.1
+        share_change:
+          type: number
+          format: double
+          description: Share change vs prior period in percentage points
+          example: 1.2
+        period:
+          type: string
+          description: Time period identifier
+          example: 2026-Q1
+    POSDataResponse:
+      type: object
+      description: Point-of-sale data response containing sales metrics
+      properties:
+        data:
+          type: array
+          description: Array of POS data records
+          items:
+            $ref: '#/components/schemas/POSRecord'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    MarketShareResponse:
+      type: object
+      description: Market share data response
+      properties:
+        data:
+          type: array
+          description: Array of market share records
+          items:
+            $ref: '#/components/schemas/MarketShareRecord'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained through Circana authentication

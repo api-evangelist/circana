@@ -1,0 +1,226 @@
+openapi: 3.0.3
+info:
+  title: Circana Liquid Data Brands Exports API
+  description: Circana's Liquid Data platform provides cross-industry data and advanced analytics in a single, open platform. This API enables programmatic access to market measurement, consumer panel, and retail analytics data deployable across Azure, AWS, Google Cloud, and Oracle Cloud environments.
+  version: 1.0.0
+  contact:
+    name: Circana
+    url: https://www.circana.com
+    email: support@circana.com
+  license:
+    name: Proprietary
+    url: https://www.circana.com/terms-and-conditions
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+servers:
+- url: https://api.circana.com/liquid-data/v1
+  description: Circana Liquid Data Production API
+security:
+- bearerAuth: []
+tags:
+- name: Exports
+  description: Data export and download operations
+paths:
+  /exports:
+    post:
+      operationId: createExport
+      summary: Circana Create Data Export
+      description: Create a data export job to download market data, consumer panel data, or report results in CSV, Excel, or JSON format.
+      tags:
+      - Exports
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateExportRequest'
+            examples:
+              CreateExportRequestExample:
+                summary: Default createExport request
+                x-microcks-default: true
+                value:
+                  source_type: report
+                  source_id: rpt-500123
+                  format: csv
+                  include_headers: true
+      responses:
+        '201':
+          description: Export job created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportDetail'
+              examples:
+                CreateExport201Example:
+                  summary: Default createExport 201 response
+                  x-microcks-default: true
+                  value:
+                    export_id: exp-500123
+                    status: processing
+                    format: csv
+                    created_at: '2026-04-18T12:00:00Z'
+        '400':
+          description: Invalid export configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /exports/{export_id}:
+    get:
+      operationId: getExport
+      summary: Circana Get Export Status
+      description: Check the status of a data export job and retrieve the download URL when complete.
+      tags:
+      - Exports
+      parameters:
+      - name: export_id
+        in: path
+        required: true
+        description: Unique export identifier
+        schema:
+          type: string
+        example: exp-500123
+      responses:
+        '200':
+          description: Export status retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportDetail'
+              examples:
+                GetExport200Example:
+                  summary: Default getExport 200 response
+                  x-microcks-default: true
+                  value:
+                    export_id: exp-500123
+                    status: completed
+                    format: csv
+                    created_at: '2026-04-18T12:00:00Z'
+                    completed_at: '2026-04-18T12:02:00Z'
+                    download_url: https://exports.circana.com/exp-500123/data.csv
+                    file_size_bytes: 2456789
+        '404':
+          description: Export not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    CreateExportRequest:
+      type: object
+      description: Request to create a data export
+      required:
+      - source_type
+      - source_id
+      - format
+      properties:
+        source_type:
+          type: string
+          description: Type of data source to export
+          enum:
+          - report
+          - query
+          - dataset
+          example: report
+        source_id:
+          type: string
+          description: Identifier of the data source
+          example: rpt-500123
+        format:
+          type: string
+          description: Export file format
+          enum:
+          - csv
+          - xlsx
+          - json
+          - parquet
+          example: csv
+        include_headers:
+          type: boolean
+          description: Whether to include column headers
+          default: true
+          example: true
+    ErrorResponse:
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error type identifier
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error message
+          example: The category_id parameter is required
+        status:
+          type: integer
+          description: HTTP status code
+          example: 400
+        request_id:
+          type: string
+          description: Unique request identifier for troubleshooting
+          example: req-a1b2c3d4
+    ExportDetail:
+      type: object
+      description: Export job details
+      properties:
+        export_id:
+          type: string
+          description: Unique export identifier
+          example: exp-500123
+        status:
+          type: string
+          description: Export processing status
+          enum:
+          - processing
+          - completed
+          - failed
+          example: completed
+        format:
+          type: string
+          description: Export file format
+          example: csv
+        created_at:
+          type: string
+          format: date-time
+          description: Export creation timestamp
+          example: '2026-04-18T12:00:00Z'
+        completed_at:
+          type: string
+          format: date-time
+          description: Export completion timestamp
+          example: '2026-04-18T12:02:00Z'
+        download_url:
+          type: string
+          format: uri
+          description: URL to download the exported file
+          example: https://exports.circana.com/exp-500123/data.csv
+        file_size_bytes:
+          type: integer
+          description: Size of the exported file in bytes
+          example: 2456789
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained through Circana authentication

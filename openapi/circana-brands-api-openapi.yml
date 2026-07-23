@@ -1,0 +1,274 @@
+openapi: 3.0.3
+info:
+  title: Circana Liquid Data Brands API
+  description: Circana's Liquid Data platform provides cross-industry data and advanced analytics in a single, open platform. This API enables programmatic access to market measurement, consumer panel, and retail analytics data deployable across Azure, AWS, Google Cloud, and Oracle Cloud environments.
+  version: 1.0.0
+  contact:
+    name: Circana
+    url: https://www.circana.com
+    email: support@circana.com
+  license:
+    name: Proprietary
+    url: https://www.circana.com/terms-and-conditions
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+servers:
+- url: https://api.circana.com/liquid-data/v1
+  description: Circana Liquid Data Production API
+security:
+- bearerAuth: []
+tags:
+- name: Brands
+  description: Brand performance and analytics
+paths:
+  /brands:
+    get:
+      operationId: listBrands
+      summary: Circana List Brands
+      description: List brands within a specific category with performance metrics and market share data.
+      tags:
+      - Brands
+      parameters:
+      - name: category_id
+        in: query
+        required: true
+        description: Product category to search brands within
+        schema:
+          type: string
+        example: cpg-beverages
+      - name: search
+        in: query
+        required: false
+        description: Search term to filter brand names
+        schema:
+          type: string
+        example: cola
+      - name: offset
+        in: query
+        required: false
+        description: Pagination offset
+        schema:
+          type: integer
+          default: 0
+        example: 0
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of records to return
+        schema:
+          type: integer
+          default: 100
+        example: 100
+      responses:
+        '200':
+          description: Brands listed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrandListResponse'
+              examples:
+                ListBrands200Example:
+                  summary: Default listBrands 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                    - brand_id: brand-500123
+                      name: Example Cola
+                      manufacturer: Example Corp
+                      category: Carbonated Beverages
+                      upc_count: 45
+                    pagination:
+                      offset: 0
+                      limit: 100
+                      total: 320
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /brands/{brand_id}:
+    get:
+      operationId: getBrand
+      summary: Circana Get Brand Details
+      description: Get detailed brand information including manufacturer, UPC catalog, and available data coverage.
+      tags:
+      - Brands
+      parameters:
+      - name: brand_id
+        in: path
+        required: true
+        description: Unique brand identifier
+        schema:
+          type: string
+        example: brand-500123
+      responses:
+        '200':
+          description: Brand details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrandDetail'
+              examples:
+                GetBrand200Example:
+                  summary: Default getBrand 200 response
+                  x-microcks-default: true
+                  value:
+                    brand_id: brand-500123
+                    name: Example Cola
+                    manufacturer: Example Corp
+                    categories:
+                    - Carbonated Beverages
+                    upc_count: 45
+                    market_presence:
+                      channels: 6
+                      retailers: 120
+                      geographic_coverage: national
+        '404':
+          description: Brand not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error type identifier
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error message
+          example: The category_id parameter is required
+        status:
+          type: integer
+          description: HTTP status code
+          example: 400
+        request_id:
+          type: string
+          description: Unique request identifier for troubleshooting
+          example: req-a1b2c3d4
+    BrandSummary:
+      type: object
+      description: Brand summary record
+      properties:
+        brand_id:
+          type: string
+          description: Unique brand identifier
+          example: brand-500123
+        name:
+          type: string
+          description: Brand name
+          example: Example Cola
+        manufacturer:
+          type: string
+          description: Manufacturer or parent company name
+          example: Example Corp
+        category:
+          type: string
+          description: Primary product category
+          example: Carbonated Beverages
+        upc_count:
+          type: integer
+          description: Number of UPCs under this brand
+          example: 45
+    BrandDetail:
+      type: object
+      description: Detailed brand information
+      properties:
+        brand_id:
+          type: string
+          description: Unique brand identifier
+          example: brand-500123
+        name:
+          type: string
+          description: Brand name
+          example: Example Cola
+        manufacturer:
+          type: string
+          description: Manufacturer or parent company name
+          example: Example Corp
+        categories:
+          type: array
+          description: Categories the brand is present in
+          items:
+            type: string
+          example:
+          - Carbonated Beverages
+        upc_count:
+          type: integer
+          description: Number of UPCs under this brand
+          example: 45
+        market_presence:
+          $ref: '#/components/schemas/MarketPresence'
+    MarketPresence:
+      type: object
+      description: Brand market presence information
+      properties:
+        channels:
+          type: integer
+          description: Number of retail channels with distribution
+          example: 6
+        retailers:
+          type: integer
+          description: Number of retailers carrying the brand
+          example: 120
+        geographic_coverage:
+          type: string
+          description: Geographic coverage level
+          example: national
+    Pagination:
+      type: object
+      description: Pagination metadata
+      properties:
+        offset:
+          type: integer
+          description: Current offset position
+          example: 0
+        limit:
+          type: integer
+          description: Maximum records per page
+          example: 100
+        total:
+          type: integer
+          description: Total number of records available
+          example: 4523
+    BrandListResponse:
+      type: object
+      description: Brand list response
+      properties:
+        data:
+          type: array
+          description: Array of brand records
+          items:
+            $ref: '#/components/schemas/BrandSummary'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained through Circana authentication

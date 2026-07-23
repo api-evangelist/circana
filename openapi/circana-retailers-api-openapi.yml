@@ -1,0 +1,180 @@
+openapi: 3.0.3
+info:
+  title: Circana Liquid Data Brands Retailers API
+  description: Circana's Liquid Data platform provides cross-industry data and advanced analytics in a single, open platform. This API enables programmatic access to market measurement, consumer panel, and retail analytics data deployable across Azure, AWS, Google Cloud, and Oracle Cloud environments.
+  version: 1.0.0
+  contact:
+    name: Circana
+    url: https://www.circana.com
+    email: support@circana.com
+  license:
+    name: Proprietary
+    url: https://www.circana.com/terms-and-conditions
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+servers:
+- url: https://api.circana.com/liquid-data/v1
+  description: Circana Liquid Data Production API
+security:
+- bearerAuth: []
+tags:
+- name: Retailers
+  description: Retailer data and channel analytics
+paths:
+  /retailers:
+    get:
+      operationId: listRetailers
+      summary: Circana List Retailers
+      description: List retailers covered in Circana's measurement universe with channel classification and coverage data.
+      tags:
+      - Retailers
+      parameters:
+      - name: channel
+        in: query
+        required: false
+        description: Retail channel filter
+        schema:
+          type: string
+          enum:
+          - grocery
+          - mass
+          - club
+          - dollar
+          - convenience
+          - drug
+          - online
+          - specialty
+        example: grocery
+      - name: search
+        in: query
+        required: false
+        description: Search term to filter retailer names
+        schema:
+          type: string
+        example: market
+      - name: offset
+        in: query
+        required: false
+        description: Pagination offset
+        schema:
+          type: integer
+          default: 0
+        example: 0
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of records to return
+        schema:
+          type: integer
+          default: 100
+        example: 100
+      responses:
+        '200':
+          description: Retailers listed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RetailerListResponse'
+              examples:
+                ListRetailers200Example:
+                  summary: Default listRetailers 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                    - retailer_id: ret-500123
+                      name: Example Market
+                      channel: grocery
+                      store_count: 450
+                      geographic_coverage: national
+                    pagination:
+                      offset: 0
+                      limit: 100
+                      total: 1100
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    RetailerListResponse:
+      type: object
+      description: Retailer list response
+      properties:
+        data:
+          type: array
+          description: Array of retailer records
+          items:
+            $ref: '#/components/schemas/RetailerSummary'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Pagination:
+      type: object
+      description: Pagination metadata
+      properties:
+        offset:
+          type: integer
+          description: Current offset position
+          example: 0
+        limit:
+          type: integer
+          description: Maximum records per page
+          example: 100
+        total:
+          type: integer
+          description: Total number of records available
+          example: 4523
+    RetailerSummary:
+      type: object
+      description: Retailer summary record
+      properties:
+        retailer_id:
+          type: string
+          description: Unique retailer identifier
+          example: ret-500123
+        name:
+          type: string
+          description: Retailer name
+          example: Example Market
+        channel:
+          type: string
+          description: Primary retail channel
+          example: grocery
+        store_count:
+          type: integer
+          description: Number of store locations
+          example: 450
+        geographic_coverage:
+          type: string
+          description: Geographic coverage level
+          example: national
+    ErrorResponse:
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error type identifier
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error message
+          example: The category_id parameter is required
+        status:
+          type: integer
+          description: HTTP status code
+          example: 400
+        request_id:
+          type: string
+          description: Unique request identifier for troubleshooting
+          example: req-a1b2c3d4
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained through Circana authentication
