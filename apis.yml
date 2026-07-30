@@ -11,7 +11,20 @@ tags:
 - Consumer Insights
 - Business Intelligence
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/circana.png
 access: 3rd-Party
 created: '2024-01-01'
 modified: '2026-05-19'
@@ -29,53 +42,205 @@ apis:
   - Analytics
   - Reporting
   humanURL: https://www.circana.com/solutions/unify-plus
-  description: Unify+ is Circana's business intelligence platform that provides access to data visualization, analytics, and
-    reporting capabilities with conversational AI for automated analysis and insights.
+  description: >-
+    Unify+ is Circana's business intelligence platform that provides access to data visualization, analytics,
+    and reporting capabilities with conversational AI for automated analysis and insights.
   properties:
   - type: Documentation
     url: https://www.circana.com/solutions/unify-plus
-- aid: circana:liquid-data-api
-  name: Circana Liquid Data API
+- aid: circana:liquid-data-go-api
+  name: Circana Liquid Data Go API
   tags:
-  - Data Platform
+  - Market Intelligence
+  - CPG
   - Analytics
-  - Cloud
-  - Data Integration
-  humanURL: https://www.circana.com/company/technology
-  description: Liquid Data is Circana's cross-industry technology platform providing advanced analytics, data integration,
-    and AI-powered insights deployable across Azure, AWS, Google Cloud, and Oracle Cloud environments.
+  - Emerging Brands
+  humanURL: https://www.circana.com/solutions/liquid-data-go
+  description: >-
+    Liquid Data Go is a turnkey insights solution delivering affordable, actionable market, retailer,
+    and consumer intelligence for emerging and mid-market CPG and general merchandise brands with 15%
+    more market measurement coverage.
   properties:
   - type: Documentation
-    url: https://www.circana.com/company/technology
+    url: https://www.circana.com/solutions/liquid-data-go
+- aid: circana:intelligence-suite-api
+  name: Circana Intelligence Suite API
+  tags:
+  - Data Integration
+  - Automation
+  - Data Harmonization
+  - Cloud
+  humanURL: https://www.circana.com/solutions/intelligence-suite
+  description: >-
+    Intelligence Suite helps integrate, harmonize, and automate data workflows with hundreds of pre-built
+    connectors for Azure, Snowflake, AWS, Google BigQuery, and Databricks, enabling real-time automation
+    and insights.
+  properties:
+  - type: Documentation
+    url: https://www.circana.com/solutions/intelligence-suite
+- aid: circana:complete-market-api
+  name: Circana Complete Market API
+  tags:
+  - Point Of Sale
+  - Market Measurement
+  - Retail Analytics
+  humanURL: https://www.circana.com/solutions/complete-market
+  description: >-
+    Complete Market provides robust POS measurement for in-store and online sales with fulfillment type
+    breaks and UPC details across CPG categories.
+  properties:
+  - type: Documentation
+    url: https://www.circana.com/solutions/complete-market
+- aid: circana:complete-consumer-api
+  name: Circana Complete Consumer API
+  tags:
+  - Consumer Panel
+  - Shopper Insights
+  - Purchase Data
+  humanURL: https://www.circana.com/solutions/complete-consumer
+  description: >-
+    Complete Consumer combines verified purchase data, survey insights, and advanced shopper panels to
+    provide a 360-degree view of how, where, and why consumers shop across channels.
+  properties:
+  - type: Documentation
+    url: https://www.circana.com/solutions/complete-consumer
+- aid: circana:complete-beauty-api
+  name: Circana Complete Beauty API
+  tags:
+  - Beauty
+  - Market Data
+  - Prestige
+  - Mass Market
+  humanURL: https://www.circana.com/solutions/complete-beauty
+  description: >-
+    Complete Beauty offers a holistic view of the beauty industry combining mass and prestige POS data
+    for manufacturers and retailers to track emerging shifts in consumer preferences and category performance.
+  properties:
+  - type: Documentation
+    url: https://www.circana.com/solutions/complete-beauty
+- aid: circana:complete-food-beverage-api
+  name: Circana Complete Food and Beverage API
+  tags:
+  - Food
+  - Beverage
+  - Foodservice
+  - CPG
+  humanURL: https://www.circana.com/solutions/complete-food-and-beverage
+  description: >-
+    Complete Food and Beverage unites retail, CPG, foodservice, and consumption data to deliver a complete
+    understanding of U.S. food and beverage consumption patterns.
+  properties:
+  - type: Documentation
+    url: https://www.circana.com/solutions/complete-food-and-beverage
+- aid: circana:liquid-data-collaborate-api
+  name: Circana Liquid Data Collaborate API
+  tags:
+  - Data Collaboration
+  - Retail Analytics
+  - AI
+  humanURL: https://www.circana.com/solutions/liquid-data-collaborate
+  description: >-
+    Liquid Data Collaborate provides AI-powered retail data analysis capabilities for brands, manufacturers,
+    and retailers enabling collaborative insights and data-driven decision making.
+  properties:
+  - type: Documentation
+    url: https://www.circana.com/solutions/liquid-data-collaborate
+- aid: circana:liquid-data-engage-api
+  name: Circana Liquid Data Engage API
+  tags:
+  - Retail Strategy
+  - Customer Analytics
+  - Data Precision
+  humanURL: https://www.circana.com/solutions/liquid-data-engage
+  description: >-
+    Liquid Data Engage propels retailers into a new era of decision-making with precise, customer-centric
+    data for developing retail strategies.
+  properties:
+  - type: Documentation
+    url: https://www.circana.com/solutions/liquid-data-engage
+- aid: circana:liquid-activation-api
+  name: Circana Liquid Activation API
+  tags:
+  - Audience Activation
+  - Marketing
+  - Advertising
+  humanURL: https://www.circana.com/solutions/liquid-activation
+  description: >-
+    Liquid Activation enables marketers to build and activate purchase-based audiences in minutes using
+    deterministic data, integrating with publishers, media platforms, and marketing technologies.
+  properties:
+  - type: Documentation
+    url: https://www.circana.com/solutions/liquid-activation
+- aid: circana:price-promotion-api
+  name: Circana Price and Promotion API
+  tags:
+  - Pricing
+  - Promotion
+  - Trade Optimization
+  - Forecasting
+  humanURL: https://www.circana.com/solutions/price-and-promotion
+  description: >-
+    Price and Promotion solutions combine AI models and granular store-level data to optimize pricing
+    strategies, quantify elasticity, and improve promotional efficiency delivering 5% average sales growth.
+  properties:
+  - type: Documentation
+    url: https://www.circana.com/solutions/price-and-promotion
+- aid: circana:retail-media-api
+  name: Circana Retail Media API
+  tags:
+  - Retail Media
+  - Advertising
+  - ROAS
+  - Media Analytics
+  humanURL: https://www.circana.com/solutions/retail-media
+  description: >-
+    Retail Media connects shopper analytics to activation, linking marketing to retail sales for longitudinal
+    insights and improved ROAS with AI-driven media channel performance assessment.
+  properties:
+  - type: Documentation
+    url: https://www.circana.com/solutions/retail-media
+- aid: circana:complete-why-api
+  name: Circana Complete Why Analytics API
+  tags:
+  - AI Analytics
+  - Sales Performance
+  - Diagnostics
+  humanURL: https://www.circana.com/solutions/complete-why
+  description: >-
+    Complete Why delivers fast AI-powered insights so teams know what is working, what is not, and where
+    to act next before opportunities disappear.
+  properties:
+  - type: Documentation
+    url: https://www.circana.com/solutions/complete-why
+- aid: circana:circana-brands-api
+  name: Circana Brands API
+  description: Brand performance and analytics
+  humanURL: https://www.circana.com/solutions/unify-plus
+  tags:
+  - Brands
+  properties:
   - type: OpenAPI
-    url: openapi/circana-liquid-data.yaml
+    url: openapi/circana-brands-api-openapi.yml
+  - type: Documentation
+    url: https://www.circana.com/company/technology
   - type: JSONSchema
     url: json-schema/liquid-data-pos-record-schema.json
-    title: POS Record Schema
   - type: JSONSchema
     url: json-schema/liquid-data-market-share-record-schema.json
-    title: Market Share Record Schema
   - type: JSONSchema
     url: json-schema/liquid-data-consumer-purchase-record-schema.json
-    title: Consumer Purchase Record Schema
   - type: JSONSchema
     url: json-schema/liquid-data-consumer-segment-schema.json
-    title: Consumer Segment Schema
   - type: JSONSchema
     url: json-schema/liquid-data-category-detail-schema.json
-    title: Category Detail Schema
   - type: JSONSchema
     url: json-schema/liquid-data-brand-detail-schema.json
-    title: Brand Detail Schema
   - type: JSONSchema
     url: json-schema/liquid-data-retailer-summary-schema.json
-    title: Retailer Summary Schema
   - type: JSONSchema
     url: json-schema/liquid-data-report-detail-schema.json
-    title: Report Detail Schema
   - type: JSONSchema
     url: json-schema/liquid-data-export-detail-schema.json
-    title: Export Detail Schema
   - type: JSONLD
     url: json-ld/circana-liquid-data-context.jsonld
   - type: X-NaftikoCapability
@@ -92,157 +257,279 @@ apis:
     url: capabilities/liquid-data-reports.yaml
   - type: X-NaftikoCapability
     url: capabilities/liquid-data-retailers.yaml
-- aid: circana:liquid-data-go-api
-  name: Circana Liquid Data Go API
+- aid: circana:circana-categories-api
+  name: Circana Categories API
+  description: Product category hierarchy and management
+  humanURL: https://www.circana.com/solutions/unify-plus
   tags:
-  - Market Intelligence
-  - CPG
-  - Analytics
-  - Emerging Brands
-  humanURL: https://www.circana.com/solutions/liquid-data-go
-  description: Liquid Data Go is a turnkey insights solution delivering affordable, actionable market, retailer, and consumer
-    intelligence for emerging and mid-market CPG and general merchandise brands with 15% more market measurement coverage.
+  - Categories
   properties:
+  - type: OpenAPI
+    url: openapi/circana-categories-api-openapi.yml
   - type: Documentation
-    url: https://www.circana.com/solutions/liquid-data-go
-- aid: circana:intelligence-suite-api
-  name: Circana Intelligence Suite API
-  tags:
-  - Data Integration
-  - Automation
-  - Data Harmonization
-  - Cloud
-  humanURL: https://www.circana.com/solutions/intelligence-suite
-  description: Intelligence Suite helps integrate, harmonize, and automate data workflows with hundreds of pre-built connectors
-    for Azure, Snowflake, AWS, Google BigQuery, and Databricks, enabling real-time automation and insights.
-  properties:
-  - type: Documentation
-    url: https://www.circana.com/solutions/intelligence-suite
-- aid: circana:complete-market-api
-  name: Circana Complete Market API
-  tags:
-  - Point Of Sale
-  - Market Measurement
-  - Retail Analytics
-  humanURL: https://www.circana.com/solutions/complete-market
-  description: Complete Market provides robust POS measurement for in-store and online sales with fulfillment type breaks
-    and UPC details across CPG categories.
-  properties:
-  - type: Documentation
-    url: https://www.circana.com/solutions/complete-market
-- aid: circana:complete-consumer-api
-  name: Circana Complete Consumer API
+    url: https://www.circana.com/company/technology
+  - type: JSONSchema
+    url: json-schema/liquid-data-pos-record-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-market-share-record-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-consumer-purchase-record-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-consumer-segment-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-category-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-brand-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-retailer-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-report-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-export-detail-schema.json
+  - type: JSONLD
+    url: json-ld/circana-liquid-data-context.jsonld
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-brands.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-categories.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-consumer-panel.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-exports.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-market-data.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-reports.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-retailers.yaml
+- aid: circana:circana-consumer-panel-api
+  name: Circana Consumer Panel API
+  description: Consumer panel data and shopper insights
+  humanURL: https://www.circana.com/solutions/unify-plus
   tags:
   - Consumer Panel
-  - Shopper Insights
-  - Purchase Data
-  humanURL: https://www.circana.com/solutions/complete-consumer
-  description: Complete Consumer combines verified purchase data, survey insights, and advanced shopper panels to provide
-    a 360-degree view of how, where, and why consumers shop across channels.
   properties:
+  - type: OpenAPI
+    url: openapi/circana-consumer-panel-api-openapi.yml
   - type: Documentation
-    url: https://www.circana.com/solutions/complete-consumer
-- aid: circana:complete-beauty-api
-  name: Circana Complete Beauty API
+    url: https://www.circana.com/company/technology
+  - type: JSONSchema
+    url: json-schema/liquid-data-pos-record-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-market-share-record-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-consumer-purchase-record-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-consumer-segment-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-category-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-brand-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-retailer-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-report-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-export-detail-schema.json
+  - type: JSONLD
+    url: json-ld/circana-liquid-data-context.jsonld
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-brands.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-categories.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-consumer-panel.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-exports.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-market-data.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-reports.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-retailers.yaml
+- aid: circana:circana-exports-api
+  name: Circana Exports API
+  description: Data export and download operations
+  humanURL: https://www.circana.com/solutions/unify-plus
   tags:
-  - Beauty
+  - Exports
+  properties:
+  - type: OpenAPI
+    url: openapi/circana-exports-api-openapi.yml
+  - type: Documentation
+    url: https://www.circana.com/company/technology
+  - type: JSONSchema
+    url: json-schema/liquid-data-pos-record-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-market-share-record-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-consumer-purchase-record-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-consumer-segment-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-category-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-brand-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-retailer-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-report-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-export-detail-schema.json
+  - type: JSONLD
+    url: json-ld/circana-liquid-data-context.jsonld
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-brands.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-categories.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-consumer-panel.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-exports.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-market-data.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-reports.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-retailers.yaml
+- aid: circana:circana-market-data-api
+  name: Circana Market Data API
+  description: Access point-of-sale and market measurement data
+  humanURL: https://www.circana.com/solutions/unify-plus
+  tags:
   - Market Data
-  - Prestige
-  - Mass Market
-  humanURL: https://www.circana.com/solutions/complete-beauty
-  description: Complete Beauty offers a holistic view of the beauty industry combining mass and prestige POS data for manufacturers
-    and retailers to track emerging shifts in consumer preferences and category performance.
   properties:
+  - type: OpenAPI
+    url: openapi/circana-market-data-api-openapi.yml
   - type: Documentation
-    url: https://www.circana.com/solutions/complete-beauty
-- aid: circana:complete-food-beverage-api
-  name: Circana Complete Food and Beverage API
+    url: https://www.circana.com/company/technology
+  - type: JSONSchema
+    url: json-schema/liquid-data-pos-record-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-market-share-record-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-consumer-purchase-record-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-consumer-segment-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-category-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-brand-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-retailer-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-report-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-export-detail-schema.json
+  - type: JSONLD
+    url: json-ld/circana-liquid-data-context.jsonld
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-brands.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-categories.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-consumer-panel.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-exports.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-market-data.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-reports.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-retailers.yaml
+- aid: circana:circana-reports-api
+  name: Circana Reports API
+  description: Report generation and management
+  humanURL: https://www.circana.com/solutions/unify-plus
   tags:
-  - Food
-  - Beverage
-  - Foodservice
-  - CPG
-  humanURL: https://www.circana.com/solutions/complete-food-and-beverage
-  description: Complete Food and Beverage unites retail, CPG, foodservice, and consumption data to deliver a complete understanding
-    of U.S. food and beverage consumption patterns.
+  - Reports
   properties:
+  - type: OpenAPI
+    url: openapi/circana-reports-api-openapi.yml
   - type: Documentation
-    url: https://www.circana.com/solutions/complete-food-and-beverage
-- aid: circana:liquid-data-collaborate-api
-  name: Circana Liquid Data Collaborate API
+    url: https://www.circana.com/company/technology
+  - type: JSONSchema
+    url: json-schema/liquid-data-pos-record-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-market-share-record-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-consumer-purchase-record-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-consumer-segment-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-category-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-brand-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-retailer-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-report-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-export-detail-schema.json
+  - type: JSONLD
+    url: json-ld/circana-liquid-data-context.jsonld
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-brands.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-categories.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-consumer-panel.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-exports.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-market-data.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-reports.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-retailers.yaml
+- aid: circana:circana-retailers-api
+  name: Circana Retailers API
+  description: Retailer data and channel analytics
+  humanURL: https://www.circana.com/solutions/unify-plus
   tags:
-  - Data Collaboration
-  - Retail Analytics
-  - AI
-  humanURL: https://www.circana.com/solutions/liquid-data-collaborate
-  description: Liquid Data Collaborate provides AI-powered retail data analysis capabilities for brands, manufacturers, and
-    retailers enabling collaborative insights and data-driven decision making.
+  - Retailers
   properties:
+  - type: OpenAPI
+    url: openapi/circana-retailers-api-openapi.yml
   - type: Documentation
-    url: https://www.circana.com/solutions/liquid-data-collaborate
-- aid: circana:liquid-data-engage-api
-  name: Circana Liquid Data Engage API
-  tags:
-  - Retail Strategy
-  - Customer Analytics
-  - Data Precision
-  humanURL: https://www.circana.com/solutions/liquid-data-engage
-  description: Liquid Data Engage propels retailers into a new era of decision-making with precise, customer-centric data
-    for developing retail strategies.
-  properties:
-  - type: Documentation
-    url: https://www.circana.com/solutions/liquid-data-engage
-- aid: circana:liquid-activation-api
-  name: Circana Liquid Activation API
-  tags:
-  - Audience Activation
-  - Marketing
-  - Advertising
-  humanURL: https://www.circana.com/solutions/liquid-activation
-  description: Liquid Activation enables marketers to build and activate purchase-based audiences in minutes using deterministic
-    data, integrating with publishers, media platforms, and marketing technologies.
-  properties:
-  - type: Documentation
-    url: https://www.circana.com/solutions/liquid-activation
-- aid: circana:price-promotion-api
-  name: Circana Price and Promotion API
-  tags:
-  - Pricing
-  - Promotion
-  - Trade Optimization
-  - Forecasting
-  humanURL: https://www.circana.com/solutions/price-and-promotion
-  description: Price and Promotion solutions combine AI models and granular store-level data to optimize pricing strategies,
-    quantify elasticity, and improve promotional efficiency delivering 5% average sales growth.
-  properties:
-  - type: Documentation
-    url: https://www.circana.com/solutions/price-and-promotion
-- aid: circana:retail-media-api
-  name: Circana Retail Media API
-  tags:
-  - Retail Media
-  - Advertising
-  - ROAS
-  - Media Analytics
-  humanURL: https://www.circana.com/solutions/retail-media
-  description: Retail Media connects shopper analytics to activation, linking marketing to retail sales for longitudinal insights
-    and improved ROAS with AI-driven media channel performance assessment.
-  properties:
-  - type: Documentation
-    url: https://www.circana.com/solutions/retail-media
-- aid: circana:complete-why-api
-  name: Circana Complete Why Analytics API
-  tags:
-  - AI Analytics
-  - Sales Performance
-  - Diagnostics
-  humanURL: https://www.circana.com/solutions/complete-why
-  description: Complete Why delivers fast AI-powered insights so teams know what is working, what is not, and where to act
-    next before opportunities disappear.
-  properties:
-  - type: Documentation
-    url: https://www.circana.com/solutions/complete-why
+    url: https://www.circana.com/company/technology
+  - type: JSONSchema
+    url: json-schema/liquid-data-pos-record-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-market-share-record-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-consumer-purchase-record-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-consumer-segment-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-category-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-brand-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-retailer-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-report-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/liquid-data-export-detail-schema.json
+  - type: JSONLD
+    url: json-ld/circana-liquid-data-context.jsonld
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-brands.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-categories.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-consumer-panel.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-exports.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-market-data.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-reports.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/liquid-data-retailers.yaml
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/circana/overview
 - type: AgenticAccess
   url: agentic-access/circana-agentic-access.yml
 - type: DomainSecurity
