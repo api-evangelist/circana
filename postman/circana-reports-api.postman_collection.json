@@ -1,0 +1,611 @@
+{
+  "info": {
+    "_postman_id": "3c2156d0-cd07-4dbb-aeaf-2f644b969f58",
+    "name": "Circana Liquid Data Brands Reports API",
+    "description": "Circana's Liquid Data platform provides cross-industry data and advanced analytics in a single, open platform. This API enables programmatic access to market measurement, consumer panel, and retail analytics data deployable across Azure, AWS, Google Cloud, and Oracle Cloud environments.\n\nContact Support:\n Name: Circana\n Email: support@circana.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:06.000Z",
+    "updatedAt": "2026-07-28T01:21:06.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3c2156d0-cd07-4dbb-aeaf-2f644b969f58"
+  },
+  "item": [
+    {
+      "name": "reports",
+      "item": [
+        {
+          "name": "{report_id}",
+          "item": [
+            {
+              "name": "Circana Get Report Details",
+              "id": "6414d80a-36ff-4560-a91e-59c3e0daf1c4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/reports/:report_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reports",
+                    ":report_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "5e3e3eda-126e-4ebc-a54b-8c58a6abb13e",
+                      "key": "report_id",
+                      "value": "<string>",
+                      "description": "(Required) Unique report identifier"
+                    }
+                  ]
+                },
+                "description": "Get detailed information about a specific report including status, configuration, and results."
+              },
+              "response": [
+                {
+                  "id": "489a4f14-d4a1-4e52-b6c9-5fe65a5be846",
+                  "name": "Report details retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/:report_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        ":report_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "report_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"report_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"status\": \"completed\",\n  \"created_at\": \"<dateTime>\",\n  \"completed_at\": \"<dateTime>\",\n  \"category\": \"<string>\",\n  \"report_type\": \"<string>\",\n  \"row_count\": \"<integer>\",\n  \"estimated_completion\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:21:07.000Z",
+                  "updatedAt": "2026-07-28T01:21:07.000Z",
+                  "uid": "35240-489a4f14-d4a1-4e52-b6c9-5fe65a5be846"
+                },
+                {
+                  "id": "a1ae1d1d-a185-4580-bbef-b1392a61b730",
+                  "name": "Authentication credentials missing or invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/:report_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        ":report_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "report_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:21:07.000Z",
+                  "updatedAt": "2026-07-28T01:21:07.000Z",
+                  "uid": "35240-a1ae1d1d-a185-4580-bbef-b1392a61b730"
+                },
+                {
+                  "id": "faf4bafa-fbb5-439c-af81-4dad9bb0f7a6",
+                  "name": "Report not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/:report_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        ":report_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "report_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:21:07.000Z",
+                  "updatedAt": "2026-07-28T01:21:07.000Z",
+                  "uid": "35240-faf4bafa-fbb5-439c-af81-4dad9bb0f7a6"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:07.000Z",
+              "updatedAt": "2026-07-28T01:21:07.000Z",
+              "uid": "35240-6414d80a-36ff-4560-a91e-59c3e0daf1c4"
+            }
+          ],
+          "id": "f3bb7570-4dd2-4a3a-ab6c-a35c3e209efe",
+          "createdAt": "2026-07-28T01:21:07.000Z",
+          "updatedAt": "2026-07-28T01:21:07.000Z",
+          "uid": "35240-f3bb7570-4dd2-4a3a-ab6c-a35c3e209efe"
+        },
+        {
+          "name": "Circana List Reports",
+          "id": "a6968b99-6c87-476e-98c7-dec06990d780",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/reports?status=completed&offset=0&limit=100",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reports"
+              ],
+              "query": [
+                {
+                  "description": "Report status filter",
+                  "key": "status",
+                  "value": "completed"
+                },
+                {
+                  "description": "Pagination offset",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Maximum number of records to return",
+                  "key": "limit",
+                  "value": "100"
+                }
+              ]
+            },
+            "description": "List available reports and saved analyses for the authenticated user."
+          },
+          "response": [
+            {
+              "id": "86b9637d-492f-4c2a-a07b-908be323ede3",
+              "name": "Reports listed successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/reports?status=completed&offset=0&limit=100",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reports"
+                  ],
+                  "query": [
+                    {
+                      "description": "Report status filter",
+                      "key": "status",
+                      "value": "completed"
+                    },
+                    {
+                      "description": "Pagination offset",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"report_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"status\": \"draft\",\n      \"created_at\": \"<dateTime>\",\n      \"category\": \"<string>\",\n      \"report_type\": \"<string>\"\n    },\n    {\n      \"report_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"status\": \"processing\",\n      \"created_at\": \"<dateTime>\",\n      \"category\": \"<string>\",\n      \"report_type\": \"<string>\"\n    }\n  ],\n  \"pagination\": {\n    \"offset\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"total\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:21:07.000Z",
+              "updatedAt": "2026-07-28T01:21:07.000Z",
+              "uid": "35240-86b9637d-492f-4c2a-a07b-908be323ede3"
+            },
+            {
+              "id": "c88aee59-cf54-420c-a7c2-000c2113a153",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/reports?status=completed&offset=0&limit=100",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reports"
+                  ],
+                  "query": [
+                    {
+                      "description": "Report status filter",
+                      "key": "status",
+                      "value": "completed"
+                    },
+                    {
+                      "description": "Pagination offset",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:21:07.000Z",
+              "updatedAt": "2026-07-28T01:21:07.000Z",
+              "uid": "35240-c88aee59-cf54-420c-a7c2-000c2113a153"
+            }
+          ],
+          "createdAt": "2026-07-28T01:21:07.000Z",
+          "updatedAt": "2026-07-28T01:21:07.000Z",
+          "uid": "35240-a6968b99-6c87-476e-98c7-dec06990d780"
+        },
+        {
+          "name": "Circana Create Report",
+          "id": "091d4d4d-4308-4644-ae33-52b0faba0677",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"report_type\": \"pricing_analysis\",\n  \"category_id\": \"<string>\",\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"geography\": \"<string>\",\n  \"metrics\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/reports",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reports"
+              ]
+            },
+            "description": "Create a new report with specified data parameters, categories, and analysis configuration."
+          },
+          "response": [
+            {
+              "id": "36a38ed3-20ee-42e2-b98b-dacab3386bb7",
+              "name": "Report created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"report_type\": \"pricing_analysis\",\n  \"category_id\": \"<string>\",\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"geography\": \"<string>\",\n  \"metrics\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/reports",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reports"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"report_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"status\": \"completed\",\n  \"created_at\": \"<dateTime>\",\n  \"completed_at\": \"<dateTime>\",\n  \"category\": \"<string>\",\n  \"report_type\": \"<string>\",\n  \"row_count\": \"<integer>\",\n  \"estimated_completion\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:21:07.000Z",
+              "updatedAt": "2026-07-28T01:21:07.000Z",
+              "uid": "35240-36a38ed3-20ee-42e2-b98b-dacab3386bb7"
+            },
+            {
+              "id": "b27db323-ab72-41a2-8f7d-02cf0a866aad",
+              "name": "Invalid report configuration",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"report_type\": \"pricing_analysis\",\n  \"category_id\": \"<string>\",\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"geography\": \"<string>\",\n  \"metrics\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/reports",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reports"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:21:07.000Z",
+              "updatedAt": "2026-07-28T01:21:07.000Z",
+              "uid": "35240-b27db323-ab72-41a2-8f7d-02cf0a866aad"
+            },
+            {
+              "id": "0d4796bd-d07f-467f-beba-b0aae2ac38e0",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"report_type\": \"pricing_analysis\",\n  \"category_id\": \"<string>\",\n  \"start_date\": \"<date>\",\n  \"end_date\": \"<date>\",\n  \"geography\": \"<string>\",\n  \"metrics\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/reports",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reports"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:21:07.000Z",
+              "updatedAt": "2026-07-28T01:21:07.000Z",
+              "uid": "35240-0d4796bd-d07f-467f-beba-b0aae2ac38e0"
+            }
+          ],
+          "createdAt": "2026-07-28T01:21:07.000Z",
+          "updatedAt": "2026-07-28T01:21:07.000Z",
+          "uid": "35240-091d4d4d-4308-4644-ae33-52b0faba0677"
+        }
+      ],
+      "id": "46f650dc-3811-4acb-b771-10768337cae7",
+      "createdAt": "2026-07-28T01:21:07.000Z",
+      "updatedAt": "2026-07-28T01:21:07.000Z",
+      "uid": "35240-46f650dc-3811-4acb-b771-10768337cae7"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.circana.com/liquid-data/v1"
+    }
+  ]
+}

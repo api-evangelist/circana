@@ -1,0 +1,720 @@
+{
+  "info": {
+    "_postman_id": "45e00f36-242d-44e8-8b26-868a020b6041",
+    "name": "Circana Liquid Data Brands Market Data API",
+    "description": "Circana's Liquid Data platform provides cross-industry data and advanced analytics in a single, open platform. This API enables programmatic access to market measurement, consumer panel, and retail analytics data deployable across Azure, AWS, Google Cloud, and Oracle Cloud environments.\n\nContact Support:\n Name: Circana\n Email: support@circana.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:05.000Z",
+    "updatedAt": "2026-07-28T01:21:05.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-45e00f36-242d-44e8-8b26-868a020b6041"
+  },
+  "item": [
+    {
+      "name": "market-data",
+      "item": [
+        {
+          "name": "pos",
+          "item": [
+            {
+              "name": "Circana Get Point of Sale Data",
+              "id": "2963923f-2498-4149-b8ab-d8a92b973d46",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/market-data/pos?category_id=<string>&start_date=<date>&end_date=<date>&geography=regional&retailer_id=<string>&granularity=annual&offset=0&limit=100",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "market-data",
+                    "pos"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Product category identifier",
+                      "key": "category_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Start date for the data range in ISO 8601 format",
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "(Required) End date for the data range in ISO 8601 format",
+                      "key": "end_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Geographic market filter",
+                      "key": "geography",
+                      "value": "regional"
+                    },
+                    {
+                      "description": "Specific retailer identifier for filtering",
+                      "key": "retailer_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Time granularity of the data",
+                      "key": "granularity",
+                      "value": "annual"
+                    },
+                    {
+                      "description": "Pagination offset",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ]
+                },
+                "description": "Retrieve point-of-sale data with filters for time period, geography, category, and retailer. Returns sales volume, revenue, and unit data."
+              },
+              "response": [
+                {
+                  "id": "ba8e01f0-eea5-4d4c-8f3d-94782b09a4fd",
+                  "name": "Point-of-sale data retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/market-data/pos?category_id=<string>&start_date=<date>&end_date=<date>&geography=regional&retailer_id=<string>&granularity=annual&offset=0&limit=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "market-data",
+                        "pos"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Product category identifier",
+                          "key": "category_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Start date for the data range in ISO 8601 format",
+                          "key": "start_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "(Required) End date for the data range in ISO 8601 format",
+                          "key": "end_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Geographic market filter",
+                          "key": "geography",
+                          "value": "regional"
+                        },
+                        {
+                          "description": "Specific retailer identifier for filtering",
+                          "key": "retailer_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Time granularity of the data",
+                          "key": "granularity",
+                          "value": "annual"
+                        },
+                        {
+                          "description": "Pagination offset",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Maximum number of records to return",
+                          "key": "limit",
+                          "value": "100"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"period\": \"<string>\",\n      \"category\": \"<string>\",\n      \"brand\": \"<string>\",\n      \"upc\": \"<string>\",\n      \"dollar_sales\": \"<double>\",\n      \"unit_sales\": \"<integer>\",\n      \"volume_sales\": \"<double>\",\n      \"avg_price\": \"<double>\",\n      \"distribution_pct\": \"<double>\"\n    },\n    {\n      \"period\": \"<string>\",\n      \"category\": \"<string>\",\n      \"brand\": \"<string>\",\n      \"upc\": \"<string>\",\n      \"dollar_sales\": \"<double>\",\n      \"unit_sales\": \"<integer>\",\n      \"volume_sales\": \"<double>\",\n      \"avg_price\": \"<double>\",\n      \"distribution_pct\": \"<double>\"\n    }\n  ],\n  \"pagination\": {\n    \"offset\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"total\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:21:05.000Z",
+                  "updatedAt": "2026-07-28T01:21:05.000Z",
+                  "uid": "35240-ba8e01f0-eea5-4d4c-8f3d-94782b09a4fd"
+                },
+                {
+                  "id": "39d18f66-3a1b-478a-9905-45dda6ad8f00",
+                  "name": "Invalid request parameters",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/market-data/pos?category_id=<string>&start_date=<date>&end_date=<date>&geography=regional&retailer_id=<string>&granularity=annual&offset=0&limit=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "market-data",
+                        "pos"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Product category identifier",
+                          "key": "category_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Start date for the data range in ISO 8601 format",
+                          "key": "start_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "(Required) End date for the data range in ISO 8601 format",
+                          "key": "end_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Geographic market filter",
+                          "key": "geography",
+                          "value": "regional"
+                        },
+                        {
+                          "description": "Specific retailer identifier for filtering",
+                          "key": "retailer_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Time granularity of the data",
+                          "key": "granularity",
+                          "value": "annual"
+                        },
+                        {
+                          "description": "Pagination offset",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Maximum number of records to return",
+                          "key": "limit",
+                          "value": "100"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:21:05.000Z",
+                  "updatedAt": "2026-07-28T01:21:05.000Z",
+                  "uid": "35240-39d18f66-3a1b-478a-9905-45dda6ad8f00"
+                },
+                {
+                  "id": "36bdaf9d-e402-4e2c-966d-0001af93fad1",
+                  "name": "Authentication credentials missing or invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/market-data/pos?category_id=<string>&start_date=<date>&end_date=<date>&geography=regional&retailer_id=<string>&granularity=annual&offset=0&limit=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "market-data",
+                        "pos"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Product category identifier",
+                          "key": "category_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Start date for the data range in ISO 8601 format",
+                          "key": "start_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "(Required) End date for the data range in ISO 8601 format",
+                          "key": "end_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Geographic market filter",
+                          "key": "geography",
+                          "value": "regional"
+                        },
+                        {
+                          "description": "Specific retailer identifier for filtering",
+                          "key": "retailer_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Time granularity of the data",
+                          "key": "granularity",
+                          "value": "annual"
+                        },
+                        {
+                          "description": "Pagination offset",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Maximum number of records to return",
+                          "key": "limit",
+                          "value": "100"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:21:05.000Z",
+                  "updatedAt": "2026-07-28T01:21:05.000Z",
+                  "uid": "35240-36bdaf9d-e402-4e2c-966d-0001af93fad1"
+                },
+                {
+                  "id": "538f919d-52ac-4e78-9345-dc2a554b5563",
+                  "name": "Insufficient permissions for requested data",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/market-data/pos?category_id=<string>&start_date=<date>&end_date=<date>&geography=regional&retailer_id=<string>&granularity=annual&offset=0&limit=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "market-data",
+                        "pos"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Product category identifier",
+                          "key": "category_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Start date for the data range in ISO 8601 format",
+                          "key": "start_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "(Required) End date for the data range in ISO 8601 format",
+                          "key": "end_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Geographic market filter",
+                          "key": "geography",
+                          "value": "regional"
+                        },
+                        {
+                          "description": "Specific retailer identifier for filtering",
+                          "key": "retailer_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Time granularity of the data",
+                          "key": "granularity",
+                          "value": "annual"
+                        },
+                        {
+                          "description": "Pagination offset",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Maximum number of records to return",
+                          "key": "limit",
+                          "value": "100"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:21:05.000Z",
+                  "updatedAt": "2026-07-28T01:21:05.000Z",
+                  "uid": "35240-538f919d-52ac-4e78-9345-dc2a554b5563"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:05.000Z",
+              "updatedAt": "2026-07-28T01:21:05.000Z",
+              "uid": "35240-2963923f-2498-4149-b8ab-d8a92b973d46"
+            }
+          ],
+          "id": "f663c812-9155-43b0-8bdf-b991b9ef333c",
+          "createdAt": "2026-07-28T01:21:05.000Z",
+          "updatedAt": "2026-07-28T01:21:05.000Z",
+          "uid": "35240-f663c812-9155-43b0-8bdf-b991b9ef333c"
+        },
+        {
+          "name": "share",
+          "item": [
+            {
+              "name": "Circana Get Market Share Data",
+              "id": "b94cfac0-8486-4e6a-8901-94f8a4a92c69",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/market-data/share?category_id=<string>&start_date=<date>&end_date=<date>&metric=unit_share",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "market-data",
+                    "share"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Product category identifier",
+                      "key": "category_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Start date for the data range",
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "(Required) End date for the data range",
+                      "key": "end_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Share metric type",
+                      "key": "metric",
+                      "value": "unit_share"
+                    }
+                  ]
+                },
+                "description": "Retrieve market share data showing brand and category share metrics across retailers and geographies."
+              },
+              "response": [
+                {
+                  "id": "b4bae825-5cc0-4a90-9393-9960d558a3e5",
+                  "name": "Market share data retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/market-data/share?category_id=<string>&start_date=<date>&end_date=<date>&metric=unit_share",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "market-data",
+                        "share"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Product category identifier",
+                          "key": "category_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Start date for the data range",
+                          "key": "start_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "(Required) End date for the data range",
+                          "key": "end_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Share metric type",
+                          "key": "metric",
+                          "value": "unit_share"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"brand\": \"<string>\",\n      \"dollar_share\": \"<double>\",\n      \"unit_share\": \"<double>\",\n      \"share_change\": \"<double>\",\n      \"period\": \"<string>\"\n    },\n    {\n      \"brand\": \"<string>\",\n      \"dollar_share\": \"<double>\",\n      \"unit_share\": \"<double>\",\n      \"share_change\": \"<double>\",\n      \"period\": \"<string>\"\n    }\n  ],\n  \"pagination\": {\n    \"offset\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"total\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:21:05.000Z",
+                  "updatedAt": "2026-07-28T01:21:05.000Z",
+                  "uid": "35240-b4bae825-5cc0-4a90-9393-9960d558a3e5"
+                },
+                {
+                  "id": "9716b279-5909-4fdd-922d-48f59a46f18a",
+                  "name": "Invalid request parameters",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/market-data/share?category_id=<string>&start_date=<date>&end_date=<date>&metric=unit_share",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "market-data",
+                        "share"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Product category identifier",
+                          "key": "category_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Start date for the data range",
+                          "key": "start_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "(Required) End date for the data range",
+                          "key": "end_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Share metric type",
+                          "key": "metric",
+                          "value": "unit_share"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:21:05.000Z",
+                  "updatedAt": "2026-07-28T01:21:05.000Z",
+                  "uid": "35240-9716b279-5909-4fdd-922d-48f59a46f18a"
+                },
+                {
+                  "id": "89dcceea-467b-4f5e-b946-5d59ddb4a34f",
+                  "name": "Authentication credentials missing or invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/market-data/share?category_id=<string>&start_date=<date>&end_date=<date>&metric=unit_share",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "market-data",
+                        "share"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Product category identifier",
+                          "key": "category_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Start date for the data range",
+                          "key": "start_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "(Required) End date for the data range",
+                          "key": "end_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Share metric type",
+                          "key": "metric",
+                          "value": "unit_share"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:21:05.000Z",
+                  "updatedAt": "2026-07-28T01:21:05.000Z",
+                  "uid": "35240-89dcceea-467b-4f5e-b946-5d59ddb4a34f"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:05.000Z",
+              "updatedAt": "2026-07-28T01:21:05.000Z",
+              "uid": "35240-b94cfac0-8486-4e6a-8901-94f8a4a92c69"
+            }
+          ],
+          "id": "11c934d4-5c88-40a8-bf26-552857e12e7e",
+          "createdAt": "2026-07-28T01:21:05.000Z",
+          "updatedAt": "2026-07-28T01:21:05.000Z",
+          "uid": "35240-11c934d4-5c88-40a8-bf26-552857e12e7e"
+        }
+      ],
+      "id": "10e6723f-226f-4fc6-9595-fd1ec372a016",
+      "createdAt": "2026-07-28T01:21:05.000Z",
+      "updatedAt": "2026-07-28T01:21:05.000Z",
+      "uid": "35240-10e6723f-226f-4fc6-9595-fd1ec372a016"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.circana.com/liquid-data/v1"
+    }
+  ]
+}

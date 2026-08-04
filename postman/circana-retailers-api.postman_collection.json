@@ -1,0 +1,220 @@
+{
+  "info": {
+    "_postman_id": "a05e3f30-4a75-4623-b545-79d0c1a22e3c",
+    "name": "Circana Liquid Data Brands Retailers API",
+    "description": "Circana's Liquid Data platform provides cross-industry data and advanced analytics in a single, open platform. This API enables programmatic access to market measurement, consumer panel, and retail analytics data deployable across Azure, AWS, Google Cloud, and Oracle Cloud environments.\n\nContact Support:\n Name: Circana\n Email: support@circana.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:07.000Z",
+    "updatedAt": "2026-07-28T01:21:07.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a05e3f30-4a75-4623-b545-79d0c1a22e3c"
+  },
+  "item": [
+    {
+      "name": "retailers",
+      "item": [
+        {
+          "name": "Circana List Retailers",
+          "id": "4c14f7cd-ee7a-40a2-8f0f-3211eabd5766",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/retailers?channel=drug&search=<string>&offset=0&limit=100",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "retailers"
+              ],
+              "query": [
+                {
+                  "description": "Retail channel filter",
+                  "key": "channel",
+                  "value": "drug"
+                },
+                {
+                  "description": "Search term to filter retailer names",
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Pagination offset",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Maximum number of records to return",
+                  "key": "limit",
+                  "value": "100"
+                }
+              ]
+            },
+            "description": "List retailers covered in Circana's measurement universe with channel classification and coverage data."
+          },
+          "response": [
+            {
+              "id": "a0ed8d0f-c093-4cce-9f8d-2c9213ae51d3",
+              "name": "Retailers listed successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/retailers?channel=drug&search=<string>&offset=0&limit=100",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "retailers"
+                  ],
+                  "query": [
+                    {
+                      "description": "Retail channel filter",
+                      "key": "channel",
+                      "value": "drug"
+                    },
+                    {
+                      "description": "Search term to filter retailer names",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pagination offset",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"retailer_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"channel\": \"<string>\",\n      \"store_count\": \"<integer>\",\n      \"geographic_coverage\": \"<string>\"\n    },\n    {\n      \"retailer_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"channel\": \"<string>\",\n      \"store_count\": \"<integer>\",\n      \"geographic_coverage\": \"<string>\"\n    }\n  ],\n  \"pagination\": {\n    \"offset\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"total\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:21:07.000Z",
+              "updatedAt": "2026-07-28T01:21:07.000Z",
+              "uid": "35240-a0ed8d0f-c093-4cce-9f8d-2c9213ae51d3"
+            },
+            {
+              "id": "2ce4b0fc-feb0-41cf-9123-10185d9c9f69",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/retailers?channel=drug&search=<string>&offset=0&limit=100",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "retailers"
+                  ],
+                  "query": [
+                    {
+                      "description": "Retail channel filter",
+                      "key": "channel",
+                      "value": "drug"
+                    },
+                    {
+                      "description": "Search term to filter retailer names",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pagination offset",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:21:07.000Z",
+              "updatedAt": "2026-07-28T01:21:07.000Z",
+              "uid": "35240-2ce4b0fc-feb0-41cf-9123-10185d9c9f69"
+            }
+          ],
+          "createdAt": "2026-07-28T01:21:07.000Z",
+          "updatedAt": "2026-07-28T01:21:07.000Z",
+          "uid": "35240-4c14f7cd-ee7a-40a2-8f0f-3211eabd5766"
+        }
+      ],
+      "id": "e9d4fd62-47e3-4cbb-8df4-d6a0e4fb5a49",
+      "createdAt": "2026-07-28T01:21:07.000Z",
+      "updatedAt": "2026-07-28T01:21:07.000Z",
+      "uid": "35240-e9d4fd62-47e3-4cbb-8df4-d6a0e4fb5a49"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.circana.com/liquid-data/v1"
+    }
+  ]
+}

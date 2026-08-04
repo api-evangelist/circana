@@ -1,0 +1,26 @@
+{
+  "provider": "circana",
+  "sources": [
+    "circana-brands-api-openapi.yml",
+    "circana-categories-api-openapi.yml",
+    "circana-consumer-panel-api-openapi.yml",
+    "circana-exports-api-openapi.yml",
+    "circana-market-data-api-openapi.yml",
+    "circana-reports-api-openapi.yml",
+    "circana-retailers-api-openapi.yml"
+  ],
+  "outputs": [
+    "circana-brands-api-openapi.yml",
+    "circana-categories-api-openapi.yml",
+    "circana-consumer-panel-api-openapi.yml",
+    "circana-exports-api-openapi.yml",
+    "circana-market-data-api-openapi.yml",
+    "circana-reports-api-openapi.yml",
+    "circana-retailers-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,445 @@
+{
+  "info": {
+    "_postman_id": "086080bf-8ea7-46f1-acea-833d2c123a5f",
+    "name": "Circana Liquid Data Brands Exports API",
+    "description": "Circana's Liquid Data platform provides cross-industry data and advanced analytics in a single, open platform. This API enables programmatic access to market measurement, consumer panel, and retail analytics data deployable across Azure, AWS, Google Cloud, and Oracle Cloud environments.\n\nContact Support:\n Name: Circana\n Email: support@circana.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:04.000Z",
+    "updatedAt": "2026-07-28T01:21:04.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-086080bf-8ea7-46f1-acea-833d2c123a5f"
+  },
+  "item": [
+    {
+      "name": "exports",
+      "item": [
+        {
+          "name": "{export_id}",
+          "item": [
+            {
+              "name": "Circana Get Export Status",
+              "id": "29694644-16e2-48f2-b801-e5e9bbdc6dd0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/exports/:export_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "exports",
+                    ":export_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "35286675-60bd-4fed-a5fa-56738798f3dd",
+                      "key": "export_id",
+                      "value": "<string>",
+                      "description": "(Required) Unique export identifier"
+                    }
+                  ]
+                },
+                "description": "Check the status of a data export job and retrieve the download URL when complete."
+              },
+              "response": [
+                {
+                  "id": "01918740-121e-4610-aff9-18c4557c87dd",
+                  "name": "Export status retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/exports/:export_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "exports",
+                        ":export_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "export_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"export_id\": \"<string>\",\n  \"status\": \"failed\",\n  \"format\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"completed_at\": \"<dateTime>\",\n  \"download_url\": \"<uri>\",\n  \"file_size_bytes\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:21:05.000Z",
+                  "updatedAt": "2026-07-28T01:21:05.000Z",
+                  "uid": "35240-01918740-121e-4610-aff9-18c4557c87dd"
+                },
+                {
+                  "id": "0c519cbb-6f12-47a3-a7d4-ed47c3d50b05",
+                  "name": "Authentication credentials missing or invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/exports/:export_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "exports",
+                        ":export_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "export_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:21:05.000Z",
+                  "updatedAt": "2026-07-28T01:21:05.000Z",
+                  "uid": "35240-0c519cbb-6f12-47a3-a7d4-ed47c3d50b05"
+                },
+                {
+                  "id": "7cc950c6-57c6-4d13-b460-69414eaaf9d1",
+                  "name": "Export not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/exports/:export_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "exports",
+                        ":export_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "export_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:21:05.000Z",
+                  "updatedAt": "2026-07-28T01:21:05.000Z",
+                  "uid": "35240-7cc950c6-57c6-4d13-b460-69414eaaf9d1"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:04.000Z",
+              "updatedAt": "2026-07-28T01:21:04.000Z",
+              "uid": "35240-29694644-16e2-48f2-b801-e5e9bbdc6dd0"
+            }
+          ],
+          "id": "7a52f223-1536-464a-b738-eb166e9d1278",
+          "createdAt": "2026-07-28T01:21:04.000Z",
+          "updatedAt": "2026-07-28T01:21:04.000Z",
+          "uid": "35240-7a52f223-1536-464a-b738-eb166e9d1278"
+        },
+        {
+          "name": "Circana Create Data Export",
+          "id": "410be20e-ae43-4c16-85dd-7b7121fafa7b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source_type\": \"report\",\n  \"source_id\": \"<string>\",\n  \"format\": \"json\",\n  \"include_headers\": true\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/exports",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "exports"
+              ]
+            },
+            "description": "Create a data export job to download market data, consumer panel data, or report results in CSV, Excel, or JSON format."
+          },
+          "response": [
+            {
+              "id": "a34cc96e-1276-4af9-9593-d273356b3f04",
+              "name": "Export job created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_type\": \"report\",\n  \"source_id\": \"<string>\",\n  \"format\": \"json\",\n  \"include_headers\": true\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/exports",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "exports"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"export_id\": \"<string>\",\n  \"status\": \"failed\",\n  \"format\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"completed_at\": \"<dateTime>\",\n  \"download_url\": \"<uri>\",\n  \"file_size_bytes\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T01:21:05.000Z",
+              "updatedAt": "2026-07-28T01:21:05.000Z",
+              "uid": "35240-a34cc96e-1276-4af9-9593-d273356b3f04"
+            },
+            {
+              "id": "84ed91b7-2401-43c7-91e1-6c895f5537d3",
+              "name": "Invalid export configuration",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_type\": \"report\",\n  \"source_id\": \"<string>\",\n  \"format\": \"json\",\n  \"include_headers\": true\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/exports",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "exports"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:21:05.000Z",
+              "updatedAt": "2026-07-28T01:21:05.000Z",
+              "uid": "35240-84ed91b7-2401-43c7-91e1-6c895f5537d3"
+            },
+            {
+              "id": "e69d30c0-70b3-4e0e-812b-d9c14cf15e1b",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_type\": \"report\",\n  \"source_id\": \"<string>\",\n  \"format\": \"json\",\n  \"include_headers\": true\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/exports",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "exports"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:21:05.000Z",
+              "updatedAt": "2026-07-28T01:21:05.000Z",
+              "uid": "35240-e69d30c0-70b3-4e0e-812b-d9c14cf15e1b"
+            }
+          ],
+          "createdAt": "2026-07-28T01:21:04.000Z",
+          "updatedAt": "2026-07-28T01:21:04.000Z",
+          "uid": "35240-410be20e-ae43-4c16-85dd-7b7121fafa7b"
+        }
+      ],
+      "id": "ecb152c8-a4b7-4225-abf9-b3d193f0e4de",
+      "createdAt": "2026-07-28T01:21:04.000Z",
+      "updatedAt": "2026-07-28T01:21:04.000Z",
+      "uid": "35240-ecb152c8-a4b7-4225-abf9-b3d193f0e4de"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.circana.com/liquid-data/v1"
+    }
+  ]
+}

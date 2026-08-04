@@ -1,0 +1,398 @@
+{
+  "info": {
+    "_postman_id": "33215b85-4e5a-46fd-8d83-b602bd113fad",
+    "name": "Circana Liquid Data Brands Categories API",
+    "description": "Circana's Liquid Data platform provides cross-industry data and advanced analytics in a single, open platform. This API enables programmatic access to market measurement, consumer panel, and retail analytics data deployable across Azure, AWS, Google Cloud, and Oracle Cloud environments.\n\nContact Support:\n Name: Circana\n Email: support@circana.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:20:59.000Z",
+    "updatedAt": "2026-07-28T01:21:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-33215b85-4e5a-46fd-8d83-b602bd113fad"
+  },
+  "item": [
+    {
+      "name": "categories",
+      "item": [
+        {
+          "name": "{category_id}",
+          "item": [
+            {
+              "name": "Circana Get Category Details",
+              "id": "642ce0a2-864e-442f-a06f-8e29e0a857b5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/categories/:category_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "categories",
+                    ":category_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "a3a55694-ab7d-4e72-8dcb-d1a0c319ae7b",
+                      "key": "category_id",
+                      "value": "<string>",
+                      "description": "(Required) Unique category identifier"
+                    }
+                  ]
+                },
+                "description": "Get detailed information about a specific product category including hierarchy, metadata, and available data coverage."
+              },
+              "response": [
+                {
+                  "id": "5082d7ff-057e-4ab6-9870-08491012e7b6",
+                  "name": "Category details retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/categories/:category_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "categories",
+                        ":category_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "category_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"category_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"parent_id\": \"<string>\",\n  \"industry\": \"<string>\",\n  \"level\": \"<integer>\",\n  \"subcategories\": [\n    {\n      \"category_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"parent_id\": \"<string>\",\n      \"industry\": \"<string>\",\n      \"level\": \"<integer>\",\n      \"subcategory_count\": \"<integer>\"\n    },\n    {\n      \"category_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"parent_id\": \"<string>\",\n      \"industry\": \"<string>\",\n      \"level\": \"<integer>\",\n      \"subcategory_count\": \"<integer>\"\n    }\n  ],\n  \"data_coverage\": {\n    \"pos_available\": \"<boolean>\",\n    \"panel_available\": \"<boolean>\",\n    \"earliest_date\": \"<date>\",\n    \"latest_date\": \"<date>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:21:00.000Z",
+                  "updatedAt": "2026-07-28T01:21:00.000Z",
+                  "uid": "35240-5082d7ff-057e-4ab6-9870-08491012e7b6"
+                },
+                {
+                  "id": "df1665ee-dfdf-4c80-9b9e-35b4c449036d",
+                  "name": "Authentication credentials missing or invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/categories/:category_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "categories",
+                        ":category_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "category_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:21:00.000Z",
+                  "updatedAt": "2026-07-28T01:21:00.000Z",
+                  "uid": "35240-df1665ee-dfdf-4c80-9b9e-35b4c449036d"
+                },
+                {
+                  "id": "f53c6ce0-b7d7-463a-8dc0-8d8f8ed578cb",
+                  "name": "Category not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/categories/:category_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "categories",
+                        ":category_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "category_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:21:00.000Z",
+                  "updatedAt": "2026-07-28T01:21:00.000Z",
+                  "uid": "35240-f53c6ce0-b7d7-463a-8dc0-8d8f8ed578cb"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:00.000Z",
+              "updatedAt": "2026-07-28T01:21:00.000Z",
+              "uid": "35240-642ce0a2-864e-442f-a06f-8e29e0a857b5"
+            }
+          ],
+          "id": "1dc5b79b-e61b-4b42-9c70-899dab87ee85",
+          "createdAt": "2026-07-28T01:21:00.000Z",
+          "updatedAt": "2026-07-28T01:21:00.000Z",
+          "uid": "35240-1dc5b79b-e61b-4b42-9c70-899dab87ee85"
+        },
+        {
+          "name": "Circana List Categories",
+          "id": "3dce7ca0-9c5d-49ab-8858-5d72903b027c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/categories?parent_id=<string>&industry=beauty&search=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categories"
+              ],
+              "query": [
+                {
+                  "description": "Parent category ID to list subcategories",
+                  "key": "parent_id",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Industry vertical filter",
+                  "key": "industry",
+                  "value": "beauty"
+                },
+                {
+                  "description": "Search term to filter categories",
+                  "key": "search",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "List available product categories in the Circana taxonomy hierarchy covering CPG, general merchandise, beauty, food, and technology."
+          },
+          "response": [
+            {
+              "id": "002cf723-1eba-4af6-b264-146098135fc9",
+              "name": "Categories listed successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/categories?parent_id=<string>&industry=beauty&search=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "categories"
+                  ],
+                  "query": [
+                    {
+                      "description": "Parent category ID to list subcategories",
+                      "key": "parent_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Industry vertical filter",
+                      "key": "industry",
+                      "value": "beauty"
+                    },
+                    {
+                      "description": "Search term to filter categories",
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"category_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"parent_id\": \"<string>\",\n      \"industry\": \"<string>\",\n      \"level\": \"<integer>\",\n      \"subcategory_count\": \"<integer>\"\n    },\n    {\n      \"category_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"parent_id\": \"<string>\",\n      \"industry\": \"<string>\",\n      \"level\": \"<integer>\",\n      \"subcategory_count\": \"<integer>\"\n    }\n  ],\n  \"pagination\": {\n    \"offset\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"total\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:21:00.000Z",
+              "updatedAt": "2026-07-28T01:21:00.000Z",
+              "uid": "35240-002cf723-1eba-4af6-b264-146098135fc9"
+            },
+            {
+              "id": "924dd562-c18c-42ce-8d2e-7ba991b1a02b",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/categories?parent_id=<string>&industry=beauty&search=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "categories"
+                  ],
+                  "query": [
+                    {
+                      "description": "Parent category ID to list subcategories",
+                      "key": "parent_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Industry vertical filter",
+                      "key": "industry",
+                      "value": "beauty"
+                    },
+                    {
+                      "description": "Search term to filter categories",
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:21:00.000Z",
+              "updatedAt": "2026-07-28T01:21:00.000Z",
+              "uid": "35240-924dd562-c18c-42ce-8d2e-7ba991b1a02b"
+            }
+          ],
+          "createdAt": "2026-07-28T01:21:00.000Z",
+          "updatedAt": "2026-07-28T01:21:00.000Z",
+          "uid": "35240-3dce7ca0-9c5d-49ab-8858-5d72903b027c"
+        }
+      ],
+      "id": "5a6293cf-51c8-4828-9898-b6f4d023a83c",
+      "createdAt": "2026-07-28T01:21:00.000Z",
+      "updatedAt": "2026-07-28T01:21:00.000Z",
+      "uid": "35240-5a6293cf-51c8-4828-9898-b6f4d023a83c"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.circana.com/liquid-data/v1"
+    }
+  ]
+}

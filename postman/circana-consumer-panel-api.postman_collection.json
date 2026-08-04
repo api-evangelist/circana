@@ -1,0 +1,575 @@
+{
+  "info": {
+    "_postman_id": "5a1d9432-a781-432b-95a0-828f0f5aca9d",
+    "name": "Circana Liquid Data Brands Consumer Panel API",
+    "description": "Circana's Liquid Data platform provides cross-industry data and advanced analytics in a single, open platform. This API enables programmatic access to market measurement, consumer panel, and retail analytics data deployable across Azure, AWS, Google Cloud, and Oracle Cloud environments.\n\nContact Support:\n Name: Circana\n Email: support@circana.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:21:03.000Z",
+    "updatedAt": "2026-07-28T01:21:03.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5a1d9432-a781-432b-95a0-828f0f5aca9d"
+  },
+  "item": [
+    {
+      "name": "consumer-panel",
+      "item": [
+        {
+          "name": "purchases",
+          "item": [
+            {
+              "name": "Circana Get Consumer Purchase Data",
+              "id": "da41a40a-857c-4150-9aaa-f7fef0615453",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/consumer-panel/purchases?category_id=<string>&start_date=<date>&end_date=<date>&demographic=household_size&channel=grocery&offset=0&limit=100",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "consumer-panel",
+                    "purchases"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Product category identifier",
+                      "key": "category_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Start date for the data range",
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "(Required) End date for the data range",
+                      "key": "end_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Demographic segment filter",
+                      "key": "demographic",
+                      "value": "household_size"
+                    },
+                    {
+                      "description": "Purchase channel filter",
+                      "key": "channel",
+                      "value": "grocery"
+                    },
+                    {
+                      "description": "Pagination offset",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ]
+                },
+                "description": "Retrieve aggregated consumer purchase data from panel surveys, receipt scanning, and loyalty data covering 200K+ static panelists."
+              },
+              "response": [
+                {
+                  "id": "0c1e8d74-4ab5-4f1f-a3cf-420494a40a55",
+                  "name": "Consumer purchase data retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/consumer-panel/purchases?category_id=<string>&start_date=<date>&end_date=<date>&demographic=household_size&channel=grocery&offset=0&limit=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "consumer-panel",
+                        "purchases"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Product category identifier",
+                          "key": "category_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Start date for the data range",
+                          "key": "start_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "(Required) End date for the data range",
+                          "key": "end_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Demographic segment filter",
+                          "key": "demographic",
+                          "value": "household_size"
+                        },
+                        {
+                          "description": "Purchase channel filter",
+                          "key": "channel",
+                          "value": "grocery"
+                        },
+                        {
+                          "description": "Pagination offset",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Maximum number of records to return",
+                          "key": "limit",
+                          "value": "100"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"segment\": \"<string>\",\n      \"category\": \"<string>\",\n      \"penetration_pct\": \"<double>\",\n      \"buy_rate\": \"<double>\",\n      \"avg_spend\": \"<double>\",\n      \"trips_per_buyer\": \"<double>\",\n      \"channel\": \"<string>\"\n    },\n    {\n      \"segment\": \"<string>\",\n      \"category\": \"<string>\",\n      \"penetration_pct\": \"<double>\",\n      \"buy_rate\": \"<double>\",\n      \"avg_spend\": \"<double>\",\n      \"trips_per_buyer\": \"<double>\",\n      \"channel\": \"<string>\"\n    }\n  ],\n  \"pagination\": {\n    \"offset\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"total\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:21:03.000Z",
+                  "updatedAt": "2026-07-28T01:21:03.000Z",
+                  "uid": "35240-0c1e8d74-4ab5-4f1f-a3cf-420494a40a55"
+                },
+                {
+                  "id": "a42513ee-4a7b-4a71-93e1-e7f7508a1c17",
+                  "name": "Invalid request parameters",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/consumer-panel/purchases?category_id=<string>&start_date=<date>&end_date=<date>&demographic=household_size&channel=grocery&offset=0&limit=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "consumer-panel",
+                        "purchases"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Product category identifier",
+                          "key": "category_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Start date for the data range",
+                          "key": "start_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "(Required) End date for the data range",
+                          "key": "end_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Demographic segment filter",
+                          "key": "demographic",
+                          "value": "household_size"
+                        },
+                        {
+                          "description": "Purchase channel filter",
+                          "key": "channel",
+                          "value": "grocery"
+                        },
+                        {
+                          "description": "Pagination offset",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Maximum number of records to return",
+                          "key": "limit",
+                          "value": "100"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:21:03.000Z",
+                  "updatedAt": "2026-07-28T01:21:03.000Z",
+                  "uid": "35240-a42513ee-4a7b-4a71-93e1-e7f7508a1c17"
+                },
+                {
+                  "id": "1c1208b8-6092-4a82-a58c-e6ab052c4bdf",
+                  "name": "Authentication credentials missing or invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/consumer-panel/purchases?category_id=<string>&start_date=<date>&end_date=<date>&demographic=household_size&channel=grocery&offset=0&limit=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "consumer-panel",
+                        "purchases"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Product category identifier",
+                          "key": "category_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Start date for the data range",
+                          "key": "start_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "(Required) End date for the data range",
+                          "key": "end_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Demographic segment filter",
+                          "key": "demographic",
+                          "value": "household_size"
+                        },
+                        {
+                          "description": "Purchase channel filter",
+                          "key": "channel",
+                          "value": "grocery"
+                        },
+                        {
+                          "description": "Pagination offset",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Maximum number of records to return",
+                          "key": "limit",
+                          "value": "100"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:21:03.000Z",
+                  "updatedAt": "2026-07-28T01:21:03.000Z",
+                  "uid": "35240-1c1208b8-6092-4a82-a58c-e6ab052c4bdf"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:03.000Z",
+              "updatedAt": "2026-07-28T01:21:03.000Z",
+              "uid": "35240-da41a40a-857c-4150-9aaa-f7fef0615453"
+            }
+          ],
+          "id": "4dc13d48-e0c1-45ce-878e-8c8373399b8c",
+          "createdAt": "2026-07-28T01:21:03.000Z",
+          "updatedAt": "2026-07-28T01:21:03.000Z",
+          "uid": "35240-4dc13d48-e0c1-45ce-878e-8c8373399b8c"
+        },
+        {
+          "name": "segments",
+          "item": [
+            {
+              "name": "Circana Get Consumer Segments",
+              "id": "ff153a20-2364-4a6c-bb2d-798ab8c20a2a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/consumer-panel/segments?category_id=<string>&segmentation_type=behavioral",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "consumer-panel",
+                    "segments"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Product category identifier",
+                      "key": "category_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Type of segmentation analysis",
+                      "key": "segmentation_type",
+                      "value": "behavioral"
+                    }
+                  ]
+                },
+                "description": "Retrieve consumer segmentation data based on purchase behavior, demographics, and shopping patterns."
+              },
+              "response": [
+                {
+                  "id": "93d1b32f-583d-41f2-84aa-cf705eef6f36",
+                  "name": "Consumer segments retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/consumer-panel/segments?category_id=<string>&segmentation_type=behavioral",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "consumer-panel",
+                        "segments"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Product category identifier",
+                          "key": "category_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Type of segmentation analysis",
+                          "key": "segmentation_type",
+                          "value": "behavioral"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"segment_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"size_pct\": \"<double>\",\n      \"avg_basket_size\": \"<double>\",\n      \"preferred_channels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"key_categories\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"segment_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"size_pct\": \"<double>\",\n      \"avg_basket_size\": \"<double>\",\n      \"preferred_channels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"key_categories\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"pagination\": {\n    \"offset\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"total\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:21:03.000Z",
+                  "updatedAt": "2026-07-28T01:21:03.000Z",
+                  "uid": "35240-93d1b32f-583d-41f2-84aa-cf705eef6f36"
+                },
+                {
+                  "id": "6eaab99c-c22a-4362-a2e1-c2811b6e81e7",
+                  "name": "Invalid request parameters",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/consumer-panel/segments?category_id=<string>&segmentation_type=behavioral",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "consumer-panel",
+                        "segments"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Product category identifier",
+                          "key": "category_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Type of segmentation analysis",
+                          "key": "segmentation_type",
+                          "value": "behavioral"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:21:03.000Z",
+                  "updatedAt": "2026-07-28T01:21:03.000Z",
+                  "uid": "35240-6eaab99c-c22a-4362-a2e1-c2811b6e81e7"
+                },
+                {
+                  "id": "d8a00f33-3122-46db-bced-da43d26895d1",
+                  "name": "Authentication credentials missing or invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/consumer-panel/segments?category_id=<string>&segmentation_type=behavioral",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "consumer-panel",
+                        "segments"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Product category identifier",
+                          "key": "category_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Type of segmentation analysis",
+                          "key": "segmentation_type",
+                          "value": "behavioral"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:21:03.000Z",
+                  "updatedAt": "2026-07-28T01:21:03.000Z",
+                  "uid": "35240-d8a00f33-3122-46db-bced-da43d26895d1"
+                }
+              ],
+              "createdAt": "2026-07-28T01:21:03.000Z",
+              "updatedAt": "2026-07-28T01:21:03.000Z",
+              "uid": "35240-ff153a20-2364-4a6c-bb2d-798ab8c20a2a"
+            }
+          ],
+          "id": "7c29cc42-b13a-4ec4-a227-93757c65e1a0",
+          "createdAt": "2026-07-28T01:21:03.000Z",
+          "updatedAt": "2026-07-28T01:21:03.000Z",
+          "uid": "35240-7c29cc42-b13a-4ec4-a227-93757c65e1a0"
+        }
+      ],
+      "id": "b7f124c0-4e79-4ece-875b-9d0b5da1bbca",
+      "createdAt": "2026-07-28T01:21:03.000Z",
+      "updatedAt": "2026-07-28T01:21:03.000Z",
+      "uid": "35240-b7f124c0-4e79-4ece-875b-9d0b5da1bbca"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.circana.com/liquid-data/v1"
+    }
+  ]
+}

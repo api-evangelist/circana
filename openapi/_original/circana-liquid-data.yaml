@@ -1,0 +1,1725 @@
+openapi: 3.0.3
+info:
+  title: Circana Liquid Data API
+  description: >-
+    Circana's Liquid Data platform provides cross-industry data and advanced
+    analytics in a single, open platform. This API enables programmatic access
+    to market measurement, consumer panel, and retail analytics data deployable
+    across Azure, AWS, Google Cloud, and Oracle Cloud environments.
+  version: 1.0.0
+  contact:
+    name: Circana
+    url: https://www.circana.com
+    email: support@circana.com
+  license:
+    name: Proprietary
+    url: https://www.circana.com/terms-and-conditions
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+servers:
+  - url: https://api.circana.com/liquid-data/v1
+    description: Circana Liquid Data Production API
+security:
+  - bearerAuth: []
+tags:
+  - name: Market Data
+    description: Access point-of-sale and market measurement data
+  - name: Consumer Panel
+    description: Consumer panel data and shopper insights
+  - name: Categories
+    description: Product category hierarchy and management
+  - name: Brands
+    description: Brand performance and analytics
+  - name: Retailers
+    description: Retailer data and channel analytics
+  - name: Reports
+    description: Report generation and management
+  - name: Exports
+    description: Data export and download operations
+paths:
+  /market-data/pos:
+    get:
+      operationId: getPointOfSaleData
+      summary: Circana Get Point of Sale Data
+      description: >-
+        Retrieve point-of-sale data with filters for time period, geography,
+        category, and retailer. Returns sales volume, revenue, and unit data.
+      tags:
+        - Market Data
+      parameters:
+        - name: category_id
+          in: query
+          required: true
+          description: Product category identifier
+          schema:
+            type: string
+          example: cpg-beverages
+        - name: start_date
+          in: query
+          required: true
+          description: Start date for the data range in ISO 8601 format
+          schema:
+            type: string
+            format: date
+          example: '2026-01-01'
+        - name: end_date
+          in: query
+          required: true
+          description: End date for the data range in ISO 8601 format
+          schema:
+            type: string
+            format: date
+          example: '2026-03-31'
+        - name: geography
+          in: query
+          required: false
+          description: Geographic market filter
+          schema:
+            type: string
+            enum:
+              - national
+              - regional
+              - dma
+              - store
+          example: national
+        - name: retailer_id
+          in: query
+          required: false
+          description: Specific retailer identifier for filtering
+          schema:
+            type: string
+          example: ret-500123
+        - name: granularity
+          in: query
+          required: false
+          description: Time granularity of the data
+          schema:
+            type: string
+            enum:
+              - weekly
+              - monthly
+              - quarterly
+              - annual
+          example: weekly
+        - name: offset
+          in: query
+          required: false
+          description: Pagination offset
+          schema:
+            type: integer
+            default: 0
+          example: 0
+        - name: limit
+          in: query
+          required: false
+          description: Maximum number of records to return
+          schema:
+            type: integer
+            default: 100
+            maximum: 1000
+          example: 100
+      responses:
+        '200':
+          description: Point-of-sale data retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/POSDataResponse'
+              examples:
+                GetPointOfSaleData200Example:
+                  summary: Default getPointOfSaleData 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                      - period: '2026-W01'
+                        category: Beverages
+                        brand: Example Brand
+                        upc: '012345678901'
+                        dollar_sales: 125340.50
+                        unit_sales: 45230
+                        volume_sales: 67845.0
+                        avg_price: 2.77
+                        distribution_pct: 85.3
+                    pagination:
+                      offset: 0
+                      limit: 100
+                      total: 4523
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Insufficient permissions for requested data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /market-data/share:
+    get:
+      operationId: getMarketShare
+      summary: Circana Get Market Share Data
+      description: >-
+        Retrieve market share data showing brand and category share metrics
+        across retailers and geographies.
+      tags:
+        - Market Data
+      parameters:
+        - name: category_id
+          in: query
+          required: true
+          description: Product category identifier
+          schema:
+            type: string
+          example: cpg-snacks
+        - name: start_date
+          in: query
+          required: true
+          description: Start date for the data range
+          schema:
+            type: string
+            format: date
+          example: '2026-01-01'
+        - name: end_date
+          in: query
+          required: true
+          description: End date for the data range
+          schema:
+            type: string
+            format: date
+          example: '2026-03-31'
+        - name: metric
+          in: query
+          required: false
+          description: Share metric type
+          schema:
+            type: string
+            enum:
+              - dollar_share
+              - unit_share
+              - volume_share
+          example: dollar_share
+      responses:
+        '200':
+          description: Market share data retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarketShareResponse'
+              examples:
+                GetMarketShare200Example:
+                  summary: Default getMarketShare 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                      - brand: Example Brand A
+                        dollar_share: 24.5
+                        unit_share: 22.1
+                        share_change: 1.2
+                        period: '2026-Q1'
+                    pagination:
+                      offset: 0
+                      limit: 100
+                      total: 45
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /consumer-panel/purchases:
+    get:
+      operationId: getConsumerPurchases
+      summary: Circana Get Consumer Purchase Data
+      description: >-
+        Retrieve aggregated consumer purchase data from panel surveys, receipt
+        scanning, and loyalty data covering 200K+ static panelists.
+      tags:
+        - Consumer Panel
+      parameters:
+        - name: category_id
+          in: query
+          required: true
+          description: Product category identifier
+          schema:
+            type: string
+          example: cpg-beverages
+        - name: start_date
+          in: query
+          required: true
+          description: Start date for the data range
+          schema:
+            type: string
+            format: date
+          example: '2026-01-01'
+        - name: end_date
+          in: query
+          required: true
+          description: End date for the data range
+          schema:
+            type: string
+            format: date
+          example: '2026-03-31'
+        - name: demographic
+          in: query
+          required: false
+          description: Demographic segment filter
+          schema:
+            type: string
+            enum:
+              - age
+              - income
+              - household_size
+              - ethnicity
+              - region
+          example: age
+        - name: channel
+          in: query
+          required: false
+          description: Purchase channel filter
+          schema:
+            type: string
+            enum:
+              - grocery
+              - mass
+              - club
+              - dollar
+              - convenience
+              - online
+              - drug
+          example: grocery
+        - name: offset
+          in: query
+          required: false
+          description: Pagination offset
+          schema:
+            type: integer
+            default: 0
+          example: 0
+        - name: limit
+          in: query
+          required: false
+          description: Maximum number of records to return
+          schema:
+            type: integer
+            default: 100
+          example: 100
+      responses:
+        '200':
+          description: Consumer purchase data retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsumerPurchaseResponse'
+              examples:
+                GetConsumerPurchases200Example:
+                  summary: Default getConsumerPurchases 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                      - segment: 18-34
+                        category: Beverages
+                        penetration_pct: 72.5
+                        buy_rate: 3.2
+                        avg_spend: 15.80
+                        trips_per_buyer: 4.1
+                        channel: grocery
+                    pagination:
+                      offset: 0
+                      limit: 100
+                      total: 156
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /consumer-panel/segments:
+    get:
+      operationId: getConsumerSegments
+      summary: Circana Get Consumer Segments
+      description: >-
+        Retrieve consumer segmentation data based on purchase behavior,
+        demographics, and shopping patterns.
+      tags:
+        - Consumer Panel
+      parameters:
+        - name: category_id
+          in: query
+          required: true
+          description: Product category identifier
+          schema:
+            type: string
+          example: cpg-snacks
+        - name: segmentation_type
+          in: query
+          required: false
+          description: Type of segmentation analysis
+          schema:
+            type: string
+            enum:
+              - behavioral
+              - demographic
+              - psychographic
+              - channel
+          example: behavioral
+      responses:
+        '200':
+          description: Consumer segments retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsumerSegmentResponse'
+              examples:
+                GetConsumerSegments200Example:
+                  summary: Default getConsumerSegments 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                      - segment_id: seg-001
+                        name: Health-Conscious Shoppers
+                        size_pct: 18.5
+                        avg_basket_size: 42.30
+                        preferred_channels:
+                          - grocery
+                          - online
+                        key_categories:
+                          - Organic Foods
+                          - Natural Beverages
+                    pagination:
+                      offset: 0
+                      limit: 100
+                      total: 12
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /categories:
+    get:
+      operationId: listCategories
+      summary: Circana List Categories
+      description: >-
+        List available product categories in the Circana taxonomy hierarchy
+        covering CPG, general merchandise, beauty, food, and technology.
+      tags:
+        - Categories
+      parameters:
+        - name: parent_id
+          in: query
+          required: false
+          description: Parent category ID to list subcategories
+          schema:
+            type: string
+          example: cpg
+        - name: industry
+          in: query
+          required: false
+          description: Industry vertical filter
+          schema:
+            type: string
+            enum:
+              - cpg
+              - beauty
+              - food_beverage
+              - technology
+              - healthcare
+              - general_merchandise
+              - apparel
+              - home
+          example: cpg
+        - name: search
+          in: query
+          required: false
+          description: Search term to filter categories
+          schema:
+            type: string
+          example: beverages
+      responses:
+        '200':
+          description: Categories listed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryListResponse'
+              examples:
+                ListCategories200Example:
+                  summary: Default listCategories 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                      - category_id: cpg-beverages
+                        name: Beverages
+                        parent_id: cpg
+                        industry: cpg
+                        level: 2
+                        subcategory_count: 15
+                    pagination:
+                      offset: 0
+                      limit: 100
+                      total: 250
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /categories/{category_id}:
+    get:
+      operationId: getCategory
+      summary: Circana Get Category Details
+      description: >-
+        Get detailed information about a specific product category including
+        hierarchy, metadata, and available data coverage.
+      tags:
+        - Categories
+      parameters:
+        - name: category_id
+          in: path
+          required: true
+          description: Unique category identifier
+          schema:
+            type: string
+          example: cpg-beverages
+      responses:
+        '200':
+          description: Category details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryDetail'
+              examples:
+                GetCategory200Example:
+                  summary: Default getCategory 200 response
+                  x-microcks-default: true
+                  value:
+                    category_id: cpg-beverages
+                    name: Beverages
+                    description: All beverage categories including carbonated, juice, water, and energy drinks
+                    parent_id: cpg
+                    industry: cpg
+                    level: 2
+                    subcategories:
+                      - category_id: cpg-beverages-carbonated
+                        name: Carbonated Beverages
+                    data_coverage:
+                      pos_available: true
+                      panel_available: true
+                      earliest_date: '2018-01-01'
+                      latest_date: '2026-03-31'
+        '404':
+          description: Category not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /brands:
+    get:
+      operationId: listBrands
+      summary: Circana List Brands
+      description: >-
+        List brands within a specific category with performance metrics and
+        market share data.
+      tags:
+        - Brands
+      parameters:
+        - name: category_id
+          in: query
+          required: true
+          description: Product category to search brands within
+          schema:
+            type: string
+          example: cpg-beverages
+        - name: search
+          in: query
+          required: false
+          description: Search term to filter brand names
+          schema:
+            type: string
+          example: cola
+        - name: offset
+          in: query
+          required: false
+          description: Pagination offset
+          schema:
+            type: integer
+            default: 0
+          example: 0
+        - name: limit
+          in: query
+          required: false
+          description: Maximum number of records to return
+          schema:
+            type: integer
+            default: 100
+          example: 100
+      responses:
+        '200':
+          description: Brands listed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrandListResponse'
+              examples:
+                ListBrands200Example:
+                  summary: Default listBrands 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                      - brand_id: brand-500123
+                        name: Example Cola
+                        manufacturer: Example Corp
+                        category: Carbonated Beverages
+                        upc_count: 45
+                    pagination:
+                      offset: 0
+                      limit: 100
+                      total: 320
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /brands/{brand_id}:
+    get:
+      operationId: getBrand
+      summary: Circana Get Brand Details
+      description: >-
+        Get detailed brand information including manufacturer, UPC catalog,
+        and available data coverage.
+      tags:
+        - Brands
+      parameters:
+        - name: brand_id
+          in: path
+          required: true
+          description: Unique brand identifier
+          schema:
+            type: string
+          example: brand-500123
+      responses:
+        '200':
+          description: Brand details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrandDetail'
+              examples:
+                GetBrand200Example:
+                  summary: Default getBrand 200 response
+                  x-microcks-default: true
+                  value:
+                    brand_id: brand-500123
+                    name: Example Cola
+                    manufacturer: Example Corp
+                    categories:
+                      - Carbonated Beverages
+                    upc_count: 45
+                    market_presence:
+                      channels: 6
+                      retailers: 120
+                      geographic_coverage: national
+        '404':
+          description: Brand not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /retailers:
+    get:
+      operationId: listRetailers
+      summary: Circana List Retailers
+      description: >-
+        List retailers covered in Circana's measurement universe with channel
+        classification and coverage data.
+      tags:
+        - Retailers
+      parameters:
+        - name: channel
+          in: query
+          required: false
+          description: Retail channel filter
+          schema:
+            type: string
+            enum:
+              - grocery
+              - mass
+              - club
+              - dollar
+              - convenience
+              - drug
+              - online
+              - specialty
+          example: grocery
+        - name: search
+          in: query
+          required: false
+          description: Search term to filter retailer names
+          schema:
+            type: string
+          example: market
+        - name: offset
+          in: query
+          required: false
+          description: Pagination offset
+          schema:
+            type: integer
+            default: 0
+          example: 0
+        - name: limit
+          in: query
+          required: false
+          description: Maximum number of records to return
+          schema:
+            type: integer
+            default: 100
+          example: 100
+      responses:
+        '200':
+          description: Retailers listed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RetailerListResponse'
+              examples:
+                ListRetailers200Example:
+                  summary: Default listRetailers 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                      - retailer_id: ret-500123
+                        name: Example Market
+                        channel: grocery
+                        store_count: 450
+                        geographic_coverage: national
+                    pagination:
+                      offset: 0
+                      limit: 100
+                      total: 1100
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /reports:
+    get:
+      operationId: listReports
+      summary: Circana List Reports
+      description: >-
+        List available reports and saved analyses for the authenticated user.
+      tags:
+        - Reports
+      parameters:
+        - name: status
+          in: query
+          required: false
+          description: Report status filter
+          schema:
+            type: string
+            enum:
+              - draft
+              - processing
+              - completed
+              - failed
+          example: completed
+        - name: offset
+          in: query
+          required: false
+          description: Pagination offset
+          schema:
+            type: integer
+            default: 0
+          example: 0
+        - name: limit
+          in: query
+          required: false
+          description: Maximum number of records to return
+          schema:
+            type: integer
+            default: 100
+          example: 100
+      responses:
+        '200':
+          description: Reports listed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportListResponse'
+              examples:
+                ListReports200Example:
+                  summary: Default listReports 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                      - report_id: rpt-500123
+                        name: Q1 2026 Beverage Market Review
+                        status: completed
+                        created_at: '2026-04-01T10:00:00Z'
+                        category: Beverages
+                        report_type: market_review
+                    pagination:
+                      offset: 0
+                      limit: 100
+                      total: 25
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createReport
+      summary: Circana Create Report
+      description: >-
+        Create a new report with specified data parameters, categories, and
+        analysis configuration.
+      tags:
+        - Reports
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateReportRequest'
+            examples:
+              CreateReportRequestExample:
+                summary: Default createReport request
+                x-microcks-default: true
+                value:
+                  name: Q1 2026 Snacks Performance
+                  report_type: market_review
+                  category_id: cpg-snacks
+                  start_date: '2026-01-01'
+                  end_date: '2026-03-31'
+                  geography: national
+                  metrics:
+                    - dollar_sales
+                    - unit_sales
+                    - market_share
+      responses:
+        '201':
+          description: Report created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportDetail'
+              examples:
+                CreateReport201Example:
+                  summary: Default createReport 201 response
+                  x-microcks-default: true
+                  value:
+                    report_id: rpt-500124
+                    name: Q1 2026 Snacks Performance
+                    status: processing
+                    created_at: '2026-04-18T12:00:00Z'
+                    estimated_completion: '2026-04-18T12:05:00Z'
+        '400':
+          description: Invalid report configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /reports/{report_id}:
+    get:
+      operationId: getReport
+      summary: Circana Get Report Details
+      description: >-
+        Get detailed information about a specific report including status,
+        configuration, and results.
+      tags:
+        - Reports
+      parameters:
+        - name: report_id
+          in: path
+          required: true
+          description: Unique report identifier
+          schema:
+            type: string
+          example: rpt-500123
+      responses:
+        '200':
+          description: Report details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportDetail'
+              examples:
+                GetReport200Example:
+                  summary: Default getReport 200 response
+                  x-microcks-default: true
+                  value:
+                    report_id: rpt-500123
+                    name: Q1 2026 Beverage Market Review
+                    status: completed
+                    created_at: '2026-04-01T10:00:00Z'
+                    completed_at: '2026-04-01T10:03:00Z'
+                    category: Beverages
+                    report_type: market_review
+                    row_count: 4523
+        '404':
+          description: Report not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /exports:
+    post:
+      operationId: createExport
+      summary: Circana Create Data Export
+      description: >-
+        Create a data export job to download market data, consumer panel data,
+        or report results in CSV, Excel, or JSON format.
+      tags:
+        - Exports
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateExportRequest'
+            examples:
+              CreateExportRequestExample:
+                summary: Default createExport request
+                x-microcks-default: true
+                value:
+                  source_type: report
+                  source_id: rpt-500123
+                  format: csv
+                  include_headers: true
+      responses:
+        '201':
+          description: Export job created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportDetail'
+              examples:
+                CreateExport201Example:
+                  summary: Default createExport 201 response
+                  x-microcks-default: true
+                  value:
+                    export_id: exp-500123
+                    status: processing
+                    format: csv
+                    created_at: '2026-04-18T12:00:00Z'
+        '400':
+          description: Invalid export configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /exports/{export_id}:
+    get:
+      operationId: getExport
+      summary: Circana Get Export Status
+      description: >-
+        Check the status of a data export job and retrieve the download URL
+        when complete.
+      tags:
+        - Exports
+      parameters:
+        - name: export_id
+          in: path
+          required: true
+          description: Unique export identifier
+          schema:
+            type: string
+          example: exp-500123
+      responses:
+        '200':
+          description: Export status retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportDetail'
+              examples:
+                GetExport200Example:
+                  summary: Default getExport 200 response
+                  x-microcks-default: true
+                  value:
+                    export_id: exp-500123
+                    status: completed
+                    format: csv
+                    created_at: '2026-04-18T12:00:00Z'
+                    completed_at: '2026-04-18T12:02:00Z'
+                    download_url: https://exports.circana.com/exp-500123/data.csv
+                    file_size_bytes: 2456789
+        '404':
+          description: Export not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained through Circana authentication
+  schemas:
+    POSDataResponse:
+      type: object
+      description: Point-of-sale data response containing sales metrics
+      properties:
+        data:
+          type: array
+          description: Array of POS data records
+          items:
+            $ref: '#/components/schemas/POSRecord'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    POSRecord:
+      type: object
+      description: Individual point-of-sale data record
+      properties:
+        period:
+          type: string
+          description: Time period identifier
+          example: '2026-W01'
+        category:
+          type: string
+          description: Product category name
+          example: Beverages
+        brand:
+          type: string
+          description: Brand name
+          example: Example Brand
+        upc:
+          type: string
+          description: Universal Product Code
+          example: '012345678901'
+        dollar_sales:
+          type: number
+          format: double
+          description: Total dollar sales for the period
+          example: 125340.50
+        unit_sales:
+          type: integer
+          description: Total unit sales for the period
+          example: 45230
+        volume_sales:
+          type: number
+          format: double
+          description: Total volume sales (equivalent units)
+          example: 67845.0
+        avg_price:
+          type: number
+          format: double
+          description: Average selling price
+          example: 2.77
+        distribution_pct:
+          type: number
+          format: double
+          description: Percentage of stores carrying the product
+          example: 85.3
+    MarketShareResponse:
+      type: object
+      description: Market share data response
+      properties:
+        data:
+          type: array
+          description: Array of market share records
+          items:
+            $ref: '#/components/schemas/MarketShareRecord'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    MarketShareRecord:
+      type: object
+      description: Individual market share data record
+      properties:
+        brand:
+          type: string
+          description: Brand name
+          example: Example Brand A
+        dollar_share:
+          type: number
+          format: double
+          description: Dollar market share percentage
+          example: 24.5
+        unit_share:
+          type: number
+          format: double
+          description: Unit market share percentage
+          example: 22.1
+        share_change:
+          type: number
+          format: double
+          description: Share change vs prior period in percentage points
+          example: 1.2
+        period:
+          type: string
+          description: Time period identifier
+          example: '2026-Q1'
+    ConsumerPurchaseResponse:
+      type: object
+      description: Consumer purchase data response
+      properties:
+        data:
+          type: array
+          description: Array of consumer purchase records
+          items:
+            $ref: '#/components/schemas/ConsumerPurchaseRecord'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    ConsumerPurchaseRecord:
+      type: object
+      description: Individual consumer purchase data record
+      properties:
+        segment:
+          type: string
+          description: Consumer demographic segment
+          example: 18-34
+        category:
+          type: string
+          description: Product category name
+          example: Beverages
+        penetration_pct:
+          type: number
+          format: double
+          description: Category penetration percentage
+          example: 72.5
+        buy_rate:
+          type: number
+          format: double
+          description: Average purchase frequency
+          example: 3.2
+        avg_spend:
+          type: number
+          format: double
+          description: Average spend per buyer
+          example: 15.80
+        trips_per_buyer:
+          type: number
+          format: double
+          description: Average shopping trips per buyer
+          example: 4.1
+        channel:
+          type: string
+          description: Retail channel
+          example: grocery
+    ConsumerSegmentResponse:
+      type: object
+      description: Consumer segmentation response
+      properties:
+        data:
+          type: array
+          description: Array of consumer segment records
+          items:
+            $ref: '#/components/schemas/ConsumerSegment'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    ConsumerSegment:
+      type: object
+      description: Consumer segment definition
+      properties:
+        segment_id:
+          type: string
+          description: Unique segment identifier
+          example: seg-001
+        name:
+          type: string
+          description: Segment name
+          example: Health-Conscious Shoppers
+        size_pct:
+          type: number
+          format: double
+          description: Percentage of total market population
+          example: 18.5
+        avg_basket_size:
+          type: number
+          format: double
+          description: Average basket size in dollars
+          example: 42.30
+        preferred_channels:
+          type: array
+          description: Preferred shopping channels
+          items:
+            type: string
+          example:
+            - grocery
+            - online
+        key_categories:
+          type: array
+          description: Top categories for this segment
+          items:
+            type: string
+          example:
+            - Organic Foods
+            - Natural Beverages
+    CategoryListResponse:
+      type: object
+      description: Category list response
+      properties:
+        data:
+          type: array
+          description: Array of category records
+          items:
+            $ref: '#/components/schemas/CategorySummary'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    CategorySummary:
+      type: object
+      description: Category summary record
+      properties:
+        category_id:
+          type: string
+          description: Unique category identifier
+          example: cpg-beverages
+        name:
+          type: string
+          description: Category name
+          example: Beverages
+        parent_id:
+          type: string
+          description: Parent category identifier
+          example: cpg
+        industry:
+          type: string
+          description: Industry vertical
+          example: cpg
+        level:
+          type: integer
+          description: Depth level in the category hierarchy
+          example: 2
+        subcategory_count:
+          type: integer
+          description: Number of subcategories
+          example: 15
+    CategoryDetail:
+      type: object
+      description: Detailed category information
+      properties:
+        category_id:
+          type: string
+          description: Unique category identifier
+          example: cpg-beverages
+        name:
+          type: string
+          description: Category name
+          example: Beverages
+        description:
+          type: string
+          description: Category description
+          example: All beverage categories including carbonated, juice, water, and energy drinks
+        parent_id:
+          type: string
+          description: Parent category identifier
+          example: cpg
+        industry:
+          type: string
+          description: Industry vertical
+          example: cpg
+        level:
+          type: integer
+          description: Depth level in the category hierarchy
+          example: 2
+        subcategories:
+          type: array
+          description: Direct subcategories
+          items:
+            $ref: '#/components/schemas/CategorySummary'
+        data_coverage:
+          $ref: '#/components/schemas/DataCoverage'
+    DataCoverage:
+      type: object
+      description: Data availability and coverage information
+      properties:
+        pos_available:
+          type: boolean
+          description: Whether POS data is available
+          example: true
+        panel_available:
+          type: boolean
+          description: Whether consumer panel data is available
+          example: true
+        earliest_date:
+          type: string
+          format: date
+          description: Earliest available data date
+          example: '2018-01-01'
+        latest_date:
+          type: string
+          format: date
+          description: Latest available data date
+          example: '2026-03-31'
+    BrandListResponse:
+      type: object
+      description: Brand list response
+      properties:
+        data:
+          type: array
+          description: Array of brand records
+          items:
+            $ref: '#/components/schemas/BrandSummary'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    BrandSummary:
+      type: object
+      description: Brand summary record
+      properties:
+        brand_id:
+          type: string
+          description: Unique brand identifier
+          example: brand-500123
+        name:
+          type: string
+          description: Brand name
+          example: Example Cola
+        manufacturer:
+          type: string
+          description: Manufacturer or parent company name
+          example: Example Corp
+        category:
+          type: string
+          description: Primary product category
+          example: Carbonated Beverages
+        upc_count:
+          type: integer
+          description: Number of UPCs under this brand
+          example: 45
+    BrandDetail:
+      type: object
+      description: Detailed brand information
+      properties:
+        brand_id:
+          type: string
+          description: Unique brand identifier
+          example: brand-500123
+        name:
+          type: string
+          description: Brand name
+          example: Example Cola
+        manufacturer:
+          type: string
+          description: Manufacturer or parent company name
+          example: Example Corp
+        categories:
+          type: array
+          description: Categories the brand is present in
+          items:
+            type: string
+          example:
+            - Carbonated Beverages
+        upc_count:
+          type: integer
+          description: Number of UPCs under this brand
+          example: 45
+        market_presence:
+          $ref: '#/components/schemas/MarketPresence'
+    MarketPresence:
+      type: object
+      description: Brand market presence information
+      properties:
+        channels:
+          type: integer
+          description: Number of retail channels with distribution
+          example: 6
+        retailers:
+          type: integer
+          description: Number of retailers carrying the brand
+          example: 120
+        geographic_coverage:
+          type: string
+          description: Geographic coverage level
+          example: national
+    RetailerListResponse:
+      type: object
+      description: Retailer list response
+      properties:
+        data:
+          type: array
+          description: Array of retailer records
+          items:
+            $ref: '#/components/schemas/RetailerSummary'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    RetailerSummary:
+      type: object
+      description: Retailer summary record
+      properties:
+        retailer_id:
+          type: string
+          description: Unique retailer identifier
+          example: ret-500123
+        name:
+          type: string
+          description: Retailer name
+          example: Example Market
+        channel:
+          type: string
+          description: Primary retail channel
+          example: grocery
+        store_count:
+          type: integer
+          description: Number of store locations
+          example: 450
+        geographic_coverage:
+          type: string
+          description: Geographic coverage level
+          example: national
+    ReportListResponse:
+      type: object
+      description: Report list response
+      properties:
+        data:
+          type: array
+          description: Array of report records
+          items:
+            $ref: '#/components/schemas/ReportSummary'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    ReportSummary:
+      type: object
+      description: Report summary record
+      properties:
+        report_id:
+          type: string
+          description: Unique report identifier
+          example: rpt-500123
+        name:
+          type: string
+          description: Report name
+          example: Q1 2026 Beverage Market Review
+        status:
+          type: string
+          description: Report processing status
+          enum:
+            - draft
+            - processing
+            - completed
+            - failed
+          example: completed
+        created_at:
+          type: string
+          format: date-time
+          description: Report creation timestamp
+          example: '2026-04-01T10:00:00Z'
+        category:
+          type: string
+          description: Primary category for the report
+          example: Beverages
+        report_type:
+          type: string
+          description: Type of report
+          example: market_review
+    ReportDetail:
+      type: object
+      description: Detailed report information
+      properties:
+        report_id:
+          type: string
+          description: Unique report identifier
+          example: rpt-500123
+        name:
+          type: string
+          description: Report name
+          example: Q1 2026 Beverage Market Review
+        status:
+          type: string
+          description: Report processing status
+          enum:
+            - draft
+            - processing
+            - completed
+            - failed
+          example: completed
+        created_at:
+          type: string
+          format: date-time
+          description: Report creation timestamp
+          example: '2026-04-01T10:00:00Z'
+        completed_at:
+          type: string
+          format: date-time
+          description: Report completion timestamp
+          example: '2026-04-01T10:03:00Z'
+        category:
+          type: string
+          description: Primary category for the report
+          example: Beverages
+        report_type:
+          type: string
+          description: Type of report
+          example: market_review
+        row_count:
+          type: integer
+          description: Number of data rows in completed report
+          example: 4523
+        estimated_completion:
+          type: string
+          format: date-time
+          description: Estimated completion time for processing reports
+          example: '2026-04-18T12:05:00Z'
+    CreateReportRequest:
+      type: object
+      description: Request to create a new report
+      required:
+        - name
+        - report_type
+        - category_id
+        - start_date
+        - end_date
+      properties:
+        name:
+          type: string
+          description: Report name
+          example: Q1 2026 Snacks Performance
+        report_type:
+          type: string
+          description: Type of report to generate
+          enum:
+            - market_review
+            - brand_performance
+            - category_analysis
+            - competitive_landscape
+            - pricing_analysis
+          example: market_review
+        category_id:
+          type: string
+          description: Product category for the report
+          example: cpg-snacks
+        start_date:
+          type: string
+          format: date
+          description: Report start date
+          example: '2026-01-01'
+        end_date:
+          type: string
+          format: date
+          description: Report end date
+          example: '2026-03-31'
+        geography:
+          type: string
+          description: Geographic scope
+          example: national
+        metrics:
+          type: array
+          description: Metrics to include in the report
+          items:
+            type: string
+          example:
+            - dollar_sales
+            - unit_sales
+            - market_share
+    CreateExportRequest:
+      type: object
+      description: Request to create a data export
+      required:
+        - source_type
+        - source_id
+        - format
+      properties:
+        source_type:
+          type: string
+          description: Type of data source to export
+          enum:
+            - report
+            - query
+            - dataset
+          example: report
+        source_id:
+          type: string
+          description: Identifier of the data source
+          example: rpt-500123
+        format:
+          type: string
+          description: Export file format
+          enum:
+            - csv
+            - xlsx
+            - json
+            - parquet
+          example: csv
+        include_headers:
+          type: boolean
+          description: Whether to include column headers
+          default: true
+          example: true
+    ExportDetail:
+      type: object
+      description: Export job details
+      properties:
+        export_id:
+          type: string
+          description: Unique export identifier
+          example: exp-500123
+        status:
+          type: string
+          description: Export processing status
+          enum:
+            - processing
+            - completed
+            - failed
+          example: completed
+        format:
+          type: string
+          description: Export file format
+          example: csv
+        created_at:
+          type: string
+          format: date-time
+          description: Export creation timestamp
+          example: '2026-04-18T12:00:00Z'
+        completed_at:
+          type: string
+          format: date-time
+          description: Export completion timestamp
+          example: '2026-04-18T12:02:00Z'
+        download_url:
+          type: string
+          format: uri
+          description: URL to download the exported file
+          example: https://exports.circana.com/exp-500123/data.csv
+        file_size_bytes:
+          type: integer
+          description: Size of the exported file in bytes
+          example: 2456789
+    Pagination:
+      type: object
+      description: Pagination metadata
+      properties:
+        offset:
+          type: integer
+          description: Current offset position
+          example: 0
+        limit:
+          type: integer
+          description: Maximum records per page
+          example: 100
+        total:
+          type: integer
+          description: Total number of records available
+          example: 4523
+    ErrorResponse:
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error type identifier
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error message
+          example: The category_id parameter is required
+        status:
+          type: integer
+          description: HTTP status code
+          example: 400
+        request_id:
+          type: string
+          description: Unique request identifier for troubleshooting
+          example: req-a1b2c3d4

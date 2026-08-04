@@ -1,0 +1,477 @@
+{
+  "info": {
+    "_postman_id": "75097391-91b1-4f7c-ac89-cf46d10ce4c1",
+    "name": "Circana Liquid Data Brands API",
+    "description": "Circana's Liquid Data platform provides cross-industry data and advanced analytics in a single, open platform. This API enables programmatic access to market measurement, consumer panel, and retail analytics data deployable across Azure, AWS, Google Cloud, and Oracle Cloud environments.\n\nContact Support:\n Name: Circana\n Email: support@circana.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:20:59.000Z",
+    "updatedAt": "2026-07-28T01:20:59.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-75097391-91b1-4f7c-ac89-cf46d10ce4c1"
+  },
+  "item": [
+    {
+      "name": "brands",
+      "item": [
+        {
+          "name": "{brand_id}",
+          "item": [
+            {
+              "name": "Circana Get Brand Details",
+              "id": "7b351e81-6ec2-4887-b1ac-9cf82b293d50",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/brands/:brand_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "brands",
+                    ":brand_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "ac2d078f-7a80-484d-a774-09bae5324819",
+                      "key": "brand_id",
+                      "value": "<string>",
+                      "description": "(Required) Unique brand identifier"
+                    }
+                  ]
+                },
+                "description": "Get detailed brand information including manufacturer, UPC catalog, and available data coverage."
+              },
+              "response": [
+                {
+                  "id": "6b96e377-bf13-4054-82e5-b3d1363c21e0",
+                  "name": "Brand details retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/brands/:brand_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "brands",
+                        ":brand_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "brand_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"brand_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"manufacturer\": \"<string>\",\n  \"categories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"upc_count\": \"<integer>\",\n  \"market_presence\": {\n    \"channels\": \"<integer>\",\n    \"retailers\": \"<integer>\",\n    \"geographic_coverage\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:20:59.000Z",
+                  "updatedAt": "2026-07-28T01:20:59.000Z",
+                  "uid": "35240-6b96e377-bf13-4054-82e5-b3d1363c21e0"
+                },
+                {
+                  "id": "1ad58a1b-148f-4f2d-9834-8381069c3eff",
+                  "name": "Authentication credentials missing or invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/brands/:brand_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "brands",
+                        ":brand_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "brand_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:20:59.000Z",
+                  "updatedAt": "2026-07-28T01:20:59.000Z",
+                  "uid": "35240-1ad58a1b-148f-4f2d-9834-8381069c3eff"
+                },
+                {
+                  "id": "ef782c29-b6f6-4047-99ed-91c46c4b19e3",
+                  "name": "Brand not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/brands/:brand_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "brands",
+                        ":brand_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "brand_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:20:59.000Z",
+                  "updatedAt": "2026-07-28T01:20:59.000Z",
+                  "uid": "35240-ef782c29-b6f6-4047-99ed-91c46c4b19e3"
+                }
+              ],
+              "createdAt": "2026-07-28T01:20:59.000Z",
+              "updatedAt": "2026-07-28T01:20:59.000Z",
+              "uid": "35240-7b351e81-6ec2-4887-b1ac-9cf82b293d50"
+            }
+          ],
+          "id": "40d2048b-bd35-4dc9-8c18-55c5689be3e0",
+          "createdAt": "2026-07-28T01:20:59.000Z",
+          "updatedAt": "2026-07-28T01:20:59.000Z",
+          "uid": "35240-40d2048b-bd35-4dc9-8c18-55c5689be3e0"
+        },
+        {
+          "name": "Circana List Brands",
+          "id": "44e1a848-dd43-4099-bbab-2d33302a735e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/brands?category_id=<string>&search=<string>&offset=0&limit=100",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "brands"
+              ],
+              "query": [
+                {
+                  "description": "(Required) Product category to search brands within",
+                  "key": "category_id",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Search term to filter brand names",
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Pagination offset",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Maximum number of records to return",
+                  "key": "limit",
+                  "value": "100"
+                }
+              ]
+            },
+            "description": "List brands within a specific category with performance metrics and market share data."
+          },
+          "response": [
+            {
+              "id": "b5d428c4-d51b-47ff-b7bf-d35115980e15",
+              "name": "Brands listed successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/brands?category_id=<string>&search=<string>&offset=0&limit=100",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "brands"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Product category to search brands within",
+                      "key": "category_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Search term to filter brand names",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pagination offset",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"brand_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"manufacturer\": \"<string>\",\n      \"category\": \"<string>\",\n      \"upc_count\": \"<integer>\"\n    },\n    {\n      \"brand_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"manufacturer\": \"<string>\",\n      \"category\": \"<string>\",\n      \"upc_count\": \"<integer>\"\n    }\n  ],\n  \"pagination\": {\n    \"offset\": \"<integer>\",\n    \"limit\": \"<integer>\",\n    \"total\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:20:59.000Z",
+              "updatedAt": "2026-07-28T01:20:59.000Z",
+              "uid": "35240-b5d428c4-d51b-47ff-b7bf-d35115980e15"
+            },
+            {
+              "id": "3e32af86-5c1e-47a5-869d-e1358eac1387",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/brands?category_id=<string>&search=<string>&offset=0&limit=100",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "brands"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Product category to search brands within",
+                      "key": "category_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Search term to filter brand names",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pagination offset",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:20:59.000Z",
+              "updatedAt": "2026-07-28T01:20:59.000Z",
+              "uid": "35240-3e32af86-5c1e-47a5-869d-e1358eac1387"
+            },
+            {
+              "id": "9d84c3f1-51ce-43fb-9249-047d8e41e8be",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/brands?category_id=<string>&search=<string>&offset=0&limit=100",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "brands"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Product category to search brands within",
+                      "key": "category_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Search term to filter brand names",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pagination offset",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return",
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"request_id\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:20:59.000Z",
+              "updatedAt": "2026-07-28T01:20:59.000Z",
+              "uid": "35240-9d84c3f1-51ce-43fb-9249-047d8e41e8be"
+            }
+          ],
+          "createdAt": "2026-07-28T01:20:59.000Z",
+          "updatedAt": "2026-07-28T01:20:59.000Z",
+          "uid": "35240-44e1a848-dd43-4099-bbab-2d33302a735e"
+        }
+      ],
+      "id": "3e6a412e-2d86-4471-bfd3-802687b14cfc",
+      "createdAt": "2026-07-28T01:20:59.000Z",
+      "updatedAt": "2026-07-28T01:20:59.000Z",
+      "uid": "35240-3e6a412e-2d86-4471-bfd3-802687b14cfc"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.circana.com/liquid-data/v1"
+    }
+  ]
+}
