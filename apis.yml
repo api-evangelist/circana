@@ -243,20 +243,6 @@ apis:
     url: json-schema/liquid-data-export-detail-schema.json
   - type: JSONLD
     url: json-ld/circana-liquid-data-context.jsonld
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-brands.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-categories.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-consumer-panel.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-exports.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-market-data.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-reports.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-retailers.yaml
 - aid: circana:circana-categories-api
   name: Circana Categories API
   description: Product category hierarchy and management
@@ -288,20 +274,6 @@ apis:
     url: json-schema/liquid-data-export-detail-schema.json
   - type: JSONLD
     url: json-ld/circana-liquid-data-context.jsonld
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-brands.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-categories.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-consumer-panel.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-exports.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-market-data.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-reports.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-retailers.yaml
 - aid: circana:circana-consumer-panel-api
   name: Circana Consumer Panel API
   description: Consumer panel data and shopper insights
@@ -333,20 +305,6 @@ apis:
     url: json-schema/liquid-data-export-detail-schema.json
   - type: JSONLD
     url: json-ld/circana-liquid-data-context.jsonld
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-brands.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-categories.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-consumer-panel.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-exports.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-market-data.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-reports.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-retailers.yaml
 - aid: circana:circana-exports-api
   name: Circana Exports API
   description: Data export and download operations
@@ -378,20 +336,6 @@ apis:
     url: json-schema/liquid-data-export-detail-schema.json
   - type: JSONLD
     url: json-ld/circana-liquid-data-context.jsonld
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-brands.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-categories.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-consumer-panel.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-exports.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-market-data.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-reports.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-retailers.yaml
 - aid: circana:circana-market-data-api
   name: Circana Market Data API
   description: Access point-of-sale and market measurement data
@@ -423,20 +367,6 @@ apis:
     url: json-schema/liquid-data-export-detail-schema.json
   - type: JSONLD
     url: json-ld/circana-liquid-data-context.jsonld
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-brands.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-categories.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-consumer-panel.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-exports.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-market-data.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-reports.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-retailers.yaml
 - aid: circana:circana-reports-api
   name: Circana Reports API
   description: Report generation and management
@@ -468,20 +398,6 @@ apis:
     url: json-schema/liquid-data-export-detail-schema.json
   - type: JSONLD
     url: json-ld/circana-liquid-data-context.jsonld
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-brands.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-categories.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-consumer-panel.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-exports.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-market-data.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-reports.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-retailers.yaml
 - aid: circana:circana-retailers-api
   name: Circana Retailers API
   description: Retailer data and channel analytics
@@ -513,20 +429,6 @@ apis:
     url: json-schema/liquid-data-export-detail-schema.json
   - type: JSONLD
     url: json-ld/circana-liquid-data-context.jsonld
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-brands.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-categories.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-consumer-panel.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-exports.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-market-data.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-reports.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/liquid-data-retailers.yaml
 common:
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/circana/overview
