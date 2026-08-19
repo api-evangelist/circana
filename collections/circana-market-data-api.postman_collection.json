@@ -1,0 +1,678 @@
+{
+  "item": [
+    {
+      "id": "88957b36-c00e-48d7-be1b-89d5425b79e6",
+      "name": "Market Data",
+      "description": {
+        "content": "Access point-of-sale and market measurement data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "00693bc0-5267-4759-9b6a-57ccda40b416",
+          "name": "Circana Get Point of Sale Data",
+          "request": {
+            "name": "Circana Get Point of Sale Data",
+            "description": {
+              "content": "Retrieve point-of-sale data with filters for time period, geography, category, and retailer. Returns sales volume, revenue, and unit data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "market-data",
+                "pos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "category_id",
+                  "value": "<string>",
+                  "description": "(Required) Product category identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<date>",
+                  "description": "(Required) Start date for the data range in ISO 8601 format"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<date>",
+                  "description": "(Required) End date for the data range in ISO 8601 format"
+                },
+                {
+                  "disabled": false,
+                  "key": "geography",
+                  "value": "<string>",
+                  "description": "Geographic market filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "retailer_id",
+                  "value": "<string>",
+                  "description": "Specific retailer identifier for filtering"
+                },
+                {
+                  "disabled": false,
+                  "key": "granularity",
+                  "value": "<string>",
+                  "description": "Time granularity of the data"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Pagination offset"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Maximum number of records to return"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6905b47d-5120-4f84-b465-7639907dffea",
+              "name": "Point-of-sale data retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market-data",
+                    "pos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category_id",
+                      "value": "cpg-beverages"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "2026-01-01"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "2026-03-31"
+                    },
+                    {
+                      "key": "geography",
+                      "value": "national"
+                    },
+                    {
+                      "key": "retailer_id",
+                      "value": "ret-500123"
+                    },
+                    {
+                      "key": "granularity",
+                      "value": "weekly"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"period\": \"2026-W01\",\n      \"category\": \"Beverages\",\n      \"brand\": \"Example Brand\",\n      \"upc\": 12345678901,\n      \"dollar_sales\": 125340.5,\n      \"unit_sales\": 45230,\n      \"volume_sales\": 67845,\n      \"avg_price\": 2.77,\n      \"distribution_pct\": 85.3\n    }\n  ],\n  \"pagination\": {\n    \"offset\": 0,\n    \"limit\": 100,\n    \"total\": 4523\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "52530038-35ec-4798-b003-179bf92c12be",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market-data",
+                    "pos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category_id",
+                      "value": "cpg-beverages"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "2026-01-01"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "2026-03-31"
+                    },
+                    {
+                      "key": "geography",
+                      "value": "national"
+                    },
+                    {
+                      "key": "retailer_id",
+                      "value": "ret-500123"
+                    },
+                    {
+                      "key": "granularity",
+                      "value": "weekly"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"invalid_request\",\n  \"message\": \"The category_id parameter is required\",\n  \"status\": 400,\n  \"request_id\": \"req-a1b2c3d4\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "08869d99-d538-4343-802a-33f32454f4a7",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market-data",
+                    "pos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category_id",
+                      "value": "cpg-beverages"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "2026-01-01"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "2026-03-31"
+                    },
+                    {
+                      "key": "geography",
+                      "value": "national"
+                    },
+                    {
+                      "key": "retailer_id",
+                      "value": "ret-500123"
+                    },
+                    {
+                      "key": "granularity",
+                      "value": "weekly"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"invalid_request\",\n  \"message\": \"The category_id parameter is required\",\n  \"status\": 400,\n  \"request_id\": \"req-a1b2c3d4\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd97fd03-f4b7-4fb0-b8c9-82b6e67a03cf",
+              "name": "Insufficient permissions for requested data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market-data",
+                    "pos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category_id",
+                      "value": "cpg-beverages"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "2026-01-01"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "2026-03-31"
+                    },
+                    {
+                      "key": "geography",
+                      "value": "national"
+                    },
+                    {
+                      "key": "retailer_id",
+                      "value": "ret-500123"
+                    },
+                    {
+                      "key": "granularity",
+                      "value": "weekly"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"invalid_request\",\n  \"message\": \"The category_id parameter is required\",\n  \"status\": 400,\n  \"request_id\": \"req-a1b2c3d4\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6140fd65-9174-4310-93d3-aa24316b3f69",
+          "name": "Circana Get Market Share Data",
+          "request": {
+            "name": "Circana Get Market Share Data",
+            "description": {
+              "content": "Retrieve market share data showing brand and category share metrics across retailers and geographies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "market-data",
+                "share"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "category_id",
+                  "value": "<string>",
+                  "description": "(Required) Product category identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<date>",
+                  "description": "(Required) Start date for the data range"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<date>",
+                  "description": "(Required) End date for the data range"
+                },
+                {
+                  "disabled": false,
+                  "key": "metric",
+                  "value": "<string>",
+                  "description": "Share metric type"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fa984751-771a-4010-b644-10b657ae004f",
+              "name": "Market share data retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market-data",
+                    "share"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category_id",
+                      "value": "cpg-snacks"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "2026-01-01"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "2026-03-31"
+                    },
+                    {
+                      "key": "metric",
+                      "value": "dollar_share"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"brand\": \"Example Brand A\",\n      \"dollar_share\": 24.5,\n      \"unit_share\": 22.1,\n      \"share_change\": 1.2,\n      \"period\": \"2026-Q1\"\n    }\n  ],\n  \"pagination\": {\n    \"offset\": 0,\n    \"limit\": 100,\n    \"total\": 45\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "003358f5-97ef-4e5b-9e94-35bf1fb78d21",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market-data",
+                    "share"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category_id",
+                      "value": "cpg-snacks"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "2026-01-01"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "2026-03-31"
+                    },
+                    {
+                      "key": "metric",
+                      "value": "dollar_share"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"invalid_request\",\n  \"message\": \"The category_id parameter is required\",\n  \"status\": 400,\n  \"request_id\": \"req-a1b2c3d4\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fcd1e68c-56a4-44b5-9a64-2ae4986ffe21",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market-data",
+                    "share"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category_id",
+                      "value": "cpg-snacks"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "2026-01-01"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "2026-03-31"
+                    },
+                    {
+                      "key": "metric",
+                      "value": "dollar_share"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"invalid_request\",\n  \"message\": \"The category_id parameter is required\",\n  \"status\": 400,\n  \"request_id\": \"req-a1b2c3d4\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.circana.com/liquid-data/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d3c9b2f7-0a60-44f4-96a0-e8c55381f7ee",
+    "name": "Circana Liquid Data Brands Market Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Circana's Liquid Data platform provides cross-industry data and advanced analytics in a single, open platform. This API enables programmatic access to market measurement, consumer panel, and retail analytics data deployable across Azure, AWS, Google Cloud, and Oracle Cloud environments.\n\nContact Support:\n Name: Circana\n Email: support@circana.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Circana Liquid Data Brands Reports API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Circana List Reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.circana.com/liquid-data/v1/reports",
+            "params": [
+              {
+                "name": "status",
+                "value": "completed",
+                "type": "query",
+                "description": "Report status filter"
+              },
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "limit",
+                "value": "100",
+                "type": "query",
+                "description": "Maximum number of records to return"
+              }
+            ]
+          },
+          "docs": "List available reports and saved analyses for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Circana Create Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.circana.com/liquid-data/v1/reports",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new report with specified data parameters, categories, and analysis configuration."
+        },
+        {
+          "info": {
+            "name": "Circana Get Report Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.circana.com/liquid-data/v1/reports/:report_id",
+            "params": [
+              {
+                "name": "report_id",
+                "value": "rpt-500123",
+                "type": "path",
+                "description": "Unique report identifier"
+              }
+            ]
+          },
+          "docs": "Get detailed information about a specific report including status, configuration, and results."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

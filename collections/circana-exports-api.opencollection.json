@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Circana Liquid Data Brands Exports API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Exports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Circana Create Data Export",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.circana.com/liquid-data/v1/exports",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a data export job to download market data, consumer panel data, or report results in CSV, Excel, or JSON format."
+        },
+        {
+          "info": {
+            "name": "Circana Get Export Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.circana.com/liquid-data/v1/exports/:export_id",
+            "params": [
+              {
+                "name": "export_id",
+                "value": "exp-500123",
+                "type": "path",
+                "description": "Unique export identifier"
+              }
+            ]
+          },
+          "docs": "Check the status of a data export job and retrieve the download URL when complete."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

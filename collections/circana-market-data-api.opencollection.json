@@ -1,0 +1,122 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Circana Liquid Data Brands Market Data API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Market Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Circana Get Point of Sale Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.circana.com/liquid-data/v1/market-data/pos",
+            "params": [
+              {
+                "name": "category_id",
+                "value": "cpg-beverages",
+                "type": "query",
+                "description": "Product category identifier"
+              },
+              {
+                "name": "start_date",
+                "value": "2026-01-01",
+                "type": "query",
+                "description": "Start date for the data range in ISO 8601 format"
+              },
+              {
+                "name": "end_date",
+                "value": "2026-03-31",
+                "type": "query",
+                "description": "End date for the data range in ISO 8601 format"
+              },
+              {
+                "name": "geography",
+                "value": "national",
+                "type": "query",
+                "description": "Geographic market filter"
+              },
+              {
+                "name": "retailer_id",
+                "value": "ret-500123",
+                "type": "query",
+                "description": "Specific retailer identifier for filtering"
+              },
+              {
+                "name": "granularity",
+                "value": "weekly",
+                "type": "query",
+                "description": "Time granularity of the data"
+              },
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "limit",
+                "value": "100",
+                "type": "query",
+                "description": "Maximum number of records to return"
+              }
+            ]
+          },
+          "docs": "Retrieve point-of-sale data with filters for time period, geography, category, and retailer. Returns sales volume, revenue, and unit data."
+        },
+        {
+          "info": {
+            "name": "Circana Get Market Share Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.circana.com/liquid-data/v1/market-data/share",
+            "params": [
+              {
+                "name": "category_id",
+                "value": "cpg-snacks",
+                "type": "query",
+                "description": "Product category identifier"
+              },
+              {
+                "name": "start_date",
+                "value": "2026-01-01",
+                "type": "query",
+                "description": "Start date for the data range"
+              },
+              {
+                "name": "end_date",
+                "value": "2026-03-31",
+                "type": "query",
+                "description": "End date for the data range"
+              },
+              {
+                "name": "metric",
+                "value": "dollar_share",
+                "type": "query",
+                "description": "Share metric type"
+              }
+            ]
+          },
+          "docs": "Retrieve market share data showing brand and category share metrics across retailers and geographies."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

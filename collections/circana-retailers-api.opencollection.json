@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Circana Liquid Data Brands Retailers API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Retailers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Circana List Retailers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.circana.com/liquid-data/v1/retailers",
+            "params": [
+              {
+                "name": "channel",
+                "value": "grocery",
+                "type": "query",
+                "description": "Retail channel filter"
+              },
+              {
+                "name": "search",
+                "value": "market",
+                "type": "query",
+                "description": "Search term to filter retailer names"
+              },
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "limit",
+                "value": "100",
+                "type": "query",
+                "description": "Maximum number of records to return"
+              }
+            ]
+          },
+          "docs": "List retailers covered in Circana's measurement universe with channel classification and coverage data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

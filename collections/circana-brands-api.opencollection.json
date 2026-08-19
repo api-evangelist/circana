@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Circana Liquid Data Brands API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Brands",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Circana List Brands",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.circana.com/liquid-data/v1/brands",
+            "params": [
+              {
+                "name": "category_id",
+                "value": "cpg-beverages",
+                "type": "query",
+                "description": "Product category to search brands within"
+              },
+              {
+                "name": "search",
+                "value": "cola",
+                "type": "query",
+                "description": "Search term to filter brand names"
+              },
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "limit",
+                "value": "100",
+                "type": "query",
+                "description": "Maximum number of records to return"
+              }
+            ]
+          },
+          "docs": "List brands within a specific category with performance metrics and market share data."
+        },
+        {
+          "info": {
+            "name": "Circana Get Brand Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.circana.com/liquid-data/v1/brands/:brand_id",
+            "params": [
+              {
+                "name": "brand_id",
+                "value": "brand-500123",
+                "type": "path",
+                "description": "Unique brand identifier"
+              }
+            ]
+          },
+          "docs": "Get detailed brand information including manufacturer, UPC catalog, and available data coverage."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

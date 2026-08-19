@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Circana Liquid Data Brands Categories API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Categories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Circana List Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.circana.com/liquid-data/v1/categories",
+            "params": [
+              {
+                "name": "parent_id",
+                "value": "cpg",
+                "type": "query",
+                "description": "Parent category ID to list subcategories"
+              },
+              {
+                "name": "industry",
+                "value": "cpg",
+                "type": "query",
+                "description": "Industry vertical filter"
+              },
+              {
+                "name": "search",
+                "value": "beverages",
+                "type": "query",
+                "description": "Search term to filter categories"
+              }
+            ]
+          },
+          "docs": "List available product categories in the Circana taxonomy hierarchy covering CPG, general merchandise, beauty, food, and technology."
+        },
+        {
+          "info": {
+            "name": "Circana Get Category Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.circana.com/liquid-data/v1/categories/:category_id",
+            "params": [
+              {
+                "name": "category_id",
+                "value": "cpg-beverages",
+                "type": "path",
+                "description": "Unique category identifier"
+              }
+            ]
+          },
+          "docs": "Get detailed information about a specific product category including hierarchy, metadata, and available data coverage."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
