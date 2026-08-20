@@ -7,6 +7,15 @@ tags:
 - Market Research
 - Retail
 - CPG
+- Point-of-Sale
+- Consumer Insights
+- Business Intelligence
+tags_raw:
+- Analytics
+- Consumer Data
+- Market Research
+- Retail
+- CPG
 - Point Of Sale
 - Consumer Insights
 - Business Intelligence
@@ -81,6 +90,10 @@ apis:
 - aid: circana:complete-market-api
   name: Circana Complete Market API
   tags:
+  - Point-of-Sale
+  - Market Measurement
+  - Retail Analytics
+  tags_raw:
   - Point Of Sale
   - Market Measurement
   - Retail Analytics
@@ -123,6 +136,11 @@ apis:
   tags:
   - Food
   - Beverage
+  - Food Service
+  - CPG
+  tags_raw:
+  - Food
+  - Beverage
   - Foodservice
   - CPG
   humanURL: https://www.circana.com/solutions/complete-food-and-beverage
@@ -135,6 +153,10 @@ apis:
 - aid: circana:liquid-data-collaborate-api
   name: Circana Liquid Data Collaborate API
   tags:
+  - Data Collaboration
+  - Retail Analytics
+  - Artificial Intelligence
+  tags_raw:
   - Data Collaboration
   - Retail Analytics
   - AI
@@ -310,6 +332,8 @@ apis:
   description: Data export and download operations
   humanURL: https://www.circana.com/solutions/unify-plus
   tags:
+  - Export
+  tags_raw:
   - Exports
   properties:
   - type: OpenAPI
