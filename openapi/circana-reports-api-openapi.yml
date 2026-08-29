@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Circana Liquid Data Brands Reports API
   description: Circana's Liquid Data platform provides cross-industry data and advanced analytics in a single, open platform. This API enables programmatic access to market measurement, consumer panel, and retail analytics data deployable across Azure, AWS, Google Cloud, and Oracle Cloud environments.
@@ -200,51 +200,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ReportSummary:
-      type: object
-      description: Report summary record
-      properties:
-        report_id:
-          type: string
-          description: Unique report identifier
-          example: rpt-500123
-        name:
-          type: string
-          description: Report name
-          example: Q1 2026 Beverage Market Review
-        status:
-          type: string
-          description: Report processing status
-          enum:
-          - draft
-          - processing
-          - completed
-          - failed
-          example: completed
-        created_at:
-          type: string
-          format: date-time
-          description: Report creation timestamp
-          example: '2026-04-01T10:00:00Z'
-        category:
-          type: string
-          description: Primary category for the report
-          example: Beverages
-        report_type:
-          type: string
-          description: Type of report
-          example: market_review
-    ReportListResponse:
-      type: object
-      description: Report list response
-      properties:
-        data:
-          type: array
-          description: Array of report records
-          items:
-            $ref: '#/components/schemas/ReportSummary'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     ReportDetail:
       type: object
       description: Detailed report information
@@ -293,6 +248,22 @@ components:
           format: date-time
           description: Estimated completion time for processing reports
           example: '2026-04-18T12:05:00Z'
+    Pagination:
+      type: object
+      description: Pagination metadata
+      properties:
+        offset:
+          type: integer
+          description: Current offset position
+          example: 0
+        limit:
+          type: integer
+          description: Maximum records per page
+          example: 100
+        total:
+          type: integer
+          description: Total number of records available
+          example: 4523
     ErrorResponse:
       type: object
       description: Standard error response
@@ -313,22 +284,51 @@ components:
           type: string
           description: Unique request identifier for troubleshooting
           example: req-a1b2c3d4
-    Pagination:
+    ReportSummary:
       type: object
-      description: Pagination metadata
+      description: Report summary record
       properties:
-        offset:
-          type: integer
-          description: Current offset position
-          example: 0
-        limit:
-          type: integer
-          description: Maximum records per page
-          example: 100
-        total:
-          type: integer
-          description: Total number of records available
-          example: 4523
+        report_id:
+          type: string
+          description: Unique report identifier
+          example: rpt-500123
+        name:
+          type: string
+          description: Report name
+          example: Q1 2026 Beverage Market Review
+        status:
+          type: string
+          description: Report processing status
+          enum:
+          - draft
+          - processing
+          - completed
+          - failed
+          example: completed
+        created_at:
+          type: string
+          format: date-time
+          description: Report creation timestamp
+          example: '2026-04-01T10:00:00Z'
+        category:
+          type: string
+          description: Primary category for the report
+          example: Beverages
+        report_type:
+          type: string
+          description: Type of report
+          example: market_review
+    ReportListResponse:
+      type: object
+      description: Report list response
+      properties:
+        data:
+          type: array
+          description: Array of report records
+          items:
+            $ref: '#/components/schemas/ReportSummary'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     CreateReportRequest:
       type: object
       description: Request to create a new report

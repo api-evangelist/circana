@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Circana Liquid Data Brands Consumer Panel API
   description: Circana's Liquid Data platform provides cross-industry data and advanced analytics in a single, open platform. This API enables programmatic access to market measurement, consumer panel, and retail analytics data deployable across Azure, AWS, Google Cloud, and Oracle Cloud environments.
@@ -206,6 +206,42 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ConsumerPurchaseRecord:
+      type: object
+      description: Individual consumer purchase data record
+      properties:
+        segment:
+          type: string
+          description: Consumer demographic segment
+          example: 18-34
+        category:
+          type: string
+          description: Product category name
+          example: Beverages
+        penetration_pct:
+          type: number
+          format: double
+          description: Category penetration percentage
+          example: 72.5
+        buy_rate:
+          type: number
+          format: double
+          description: Average purchase frequency
+          example: 3.2
+        avg_spend:
+          type: number
+          format: double
+          description: Average spend per buyer
+          example: 15.8
+        trips_per_buyer:
+          type: number
+          format: double
+          description: Average shopping trips per buyer
+          example: 4.1
+        channel:
+          type: string
+          description: Retail channel
+          example: grocery
     ConsumerSegment:
       type: object
       description: Consumer segment definition
@@ -255,42 +291,22 @@ components:
             $ref: '#/components/schemas/ConsumerPurchaseRecord'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    ConsumerPurchaseRecord:
+    Pagination:
       type: object
-      description: Individual consumer purchase data record
+      description: Pagination metadata
       properties:
-        segment:
-          type: string
-          description: Consumer demographic segment
-          example: 18-34
-        category:
-          type: string
-          description: Product category name
-          example: Beverages
-        penetration_pct:
-          type: number
-          format: double
-          description: Category penetration percentage
-          example: 72.5
-        buy_rate:
-          type: number
-          format: double
-          description: Average purchase frequency
-          example: 3.2
-        avg_spend:
-          type: number
-          format: double
-          description: Average spend per buyer
-          example: 15.8
-        trips_per_buyer:
-          type: number
-          format: double
-          description: Average shopping trips per buyer
-          example: 4.1
-        channel:
-          type: string
-          description: Retail channel
-          example: grocery
+        offset:
+          type: integer
+          description: Current offset position
+          example: 0
+        limit:
+          type: integer
+          description: Maximum records per page
+          example: 100
+        total:
+          type: integer
+          description: Total number of records available
+          example: 4523
     ErrorResponse:
       type: object
       description: Standard error response
@@ -311,22 +327,6 @@ components:
           type: string
           description: Unique request identifier for troubleshooting
           example: req-a1b2c3d4
-    Pagination:
-      type: object
-      description: Pagination metadata
-      properties:
-        offset:
-          type: integer
-          description: Current offset position
-          example: 0
-        limit:
-          type: integer
-          description: Maximum records per page
-          example: 100
-        total:
-          type: integer
-          description: Total number of records available
-          example: 4523
     ConsumerSegmentResponse:
       type: object
       description: Consumer segmentation response

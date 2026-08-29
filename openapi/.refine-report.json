@@ -21,6 +21,15 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "circana-brands-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "circana-categories-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "circana-consumer-panel-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "circana-exports-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "circana-market-data-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "circana-reports-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "circana-retailers-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }

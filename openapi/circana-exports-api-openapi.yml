@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Circana Liquid Data Brands Exports API
   description: Circana's Liquid Data platform provides cross-industry data and advanced analytics in a single, open platform. This API enables programmatic access to market measurement, consumer panel, and retail analytics data deployable across Azure, AWS, Google Cloud, and Oracle Cloud environments.
@@ -125,40 +125,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    CreateExportRequest:
-      type: object
-      description: Request to create a data export
-      required:
-      - source_type
-      - source_id
-      - format
-      properties:
-        source_type:
-          type: string
-          description: Type of data source to export
-          enum:
-          - report
-          - query
-          - dataset
-          example: report
-        source_id:
-          type: string
-          description: Identifier of the data source
-          example: rpt-500123
-        format:
-          type: string
-          description: Export file format
-          enum:
-          - csv
-          - xlsx
-          - json
-          - parquet
-          example: csv
-        include_headers:
-          type: boolean
-          description: Whether to include column headers
-          default: true
-          example: true
     ErrorResponse:
       type: object
       description: Standard error response
@@ -218,6 +184,40 @@ components:
           type: integer
           description: Size of the exported file in bytes
           example: 2456789
+    CreateExportRequest:
+      type: object
+      description: Request to create a data export
+      required:
+      - source_type
+      - source_id
+      - format
+      properties:
+        source_type:
+          type: string
+          description: Type of data source to export
+          enum:
+          - report
+          - query
+          - dataset
+          example: report
+        source_id:
+          type: string
+          description: Identifier of the data source
+          example: rpt-500123
+        format:
+          type: string
+          description: Export file format
+          enum:
+          - csv
+          - xlsx
+          - json
+          - parquet
+          example: csv
+        include_headers:
+          type: boolean
+          description: Whether to include column headers
+          default: true
+          example: true
   securitySchemes:
     bearerAuth:
       type: http

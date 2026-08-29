@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Circana Liquid Data Brands Retailers API
   description: Circana's Liquid Data platform provides cross-industry data and advanced analytics in a single, open platform. This API enables programmatic access to market measurement, consumer panel, and retail analytics data deployable across Azure, AWS, Google Cloud, and Oracle Cloud environments.
@@ -101,33 +101,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    RetailerListResponse:
-      type: object
-      description: Retailer list response
-      properties:
-        data:
-          type: array
-          description: Array of retailer records
-          items:
-            $ref: '#/components/schemas/RetailerSummary'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    Pagination:
-      type: object
-      description: Pagination metadata
-      properties:
-        offset:
-          type: integer
-          description: Current offset position
-          example: 0
-        limit:
-          type: integer
-          description: Maximum records per page
-          example: 100
-        total:
-          type: integer
-          description: Total number of records available
-          example: 4523
     RetailerSummary:
       type: object
       description: Retailer summary record
@@ -152,6 +125,17 @@ components:
           type: string
           description: Geographic coverage level
           example: national
+    RetailerListResponse:
+      type: object
+      description: Retailer list response
+      properties:
+        data:
+          type: array
+          description: Array of retailer records
+          items:
+            $ref: '#/components/schemas/RetailerSummary'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     ErrorResponse:
       type: object
       description: Standard error response
@@ -172,6 +156,22 @@ components:
           type: string
           description: Unique request identifier for troubleshooting
           example: req-a1b2c3d4
+    Pagination:
+      type: object
+      description: Pagination metadata
+      properties:
+        offset:
+          type: integer
+          description: Current offset position
+          example: 0
+        limit:
+          type: integer
+          description: Maximum records per page
+          example: 100
+        total:
+          type: integer
+          description: Total number of records available
+          example: 4523
   securitySchemes:
     bearerAuth:
       type: http

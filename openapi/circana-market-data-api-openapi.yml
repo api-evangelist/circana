@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Circana Liquid Data Brands Market Data API
   description: Circana's Liquid Data platform provides cross-industry data and advanced analytics in a single, open platform. This API enables programmatic access to market measurement, consumer panel, and retail analytics data deployable across Azure, AWS, Google Cloud, and Oracle Cloud environments.
@@ -228,6 +228,17 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    POSDataResponse:
+      type: object
+      description: Point-of-sale data response containing sales metrics
+      properties:
+        data:
+          type: array
+          description: Array of POS data records
+          items:
+            $ref: '#/components/schemas/POSRecord'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     POSRecord:
       type: object
       description: Individual point-of-sale data record
@@ -272,42 +283,6 @@ components:
           format: double
           description: Percentage of stores carrying the product
           example: 85.3
-    ErrorResponse:
-      type: object
-      description: Standard error response
-      properties:
-        error:
-          type: string
-          description: Error type identifier
-          example: invalid_request
-        message:
-          type: string
-          description: Human-readable error message
-          example: The category_id parameter is required
-        status:
-          type: integer
-          description: HTTP status code
-          example: 400
-        request_id:
-          type: string
-          description: Unique request identifier for troubleshooting
-          example: req-a1b2c3d4
-    Pagination:
-      type: object
-      description: Pagination metadata
-      properties:
-        offset:
-          type: integer
-          description: Current offset position
-          example: 0
-        limit:
-          type: integer
-          description: Maximum records per page
-          example: 100
-        total:
-          type: integer
-          description: Total number of records available
-          example: 4523
     MarketShareRecord:
       type: object
       description: Individual market share data record
@@ -335,17 +310,6 @@ components:
           type: string
           description: Time period identifier
           example: 2026-Q1
-    POSDataResponse:
-      type: object
-      description: Point-of-sale data response containing sales metrics
-      properties:
-        data:
-          type: array
-          description: Array of POS data records
-          items:
-            $ref: '#/components/schemas/POSRecord'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     MarketShareResponse:
       type: object
       description: Market share data response
@@ -357,6 +321,42 @@ components:
             $ref: '#/components/schemas/MarketShareRecord'
         pagination:
           $ref: '#/components/schemas/Pagination'
+    Pagination:
+      type: object
+      description: Pagination metadata
+      properties:
+        offset:
+          type: integer
+          description: Current offset position
+          example: 0
+        limit:
+          type: integer
+          description: Maximum records per page
+          example: 100
+        total:
+          type: integer
+          description: Total number of records available
+          example: 4523
+    ErrorResponse:
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error type identifier
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error message
+          example: The category_id parameter is required
+        status:
+          type: integer
+          description: HTTP status code
+          example: 400
+        request_id:
+          type: string
+          description: Unique request identifier for troubleshooting
+          example: req-a1b2c3d4
   securitySchemes:
     bearerAuth:
       type: http
