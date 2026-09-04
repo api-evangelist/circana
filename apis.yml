@@ -34,22 +34,23 @@ deliveryModel:
   method: derived
 accessModel:
   pricing: paid
-  onboarding: self-serve
+  onboarding: unknown
   trial: false
   try_now: false
   public: false
-  label: Paid · Self-serve signup
-  confidence: high
+  label: Paid
+  confidence: medium
   source:
   - plans
   - authentication
-  generated: '2026-07-22'
+  - security
+  generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/circana.png
 access: 3rd-Party
 created: '2024-01-01'
 modified: '2026-05-19'
-position: Consumer
+position: Consuming
 description: Circana (formerly IRI and The NPD Group) is the leading advisor on the complexity of consumer behavior, providing
   data-driven insights, analytics, and technology solutions that help almost 7,000 brands and retailers understand and predict
   consumer purchasing patterns across retail, CPG, beauty, foodservice, healthcare, and technology sectors covering $4T+ in
