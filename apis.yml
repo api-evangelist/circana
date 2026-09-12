@@ -467,6 +467,8 @@ apis:
   - type: JSONLD
     url: json-ld/circana-liquid-data-context.jsonld
 common:
+- type: Website
+  url: https://www.circana.com/
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/circana/overview
 - type: AgenticAccess
