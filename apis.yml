@@ -148,7 +148,7 @@ apis:
   name: Circana Complete Food and Beverage API
   tags:
   - Food
-  - Beverage
+  - Beverages
   - Food Service
   - CPG
   tags_raw:
