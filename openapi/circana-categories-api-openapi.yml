@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Circana Liquid Data Brands Categories API
+  title: Circana Liquid Data Categories API
   description: Circana's Liquid Data platform provides cross-industry data and advanced analytics in a single, open platform. This API enables programmatic access to market measurement, consumer panel, and retail analytics data deployable across Azure, AWS, Google Cloud, and Oracle Cloud environments.
   version: 1.0.0
   contact:
@@ -149,6 +149,103 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    DataCoverage:
+      type: object
+      description: Data availability and coverage information
+      properties:
+        pos_available:
+          type: boolean
+          description: Whether POS data is available
+          example: true
+        panel_available:
+          type: boolean
+          description: Whether consumer panel data is available
+          example: true
+        earliest_date:
+          type: string
+          format: date
+          description: Earliest available data date
+          example: '2018-01-01'
+        latest_date:
+          type: string
+          format: date
+          description: Latest available data date
+          example: '2026-03-31'
+    ErrorResponse:
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error type identifier
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error message
+          example: The category_id parameter is required
+        status:
+          type: integer
+          description: HTTP status code
+          example: 400
+        request_id:
+          type: string
+          description: Unique request identifier for troubleshooting
+          example: req-a1b2c3d4
+    Pagination:
+      type: object
+      description: Pagination metadata
+      properties:
+        offset:
+          type: integer
+          description: Current offset position
+          example: 0
+        limit:
+          type: integer
+          description: Maximum records per page
+          example: 100
+        total:
+          type: integer
+          description: Total number of records available
+          example: 4523
+    CategoryListResponse:
+      type: object
+      description: Category list response
+      properties:
+        data:
+          type: array
+          description: Array of category records
+          items:
+            $ref: '#/components/schemas/CategorySummary'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    CategorySummary:
+      type: object
+      description: Category summary record
+      properties:
+        category_id:
+          type: string
+          description: Unique category identifier
+          example: cpg-beverages
+        name:
+          type: string
+          description: Category name
+          example: Beverages
+        parent_id:
+          type: string
+          description: Parent category identifier
+          example: cpg
+        industry:
+          type: string
+          description: Industry vertical
+          example: cpg
+        level:
+          type: integer
+          description: Depth level in the category hierarchy
+          example: 2
+        subcategory_count:
+          type: integer
+          description: Number of subcategories
+          example: 15
     CategoryDetail:
       type: object
       description: Detailed category information
@@ -184,103 +281,6 @@ components:
             $ref: '#/components/schemas/CategorySummary'
         data_coverage:
           $ref: '#/components/schemas/DataCoverage'
-    CategorySummary:
-      type: object
-      description: Category summary record
-      properties:
-        category_id:
-          type: string
-          description: Unique category identifier
-          example: cpg-beverages
-        name:
-          type: string
-          description: Category name
-          example: Beverages
-        parent_id:
-          type: string
-          description: Parent category identifier
-          example: cpg
-        industry:
-          type: string
-          description: Industry vertical
-          example: cpg
-        level:
-          type: integer
-          description: Depth level in the category hierarchy
-          example: 2
-        subcategory_count:
-          type: integer
-          description: Number of subcategories
-          example: 15
-    DataCoverage:
-      type: object
-      description: Data availability and coverage information
-      properties:
-        pos_available:
-          type: boolean
-          description: Whether POS data is available
-          example: true
-        panel_available:
-          type: boolean
-          description: Whether consumer panel data is available
-          example: true
-        earliest_date:
-          type: string
-          format: date
-          description: Earliest available data date
-          example: '2018-01-01'
-        latest_date:
-          type: string
-          format: date
-          description: Latest available data date
-          example: '2026-03-31'
-    Pagination:
-      type: object
-      description: Pagination metadata
-      properties:
-        offset:
-          type: integer
-          description: Current offset position
-          example: 0
-        limit:
-          type: integer
-          description: Maximum records per page
-          example: 100
-        total:
-          type: integer
-          description: Total number of records available
-          example: 4523
-    ErrorResponse:
-      type: object
-      description: Standard error response
-      properties:
-        error:
-          type: string
-          description: Error type identifier
-          example: invalid_request
-        message:
-          type: string
-          description: Human-readable error message
-          example: The category_id parameter is required
-        status:
-          type: integer
-          description: HTTP status code
-          example: 400
-        request_id:
-          type: string
-          description: Unique request identifier for troubleshooting
-          example: req-a1b2c3d4
-    CategoryListResponse:
-      type: object
-      description: Category list response
-      properties:
-        data:
-          type: array
-          description: Array of category records
-          items:
-            $ref: '#/components/schemas/CategorySummary'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
   securitySchemes:
     bearerAuth:
       type: http

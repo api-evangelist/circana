@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Circana Liquid Data Brands Exports API
+  title: Circana Liquid Data Exports API
   description: Circana's Liquid Data platform provides cross-industry data and advanced analytics in a single, open platform. This API enables programmatic access to market measurement, consumer panel, and retail analytics data deployable across Azure, AWS, Google Cloud, and Oracle Cloud environments.
   version: 1.0.0
   contact:
@@ -125,26 +125,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      description: Standard error response
-      properties:
-        error:
-          type: string
-          description: Error type identifier
-          example: invalid_request
-        message:
-          type: string
-          description: Human-readable error message
-          example: The category_id parameter is required
-        status:
-          type: integer
-          description: HTTP status code
-          example: 400
-        request_id:
-          type: string
-          description: Unique request identifier for troubleshooting
-          example: req-a1b2c3d4
     ExportDetail:
       type: object
       description: Export job details
@@ -218,6 +198,26 @@ components:
           description: Whether to include column headers
           default: true
           example: true
+    ErrorResponse:
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error type identifier
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error message
+          example: The category_id parameter is required
+        status:
+          type: integer
+          description: HTTP status code
+          example: 400
+        request_id:
+          type: string
+          description: Unique request identifier for troubleshooting
+          example: req-a1b2c3d4
   securitySchemes:
     bearerAuth:
       type: http
