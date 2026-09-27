@@ -228,28 +228,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    POSDataResponse:
-      type: object
-      description: Point-of-sale data response containing sales metrics
-      properties:
-        data:
-          type: array
-          description: Array of POS data records
-          items:
-            $ref: '#/components/schemas/POSRecord'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    MarketShareResponse:
-      type: object
-      description: Market share data response
-      properties:
-        data:
-          type: array
-          description: Array of market share records
-          items:
-            $ref: '#/components/schemas/MarketShareRecord'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     MarketShareRecord:
       type: object
       description: Individual market share data record
@@ -297,6 +275,17 @@ components:
           type: string
           description: Unique request identifier for troubleshooting
           example: req-a1b2c3d4
+    POSDataResponse:
+      type: object
+      description: Point-of-sale data response containing sales metrics
+      properties:
+        data:
+          type: array
+          description: Array of POS data records
+          items:
+            $ref: '#/components/schemas/POSRecord'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     Pagination:
       type: object
       description: Pagination metadata
@@ -357,6 +346,17 @@ components:
           format: double
           description: Percentage of stores carrying the product
           example: 85.3
+    MarketShareResponse:
+      type: object
+      description: Market share data response
+      properties:
+        data:
+          type: array
+          description: Array of market share records
+          items:
+            $ref: '#/components/schemas/MarketShareRecord'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
   securitySchemes:
     bearerAuth:
       type: http

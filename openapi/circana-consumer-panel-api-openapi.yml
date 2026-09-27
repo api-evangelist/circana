@@ -217,89 +217,6 @@ components:
             $ref: '#/components/schemas/ConsumerSegment'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    ErrorResponse:
-      type: object
-      description: Standard error response
-      properties:
-        error:
-          type: string
-          description: Error type identifier
-          example: invalid_request
-        message:
-          type: string
-          description: Human-readable error message
-          example: The category_id parameter is required
-        status:
-          type: integer
-          description: HTTP status code
-          example: 400
-        request_id:
-          type: string
-          description: Unique request identifier for troubleshooting
-          example: req-a1b2c3d4
-    Pagination:
-      type: object
-      description: Pagination metadata
-      properties:
-        offset:
-          type: integer
-          description: Current offset position
-          example: 0
-        limit:
-          type: integer
-          description: Maximum records per page
-          example: 100
-        total:
-          type: integer
-          description: Total number of records available
-          example: 4523
-    ConsumerPurchaseRecord:
-      type: object
-      description: Individual consumer purchase data record
-      properties:
-        segment:
-          type: string
-          description: Consumer demographic segment
-          example: 18-34
-        category:
-          type: string
-          description: Product category name
-          example: Beverages
-        penetration_pct:
-          type: number
-          format: double
-          description: Category penetration percentage
-          example: 72.5
-        buy_rate:
-          type: number
-          format: double
-          description: Average purchase frequency
-          example: 3.2
-        avg_spend:
-          type: number
-          format: double
-          description: Average spend per buyer
-          example: 15.8
-        trips_per_buyer:
-          type: number
-          format: double
-          description: Average shopping trips per buyer
-          example: 4.1
-        channel:
-          type: string
-          description: Retail channel
-          example: grocery
-    ConsumerPurchaseResponse:
-      type: object
-      description: Consumer purchase data response
-      properties:
-        data:
-          type: array
-          description: Array of consumer purchase records
-          items:
-            $ref: '#/components/schemas/ConsumerPurchaseRecord'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     ConsumerSegment:
       type: object
       description: Consumer segment definition
@@ -338,6 +255,89 @@ components:
           example:
           - Organic Foods
           - Natural Beverages
+    ConsumerPurchaseResponse:
+      type: object
+      description: Consumer purchase data response
+      properties:
+        data:
+          type: array
+          description: Array of consumer purchase records
+          items:
+            $ref: '#/components/schemas/ConsumerPurchaseRecord'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    ConsumerPurchaseRecord:
+      type: object
+      description: Individual consumer purchase data record
+      properties:
+        segment:
+          type: string
+          description: Consumer demographic segment
+          example: 18-34
+        category:
+          type: string
+          description: Product category name
+          example: Beverages
+        penetration_pct:
+          type: number
+          format: double
+          description: Category penetration percentage
+          example: 72.5
+        buy_rate:
+          type: number
+          format: double
+          description: Average purchase frequency
+          example: 3.2
+        avg_spend:
+          type: number
+          format: double
+          description: Average spend per buyer
+          example: 15.8
+        trips_per_buyer:
+          type: number
+          format: double
+          description: Average shopping trips per buyer
+          example: 4.1
+        channel:
+          type: string
+          description: Retail channel
+          example: grocery
+    ErrorResponse:
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error type identifier
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error message
+          example: The category_id parameter is required
+        status:
+          type: integer
+          description: HTTP status code
+          example: 400
+        request_id:
+          type: string
+          description: Unique request identifier for troubleshooting
+          example: req-a1b2c3d4
+    Pagination:
+      type: object
+      description: Pagination metadata
+      properties:
+        offset:
+          type: integer
+          description: Current offset position
+          example: 0
+        limit:
+          type: integer
+          description: Maximum records per page
+          example: 100
+        total:
+          type: integer
+          description: Total number of records available
+          example: 4523
   securitySchemes:
     bearerAuth:
       type: http

@@ -6,7 +6,7 @@ tags:
 - Consumer Data
 - Market Research
 - Retail
-- CPG
+- Consumer Packaged Goods
 - Point-of-Sale
 - Consumer Insights
 - Business Intelligence
@@ -73,6 +73,11 @@ apis:
 - aid: circana:liquid-data-go-api
   name: Circana Liquid Data Go API
   tags:
+  - Market Intelligence
+  - Consumer Packaged Goods
+  - Analytics
+  - Emerging Brands
+  tags_raw:
   - Market Intelligence
   - CPG
   - Analytics
@@ -150,7 +155,7 @@ apis:
   - Food
   - Beverages
   - Food Service
-  - CPG
+  - Consumer Packaged Goods
   tags_raw:
   - Food
   - Beverage
