@@ -150,6 +150,46 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    BrandSummary:
+      type: object
+      description: Brand summary record
+      properties:
+        brand_id:
+          type: string
+          description: Unique brand identifier
+          example: brand-500123
+        name:
+          type: string
+          description: Brand name
+          example: Example Cola
+        manufacturer:
+          type: string
+          description: Manufacturer or parent company name
+          example: Example Corp
+        category:
+          type: string
+          description: Primary product category
+          example: Carbonated Beverages
+        upc_count:
+          type: integer
+          description: Number of UPCs under this brand
+          example: 45
+    Pagination:
+      type: object
+      description: Pagination metadata
+      properties:
+        offset:
+          type: integer
+          description: Current offset position
+          example: 0
+        limit:
+          type: integer
+          description: Maximum records per page
+          example: 100
+        total:
+          type: integer
+          description: Total number of records available
+          example: 4523
     MarketPresence:
       type: object
       description: Brand market presence information
@@ -197,22 +237,6 @@ components:
             $ref: '#/components/schemas/BrandSummary'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    Pagination:
-      type: object
-      description: Pagination metadata
-      properties:
-        offset:
-          type: integer
-          description: Current offset position
-          example: 0
-        limit:
-          type: integer
-          description: Maximum records per page
-          example: 100
-        total:
-          type: integer
-          description: Total number of records available
-          example: 4523
     BrandDetail:
       type: object
       description: Detailed brand information
@@ -242,30 +266,6 @@ components:
           example: 45
         market_presence:
           $ref: '#/components/schemas/MarketPresence'
-    BrandSummary:
-      type: object
-      description: Brand summary record
-      properties:
-        brand_id:
-          type: string
-          description: Unique brand identifier
-          example: brand-500123
-        name:
-          type: string
-          description: Brand name
-          example: Example Cola
-        manufacturer:
-          type: string
-          description: Manufacturer or parent company name
-          example: Example Corp
-        category:
-          type: string
-          description: Primary product category
-          example: Carbonated Beverages
-        upc_count:
-          type: integer
-          description: Number of UPCs under this brand
-          example: 45
   securitySchemes:
     bearerAuth:
       type: http

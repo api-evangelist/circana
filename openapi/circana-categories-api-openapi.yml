@@ -149,26 +149,22 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ErrorResponse:
+    Pagination:
       type: object
-      description: Standard error response
+      description: Pagination metadata
       properties:
-        error:
-          type: string
-          description: Error type identifier
-          example: invalid_request
-        message:
-          type: string
-          description: Human-readable error message
-          example: The category_id parameter is required
-        status:
+        offset:
           type: integer
-          description: HTTP status code
-          example: 400
-        request_id:
-          type: string
-          description: Unique request identifier for troubleshooting
-          example: req-a1b2c3d4
+          description: Current offset position
+          example: 0
+        limit:
+          type: integer
+          description: Maximum records per page
+          example: 100
+        total:
+          type: integer
+          description: Total number of records available
+          example: 4523
     CategorySummary:
       type: object
       description: Category summary record
@@ -197,6 +193,37 @@ components:
           type: integer
           description: Number of subcategories
           example: 15
+    CategoryListResponse:
+      type: object
+      description: Category list response
+      properties:
+        data:
+          type: array
+          description: Array of category records
+          items:
+            $ref: '#/components/schemas/CategorySummary'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    ErrorResponse:
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error type identifier
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error message
+          example: The category_id parameter is required
+        status:
+          type: integer
+          description: HTTP status code
+          example: 400
+        request_id:
+          type: string
+          description: Unique request identifier for troubleshooting
+          example: req-a1b2c3d4
     CategoryDetail:
       type: object
       description: Detailed category information
@@ -232,33 +259,6 @@ components:
             $ref: '#/components/schemas/CategorySummary'
         data_coverage:
           $ref: '#/components/schemas/DataCoverage'
-    Pagination:
-      type: object
-      description: Pagination metadata
-      properties:
-        offset:
-          type: integer
-          description: Current offset position
-          example: 0
-        limit:
-          type: integer
-          description: Maximum records per page
-          example: 100
-        total:
-          type: integer
-          description: Total number of records available
-          example: 4523
-    CategoryListResponse:
-      type: object
-      description: Category list response
-      properties:
-        data:
-          type: array
-          description: Array of category records
-          items:
-            $ref: '#/components/schemas/CategorySummary'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     DataCoverage:
       type: object
       description: Data availability and coverage information

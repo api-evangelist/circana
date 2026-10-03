@@ -206,17 +206,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ConsumerSegmentResponse:
-      type: object
-      description: Consumer segmentation response
-      properties:
-        data:
-          type: array
-          description: Array of consumer segment records
-          items:
-            $ref: '#/components/schemas/ConsumerSegment'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     ConsumerSegment:
       type: object
       description: Consumer segment definition
@@ -255,6 +244,33 @@ components:
           example:
           - Organic Foods
           - Natural Beverages
+    Pagination:
+      type: object
+      description: Pagination metadata
+      properties:
+        offset:
+          type: integer
+          description: Current offset position
+          example: 0
+        limit:
+          type: integer
+          description: Maximum records per page
+          example: 100
+        total:
+          type: integer
+          description: Total number of records available
+          example: 4523
+    ConsumerSegmentResponse:
+      type: object
+      description: Consumer segmentation response
+      properties:
+        data:
+          type: array
+          description: Array of consumer segment records
+          items:
+            $ref: '#/components/schemas/ConsumerSegment'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     ConsumerPurchaseResponse:
       type: object
       description: Consumer purchase data response
@@ -322,22 +338,6 @@ components:
           type: string
           description: Unique request identifier for troubleshooting
           example: req-a1b2c3d4
-    Pagination:
-      type: object
-      description: Pagination metadata
-      properties:
-        offset:
-          type: integer
-          description: Current offset position
-          example: 0
-        limit:
-          type: integer
-          description: Maximum records per page
-          example: 100
-        total:
-          type: integer
-          description: Total number of records available
-          example: 4523
   securitySchemes:
     bearerAuth:
       type: http
