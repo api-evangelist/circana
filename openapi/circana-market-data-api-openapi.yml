@@ -228,6 +228,70 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error type identifier
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error message
+          example: The category_id parameter is required
+        status:
+          type: integer
+          description: HTTP status code
+          example: 400
+        request_id:
+          type: string
+          description: Unique request identifier for troubleshooting
+          example: req-a1b2c3d4
+    POSRecord:
+      type: object
+      description: Individual point-of-sale data record
+      properties:
+        period:
+          type: string
+          description: Time period identifier
+          example: 2026-W01
+        category:
+          type: string
+          description: Product category name
+          example: Beverages
+        brand:
+          type: string
+          description: Brand name
+          example: Example Brand
+        upc:
+          type: string
+          description: Universal Product Code
+          example: 012345678901
+        dollar_sales:
+          type: number
+          format: double
+          description: Total dollar sales for the period
+          example: 125340.5
+        unit_sales:
+          type: integer
+          description: Total unit sales for the period
+          example: 45230
+        volume_sales:
+          type: number
+          format: double
+          description: Total volume sales (equivalent units)
+          example: 67845.0
+        avg_price:
+          type: number
+          format: double
+          description: Average selling price
+          example: 2.77
+        distribution_pct:
+          type: number
+          format: double
+          description: Percentage of stores carrying the product
+          example: 85.3
     Pagination:
       type: object
       description: Pagination metadata
@@ -293,70 +357,6 @@ components:
             $ref: '#/components/schemas/MarketShareRecord'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    ErrorResponse:
-      type: object
-      description: Standard error response
-      properties:
-        error:
-          type: string
-          description: Error type identifier
-          example: invalid_request
-        message:
-          type: string
-          description: Human-readable error message
-          example: The category_id parameter is required
-        status:
-          type: integer
-          description: HTTP status code
-          example: 400
-        request_id:
-          type: string
-          description: Unique request identifier for troubleshooting
-          example: req-a1b2c3d4
-    POSRecord:
-      type: object
-      description: Individual point-of-sale data record
-      properties:
-        period:
-          type: string
-          description: Time period identifier
-          example: 2026-W01
-        category:
-          type: string
-          description: Product category name
-          example: Beverages
-        brand:
-          type: string
-          description: Brand name
-          example: Example Brand
-        upc:
-          type: string
-          description: Universal Product Code
-          example: 012345678901
-        dollar_sales:
-          type: number
-          format: double
-          description: Total dollar sales for the period
-          example: 125340.5
-        unit_sales:
-          type: integer
-          description: Total unit sales for the period
-          example: 45230
-        volume_sales:
-          type: number
-          format: double
-          description: Total volume sales (equivalent units)
-          example: 67845.0
-        avg_price:
-          type: number
-          format: double
-          description: Average selling price
-          example: 2.77
-        distribution_pct:
-          type: number
-          format: double
-          description: Percentage of stores carrying the product
-          example: 85.3
   securitySchemes:
     bearerAuth:
       type: http

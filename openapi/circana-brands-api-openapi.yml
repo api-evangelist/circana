@@ -150,30 +150,37 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    BrandSummary:
+    ErrorResponse:
       type: object
-      description: Brand summary record
+      description: Standard error response
       properties:
-        brand_id:
+        error:
           type: string
-          description: Unique brand identifier
-          example: brand-500123
-        name:
+          description: Error type identifier
+          example: invalid_request
+        message:
           type: string
-          description: Brand name
-          example: Example Cola
-        manufacturer:
-          type: string
-          description: Manufacturer or parent company name
-          example: Example Corp
-        category:
-          type: string
-          description: Primary product category
-          example: Carbonated Beverages
-        upc_count:
+          description: Human-readable error message
+          example: The category_id parameter is required
+        status:
           type: integer
-          description: Number of UPCs under this brand
-          example: 45
+          description: HTTP status code
+          example: 400
+        request_id:
+          type: string
+          description: Unique request identifier for troubleshooting
+          example: req-a1b2c3d4
+    BrandListResponse:
+      type: object
+      description: Brand list response
+      properties:
+        data:
+          type: array
+          description: Array of brand records
+          items:
+            $ref: '#/components/schemas/BrandSummary'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     Pagination:
       type: object
       description: Pagination metadata
@@ -206,37 +213,30 @@ components:
           type: string
           description: Geographic coverage level
           example: national
-    ErrorResponse:
+    BrandSummary:
       type: object
-      description: Standard error response
+      description: Brand summary record
       properties:
-        error:
+        brand_id:
           type: string
-          description: Error type identifier
-          example: invalid_request
-        message:
+          description: Unique brand identifier
+          example: brand-500123
+        name:
           type: string
-          description: Human-readable error message
-          example: The category_id parameter is required
-        status:
+          description: Brand name
+          example: Example Cola
+        manufacturer:
+          type: string
+          description: Manufacturer or parent company name
+          example: Example Corp
+        category:
+          type: string
+          description: Primary product category
+          example: Carbonated Beverages
+        upc_count:
           type: integer
-          description: HTTP status code
-          example: 400
-        request_id:
-          type: string
-          description: Unique request identifier for troubleshooting
-          example: req-a1b2c3d4
-    BrandListResponse:
-      type: object
-      description: Brand list response
-      properties:
-        data:
-          type: array
-          description: Array of brand records
-          items:
-            $ref: '#/components/schemas/BrandSummary'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+          description: Number of UPCs under this brand
+          example: 45
     BrandDetail:
       type: object
       description: Detailed brand information

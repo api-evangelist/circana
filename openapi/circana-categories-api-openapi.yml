@@ -149,22 +149,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Pagination:
-      type: object
-      description: Pagination metadata
-      properties:
-        offset:
-          type: integer
-          description: Current offset position
-          example: 0
-        limit:
-          type: integer
-          description: Maximum records per page
-          example: 100
-        total:
-          type: integer
-          description: Total number of records available
-          example: 4523
     CategorySummary:
       type: object
       description: Category summary record
@@ -193,17 +177,28 @@ components:
           type: integer
           description: Number of subcategories
           example: 15
-    CategoryListResponse:
+    DataCoverage:
       type: object
-      description: Category list response
+      description: Data availability and coverage information
       properties:
-        data:
-          type: array
-          description: Array of category records
-          items:
-            $ref: '#/components/schemas/CategorySummary'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+        pos_available:
+          type: boolean
+          description: Whether POS data is available
+          example: true
+        panel_available:
+          type: boolean
+          description: Whether consumer panel data is available
+          example: true
+        earliest_date:
+          type: string
+          format: date
+          description: Earliest available data date
+          example: '2018-01-01'
+        latest_date:
+          type: string
+          format: date
+          description: Latest available data date
+          example: '2026-03-31'
     ErrorResponse:
       type: object
       description: Standard error response
@@ -259,28 +254,33 @@ components:
             $ref: '#/components/schemas/CategorySummary'
         data_coverage:
           $ref: '#/components/schemas/DataCoverage'
-    DataCoverage:
+    CategoryListResponse:
       type: object
-      description: Data availability and coverage information
+      description: Category list response
       properties:
-        pos_available:
-          type: boolean
-          description: Whether POS data is available
-          example: true
-        panel_available:
-          type: boolean
-          description: Whether consumer panel data is available
-          example: true
-        earliest_date:
-          type: string
-          format: date
-          description: Earliest available data date
-          example: '2018-01-01'
-        latest_date:
-          type: string
-          format: date
-          description: Latest available data date
-          example: '2026-03-31'
+        data:
+          type: array
+          description: Array of category records
+          items:
+            $ref: '#/components/schemas/CategorySummary'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Pagination:
+      type: object
+      description: Pagination metadata
+      properties:
+        offset:
+          type: integer
+          description: Current offset position
+          example: 0
+        limit:
+          type: integer
+          description: Maximum records per page
+          example: 100
+        total:
+          type: integer
+          description: Total number of records available
+          example: 4523
   securitySchemes:
     bearerAuth:
       type: http
