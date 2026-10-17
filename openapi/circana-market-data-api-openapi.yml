@@ -228,6 +228,28 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    MarketShareResponse:
+      type: object
+      description: Market share data response
+      properties:
+        data:
+          type: array
+          description: Array of market share records
+          items:
+            $ref: '#/components/schemas/MarketShareRecord'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    POSDataResponse:
+      type: object
+      description: Point-of-sale data response containing sales metrics
+      properties:
+        data:
+          type: array
+          description: Array of POS data records
+          items:
+            $ref: '#/components/schemas/POSRecord'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     ErrorResponse:
       type: object
       description: Standard error response
@@ -248,6 +270,49 @@ components:
           type: string
           description: Unique request identifier for troubleshooting
           example: req-a1b2c3d4
+    MarketShareRecord:
+      type: object
+      description: Individual market share data record
+      properties:
+        brand:
+          type: string
+          description: Brand name
+          example: Example Brand A
+        dollar_share:
+          type: number
+          format: double
+          description: Dollar market share percentage
+          example: 24.5
+        unit_share:
+          type: number
+          format: double
+          description: Unit market share percentage
+          example: 22.1
+        share_change:
+          type: number
+          format: double
+          description: Share change vs prior period in percentage points
+          example: 1.2
+        period:
+          type: string
+          description: Time period identifier
+          example: 2026-Q1
+    Pagination:
+      type: object
+      description: Pagination metadata
+      properties:
+        offset:
+          type: integer
+          description: Current offset position
+          example: 0
+        limit:
+          type: integer
+          description: Maximum records per page
+          example: 100
+        total:
+          type: integer
+          description: Total number of records available
+          example: 4523
     POSRecord:
       type: object
       description: Individual point-of-sale data record
@@ -292,71 +357,6 @@ components:
           format: double
           description: Percentage of stores carrying the product
           example: 85.3
-    Pagination:
-      type: object
-      description: Pagination metadata
-      properties:
-        offset:
-          type: integer
-          description: Current offset position
-          example: 0
-        limit:
-          type: integer
-          description: Maximum records per page
-          example: 100
-        total:
-          type: integer
-          description: Total number of records available
-          example: 4523
-    POSDataResponse:
-      type: object
-      description: Point-of-sale data response containing sales metrics
-      properties:
-        data:
-          type: array
-          description: Array of POS data records
-          items:
-            $ref: '#/components/schemas/POSRecord'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    MarketShareRecord:
-      type: object
-      description: Individual market share data record
-      properties:
-        brand:
-          type: string
-          description: Brand name
-          example: Example Brand A
-        dollar_share:
-          type: number
-          format: double
-          description: Dollar market share percentage
-          example: 24.5
-        unit_share:
-          type: number
-          format: double
-          description: Unit market share percentage
-          example: 22.1
-        share_change:
-          type: number
-          format: double
-          description: Share change vs prior period in percentage points
-          example: 1.2
-        period:
-          type: string
-          description: Time period identifier
-          example: 2026-Q1
-    MarketShareResponse:
-      type: object
-      description: Market share data response
-      properties:
-        data:
-          type: array
-          description: Array of market share records
-          items:
-            $ref: '#/components/schemas/MarketShareRecord'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
   securitySchemes:
     bearerAuth:
       type: http

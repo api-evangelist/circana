@@ -150,6 +150,70 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    BrandListResponse:
+      type: object
+      description: Brand list response
+      properties:
+        data:
+          type: array
+          description: Array of brand records
+          items:
+            $ref: '#/components/schemas/BrandSummary'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    BrandDetail:
+      type: object
+      description: Detailed brand information
+      properties:
+        brand_id:
+          type: string
+          description: Unique brand identifier
+          example: brand-500123
+        name:
+          type: string
+          description: Brand name
+          example: Example Cola
+        manufacturer:
+          type: string
+          description: Manufacturer or parent company name
+          example: Example Corp
+        categories:
+          type: array
+          description: Categories the brand is present in
+          items:
+            type: string
+          example:
+          - Carbonated Beverages
+        upc_count:
+          type: integer
+          description: Number of UPCs under this brand
+          example: 45
+        market_presence:
+          $ref: '#/components/schemas/MarketPresence'
+    BrandSummary:
+      type: object
+      description: Brand summary record
+      properties:
+        brand_id:
+          type: string
+          description: Unique brand identifier
+          example: brand-500123
+        name:
+          type: string
+          description: Brand name
+          example: Example Cola
+        manufacturer:
+          type: string
+          description: Manufacturer or parent company name
+          example: Example Corp
+        category:
+          type: string
+          description: Primary product category
+          example: Carbonated Beverages
+        upc_count:
+          type: integer
+          description: Number of UPCs under this brand
+          example: 45
     ErrorResponse:
       type: object
       description: Standard error response
@@ -170,17 +234,6 @@ components:
           type: string
           description: Unique request identifier for troubleshooting
           example: req-a1b2c3d4
-    BrandListResponse:
-      type: object
-      description: Brand list response
-      properties:
-        data:
-          type: array
-          description: Array of brand records
-          items:
-            $ref: '#/components/schemas/BrandSummary'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     Pagination:
       type: object
       description: Pagination metadata
@@ -213,59 +266,6 @@ components:
           type: string
           description: Geographic coverage level
           example: national
-    BrandSummary:
-      type: object
-      description: Brand summary record
-      properties:
-        brand_id:
-          type: string
-          description: Unique brand identifier
-          example: brand-500123
-        name:
-          type: string
-          description: Brand name
-          example: Example Cola
-        manufacturer:
-          type: string
-          description: Manufacturer or parent company name
-          example: Example Corp
-        category:
-          type: string
-          description: Primary product category
-          example: Carbonated Beverages
-        upc_count:
-          type: integer
-          description: Number of UPCs under this brand
-          example: 45
-    BrandDetail:
-      type: object
-      description: Detailed brand information
-      properties:
-        brand_id:
-          type: string
-          description: Unique brand identifier
-          example: brand-500123
-        name:
-          type: string
-          description: Brand name
-          example: Example Cola
-        manufacturer:
-          type: string
-          description: Manufacturer or parent company name
-          example: Example Corp
-        categories:
-          type: array
-          description: Categories the brand is present in
-          items:
-            type: string
-          example:
-          - Carbonated Beverages
-        upc_count:
-          type: integer
-          description: Number of UPCs under this brand
-          example: 45
-        market_presence:
-          $ref: '#/components/schemas/MarketPresence'
   securitySchemes:
     bearerAuth:
       type: http

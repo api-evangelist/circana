@@ -200,40 +200,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ReportSummary:
-      type: object
-      description: Report summary record
-      properties:
-        report_id:
-          type: string
-          description: Unique report identifier
-          example: rpt-500123
-        name:
-          type: string
-          description: Report name
-          example: Q1 2026 Beverage Market Review
-        status:
-          type: string
-          description: Report processing status
-          enum:
-          - draft
-          - processing
-          - completed
-          - failed
-          example: completed
-        created_at:
-          type: string
-          format: date-time
-          description: Report creation timestamp
-          example: '2026-04-01T10:00:00Z'
-        category:
-          type: string
-          description: Primary category for the report
-          example: Beverages
-        report_type:
-          type: string
-          description: Type of report
-          example: market_review
     ReportListResponse:
       type: object
       description: Report list response
@@ -265,6 +231,22 @@ components:
           type: string
           description: Unique request identifier for troubleshooting
           example: req-a1b2c3d4
+    Pagination:
+      type: object
+      description: Pagination metadata
+      properties:
+        offset:
+          type: integer
+          description: Current offset position
+          example: 0
+        limit:
+          type: integer
+          description: Maximum records per page
+          example: 100
+        total:
+          type: integer
+          description: Total number of records available
+          example: 4523
     CreateReportRequest:
       type: object
       description: Request to create a new report
@@ -316,22 +298,6 @@ components:
           - dollar_sales
           - unit_sales
           - market_share
-    Pagination:
-      type: object
-      description: Pagination metadata
-      properties:
-        offset:
-          type: integer
-          description: Current offset position
-          example: 0
-        limit:
-          type: integer
-          description: Maximum records per page
-          example: 100
-        total:
-          type: integer
-          description: Total number of records available
-          example: 4523
     ReportDetail:
       type: object
       description: Detailed report information
@@ -380,6 +346,40 @@ components:
           format: date-time
           description: Estimated completion time for processing reports
           example: '2026-04-18T12:05:00Z'
+    ReportSummary:
+      type: object
+      description: Report summary record
+      properties:
+        report_id:
+          type: string
+          description: Unique report identifier
+          example: rpt-500123
+        name:
+          type: string
+          description: Report name
+          example: Q1 2026 Beverage Market Review
+        status:
+          type: string
+          description: Report processing status
+          enum:
+          - draft
+          - processing
+          - completed
+          - failed
+          example: completed
+        created_at:
+          type: string
+          format: date-time
+          description: Report creation timestamp
+          example: '2026-04-01T10:00:00Z'
+        category:
+          type: string
+          description: Primary category for the report
+          example: Beverages
+        report_type:
+          type: string
+          description: Type of report
+          example: market_review
   securitySchemes:
     bearerAuth:
       type: http
