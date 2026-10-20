@@ -18,9 +18,37 @@ edges:
   category: Microsoft Teams app
   publisher_verified:
   - Microsoft 365 Certified
+- partner_name: Snowflake Marketplace
+  partner: snowflake
+  partner_match: aggregator
+  type: marketplace
+  marketplace: snowflake-marketplace
+  channel: distribution
+  relationship: distribution-channel
+  direction: third-party
+  evidence: https://app.snowflake.com/marketplace/providers/GZ1M6Z5XDL0
+  category: data product listing
+  contract_reference:
+    register: Snowflake Marketplace providers (app.snowflake.com/marketplace/providers, rendered; names only, Wikidata
+      P856 identity step)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Circana (FKA IRI)
+    matched_domain: circana.com
+    matched_by: domain
+    listings: 3
+    sample_listings: []
+    signal_note: 'participation: the provider lists data products on this marketplace; counts are context'
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    identity_source: wikidata
+    identity_note: wikidata P856 circana.com for 'Circana' (labelled identity step)
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
 generated: '2026-10-18'
 method: searched
 source:
 - microsoft-teams/integrations/microsoft-teams-integration-edges.yml
 checked:
 - microsoft-teams/integrations/microsoft-teams-integration-edges.yml
+- https://app.snowflake.com/marketplace/providers
